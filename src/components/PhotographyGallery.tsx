@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Camera, MapPin, Eye, X, ChevronLeft, ChevronRight, Sliders } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Camera, MapPin, Eye, X, ChevronLeft, ChevronRight, Sliders, Sparkles } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { PHOTOGRAPHY_GALLERY } from '../data/portfolioData';
 import { PhotoAsset } from '../types';
 
@@ -13,8 +14,44 @@ export const PhotographyGallery: React.FC = () => {
     activeCategory === 'All' || p.category === activeCategory
   );
 
+  const currentIndex = selectedPhoto 
+    ? filteredPhotos.findIndex((p) => p.id === selectedPhoto.id) 
+    : -1;
+
+  const handlePrev = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    if (currentIndex > 0) {
+      setSelectedPhoto(filteredPhotos[currentIndex - 1]);
+    } else {
+      setSelectedPhoto(filteredPhotos[filteredPhotos.length - 1]);
+    }
+  };
+
+  const handleNext = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    if (currentIndex < filteredPhotos.length - 1) {
+      setSelectedPhoto(filteredPhotos[currentIndex + 1]);
+    } else {
+      setSelectedPhoto(filteredPhotos[0]);
+    }
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!selectedPhoto) return;
+      if (e.key === 'Escape') setSelectedPhoto(null);
+      if (e.key === 'ArrowLeft') handlePrev();
+      if (e.key === 'ArrowRight') handleNext();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedPhoto, currentIndex, filteredPhotos]);
+
   return (
-    <section id="photography" className="py-24 relative bg-[#07090e] border-t border-white/5">
+    <section id="photography" className="py-24 relative bg-[#07090e] border-t border-white/5 overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute top-1/3 left-10 w-96 h-96 bg-purple-600/5 rounded-full blur-3xl pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
@@ -27,8 +64,8 @@ export const PhotographyGallery: React.FC = () => {
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
               Field Documentation & Visual Ethnography
             </h2>
-            <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
-              Photographic archives from Phanga Media and rural technology deployments across Malawi. Grounding technology in the lived human landscape.
+            <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
+              Photographic archives from Phanga Studio, 7arts Agency, and multilateral donor field missions across Malawi (World Bank, UNDP, UNICEF, European Union). Grounding technology in the lived human landscape.
             </p>
           </div>
 
@@ -51,47 +88,54 @@ export const PhotographyGallery: React.FC = () => {
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredPhotos.map((photo) => (
-            <div
-              key={photo.id}
-              onClick={() => setSelectedPhoto(photo)}
-              className="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-slate-900 border border-white/10 hover:border-purple-400/50 transition-all duration-300 shadow-xl cursor-pointer"
-            >
-              <img
-                src={photo.url}
-                alt={photo.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-              />
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AnimatePresence>
+            {filteredPhotos.map((photo, idx) => (
+              <motion.div
+                key={photo.id}
+                layout
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3, delay: idx * 0.05 }}
+                onClick={() => setSelectedPhoto(photo)}
+                className="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-slate-900 border border-white/10 hover:border-purple-400/50 transition-all duration-300 shadow-xl cursor-pointer"
+              >
+                <img
+                  src={photo.url}
+                  alt={photo.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
 
-              {/* Gradient Mask */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+                {/* Gradient Mask */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
 
-              {/* Info on hover / bottom */}
-              <div className="absolute bottom-0 left-0 right-0 p-5 text-left transform translate-y-1 group-hover:translate-y-0 transition-transform">
-                <div className="flex items-center gap-2 text-[10px] font-mono text-purple-300 mb-1">
-                  <MapPin className="w-3 h-3" />
-                  <span>{photo.location}</span>
-                  <span>•</span>
-                  <span>{photo.category}</span>
+                {/* Info on hover / bottom */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 text-left transform translate-y-1 group-hover:translate-y-0 transition-transform">
+                  <div className="flex items-center gap-2 text-[10px] font-mono text-purple-300 mb-1">
+                    <MapPin className="w-3 h-3" />
+                    <span>{photo.location}</span>
+                    <span>•</span>
+                    <span>{photo.category}</span>
+                  </div>
+
+                  <h3 className="text-base font-bold text-white tracking-tight leading-snug group-hover:text-purple-200 transition-colors">
+                    {photo.title}
+                  </h3>
+
+                  <p className="text-xs text-slate-300 mt-1 line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {photo.description}
+                  </p>
                 </div>
 
-                <h3 className="text-base font-bold text-white tracking-tight leading-snug group-hover:text-purple-200 transition-colors">
-                  {photo.title}
-                </h3>
-
-                <p className="text-xs text-slate-300 mt-1 line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  {photo.description}
-                </p>
-              </div>
-
-              {/* Zoom pill */}
-              <div className="absolute top-3 right-3 p-2 rounded-full bg-black/60 backdrop-blur-md text-white/80 opacity-0 group-hover:opacity-100 transition-opacity">
-                <Eye className="w-4 h-4" />
-              </div>
-            </div>
-          ))}
-        </div>
+                {/* Zoom pill */}
+                <div className="absolute top-3 right-3 p-2 rounded-full bg-black/60 backdrop-blur-md text-white/80 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Eye className="w-4 h-4" />
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
 
       </div>
 
@@ -100,30 +144,54 @@ export const PhotographyGallery: React.FC = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/95 backdrop-blur-xl animate-in fade-in duration-200">
           <div className="fixed inset-0" onClick={() => setSelectedPhoto(null)} />
 
-          <div className="relative max-w-5xl w-full max-h-[90vh] flex flex-col z-10">
-            {/* Close Button */}
-            <div className="flex justify-between items-center pb-4 text-white">
+          <div className="relative max-w-5xl w-full max-h-[92vh] flex flex-col z-10">
+            {/* Top Bar */}
+            <div className="flex justify-between items-center pb-3 text-white">
               <div className="font-mono text-xs text-purple-400 flex items-center gap-2">
                 <MapPin className="w-3.5 h-3.5" />
                 <span>{selectedPhoto.location}</span>
                 <span className="text-slate-600">|</span>
                 <span className="text-slate-400">{selectedPhoto.cameraInfo}</span>
+                <span className="text-slate-600">|</span>
+                <span className="text-slate-400">{currentIndex + 1} of {filteredPhotos.length}</span>
               </div>
-              <button
-                onClick={() => setSelectedPhoto(null)}
-                className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all cursor-pointer"
-              >
-                <X className="w-5 h-5" />
-              </button>
+              <div className="flex items-center gap-2">
+                <span className="hidden sm:inline-block text-[10px] text-slate-500 font-mono">Arrow keys to navigate • ESC to close</span>
+                <button
+                  onClick={() => setSelectedPhoto(null)}
+                  className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all cursor-pointer"
+                  title="Close lightbox (ESC)"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
             </div>
 
-            {/* Photo Preview Container */}
-            <div className="relative rounded-2xl overflow-hidden bg-black border border-white/10 flex-1 flex items-center justify-center">
+            {/* Photo Preview Container with Prev/Next buttons */}
+            <div className="relative rounded-2xl overflow-hidden bg-black border border-white/10 flex-1 flex items-center justify-center group">
               <img
                 src={selectedPhoto.url}
                 alt={selectedPhoto.title}
-                className="max-h-[70vh] w-auto object-contain mx-auto"
+                className="max-h-[68vh] w-auto object-contain mx-auto select-none"
               />
+
+              {/* Prev Button */}
+              <button
+                onClick={handlePrev}
+                className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/70 hover:bg-purple-600 text-white backdrop-blur-md transition-all cursor-pointer"
+                title="Previous photo (Left Arrow)"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+
+              {/* Next Button */}
+              <button
+                onClick={handleNext}
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/70 hover:bg-purple-600 text-white backdrop-blur-md transition-all cursor-pointer"
+                title="Next photo (Right Arrow)"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
             </div>
 
             {/* Photo Caption */}

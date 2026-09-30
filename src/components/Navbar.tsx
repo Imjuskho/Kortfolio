@@ -124,11 +124,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
             {/* Terminal Trigger */}
             <button
               onClick={onOpenTerminal}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-950/40 hover:bg-emerald-900/50 text-emerald-300 border border-emerald-500/30 text-xs font-mono transition-all hover:border-emerald-400 hover:shadow-[0_0_12px_rgba(16,185,129,0.2)] cursor-pointer"
-              title="Open Kortfolio CLI"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-950/40 hover:bg-emerald-900/50 text-emerald-300 border border-emerald-500/30 text-xs font-mono transition-all hover:border-emerald-400 hover:shadow-[0_0_12px_rgba(16,185,129,0.2)] cursor-pointer group"
+              title="Open Kortfolio CLI (⌘K / Ctrl+K)"
             >
               <Terminal className="w-3.5 h-3.5 text-emerald-400" />
               <span className="font-semibold">CLI</span>
+              <kbd className="hidden lg:inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-black/60 text-emerald-400/80 border border-emerald-500/20 group-hover:border-emerald-500/40 font-mono">
+                ⌘K
+              </kbd>
             </button>
 
             {/* LinkedIn Link */}

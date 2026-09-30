@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, Send, CheckCircle2, Globe, MessageSquare, Phone } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle2, Globe, MessageSquare, Phone, Copy, Check } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 export const ContactSection: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [copiedField, setCopiedField] = useState<'email' | 'phone' | null>(null);
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+
+  const handleCopy = (text: string, field: 'email' | 'phone', e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigator.clipboard.writeText(text);
+    setCopiedField(field);
+    setTimeout(() => setCopiedField(null), 2000);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,31 +49,71 @@ export const ContactSection: React.FC = () => {
 
               {/* Direct links list */}
               <div className="space-y-3 font-mono text-xs">
-                <a
-                  href={`mailto:${PERSONAL_INFO.email}`}
-                  className="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-emerald-500/40 text-slate-300 hover:text-white transition-all group"
-                >
-                  <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 group-hover:scale-110 transition-transform">
-                    <Mail className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-[10px] text-slate-500 uppercase">Direct Email</div>
-                    <div className="text-white font-semibold">{PERSONAL_INFO.email}</div>
-                  </div>
-                </a>
+                <div className="flex items-center justify-between p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-emerald-500/40 text-slate-300 transition-all group">
+                  <a
+                    href={`mailto:${PERSONAL_INFO.email}`}
+                    className="flex items-center gap-3 flex-1 min-w-0"
+                  >
+                    <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 group-hover:scale-110 transition-transform flex-shrink-0">
+                      <Mail className="w-4 h-4" />
+                    </div>
+                    <div className="truncate">
+                      <div className="text-[10px] text-slate-500 uppercase">Direct Email</div>
+                      <div className="text-white font-semibold truncate hover:text-emerald-300 transition-colors">{PERSONAL_INFO.email}</div>
+                    </div>
+                  </a>
+                  <button
+                    type="button"
+                    onClick={(e) => handleCopy(PERSONAL_INFO.email, 'email', e)}
+                    className="ml-2 px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-emerald-500/20 text-slate-400 hover:text-emerald-300 transition-all flex items-center gap-1 text-[10px] cursor-pointer flex-shrink-0"
+                    title="Copy email to clipboard"
+                  >
+                    {copiedField === 'email' ? (
+                      <>
+                        <Check className="w-3.5 h-3.5 text-emerald-400" />
+                        <span className="text-emerald-400 font-bold">Copied!</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3.5 h-3.5" />
+                        <span>Copy</span>
+                      </>
+                    )}
+                  </button>
+                </div>
 
-                <a
-                  href={`tel:${PERSONAL_INFO.phone}`}
-                  className="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-emerald-500/40 text-slate-300 hover:text-white transition-all group"
-                >
-                  <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 group-hover:scale-110 transition-transform">
-                    <Phone className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <div className="text-[10px] text-slate-500 uppercase">Direct Telephone</div>
-                    <div className="text-white font-semibold">{PERSONAL_INFO.phone}</div>
-                  </div>
-                </a>
+                <div className="flex items-center justify-between p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-emerald-500/40 text-slate-300 transition-all group">
+                  <a
+                    href={`tel:${PERSONAL_INFO.phone}`}
+                    className="flex items-center gap-3 flex-1 min-w-0"
+                  >
+                    <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 group-hover:scale-110 transition-transform flex-shrink-0">
+                      <Phone className="w-4 h-4" />
+                    </div>
+                    <div className="truncate">
+                      <div className="text-[10px] text-slate-500 uppercase">Direct Telephone</div>
+                      <div className="text-white font-semibold hover:text-emerald-300 transition-colors">{PERSONAL_INFO.phone}</div>
+                    </div>
+                  </a>
+                  <button
+                    type="button"
+                    onClick={(e) => handleCopy(PERSONAL_INFO.phone, 'phone', e)}
+                    className="ml-2 px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-emerald-500/20 text-slate-400 hover:text-emerald-300 transition-all flex items-center gap-1 text-[10px] cursor-pointer flex-shrink-0"
+                    title="Copy phone to clipboard"
+                  >
+                    {copiedField === 'phone' ? (
+                      <>
+                        <Check className="w-3.5 h-3.5 text-emerald-400" />
+                        <span className="text-emerald-400 font-bold">Copied!</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3.5 h-3.5" />
+                        <span>Copy</span>
+                      </>
+                    )}
+                  </button>
+                </div>
 
                 <div className="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-slate-300">
                   <div className="p-2 rounded-lg bg-teal-500/10 text-teal-400">
