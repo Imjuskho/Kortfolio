@@ -3,12 +3,12 @@ import { Project, PhotoAsset, EngineeringThesis, CareerExperience, EducationEntr
 export const PERSONAL_INFO = {
   name: "Kondwani Austin Phanga",
   shortName: "Kondwani Phanga",
-  title: "Data Centre Cloud Architect | Cloud & Infrastructure Systems Specialist",
+  title: "Cloud & Infrastructure Engineer | Digital Transformation Specialist",
   subtitles: [
-    "Enterprise Data Centre Operations (MTL National Backbone)",
+    "Enterprise Data Centre Operations (MTL National Telecoms Backbone)",
     "Cloud-Native Systems & AWS VPC Architecture",
-    "Distributed Edge Computing & On-Device Computer Vision",
-    "Managing Director (MWK 200M+ Annual Revenue Delivered)"
+    "Distributed Edge Fleet Control Planes (EdgeVision-MW & AMR FinTech)",
+    "Managing Director, 7arts (MWK 200M+ Annual Revenue Delivered)"
   ],
   bio: "Computer engineer and technology leader with over a decade of progressive experience bridging enterprise data centre operations, cloud-native systems architecture, and business-scale technology leadership. Began inside Malawi's national telecommunications backbone (MTL)—managing enterprise servers, SAN/NAS storage, network security, and disaster recovery—before building and running a multi-million-kwacha creative technology agency serving UNDP, UNICEF, the World Bank, the EU, and the US Embassy. Currently architecting containerised, AWS-targeted SaaS platforms and distributed edge-computing control planes, with a verified record of remediating critical security findings to 100% automated test compliance.",
   location: "Lilongwe & Blantyre, Malawi",
