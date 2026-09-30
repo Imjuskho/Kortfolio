@@ -45,9 +45,6 @@ export const SkillMatrix: React.FC = () => {
 
   return (
     <section id="skills" className="py-24 relative bg-[#090c14] border-t border-white/5 overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-teal-500/5 rounded-full blur-3xl pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}

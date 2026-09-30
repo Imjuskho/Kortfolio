@@ -49,9 +49,6 @@ export const PhotographyGallery: React.FC = () => {
 
   return (
     <section id="photography" className="py-24 relative bg-[#07090e] border-t border-white/5 overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-1/3 left-10 w-96 h-96 bg-purple-600/5 rounded-full blur-3xl pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}

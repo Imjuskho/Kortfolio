@@ -41,11 +41,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenSimulato
   }, [selectedCategory, searchQuery]);
 
   return (
-    <section id="projects" className="py-24 relative bg-[#090c14] overflow-hidden">
-      
-      {/* Background Glow */}
-      <div className="absolute top-10 left-1/3 w-80 h-80 bg-teal-500/5 rounded-full blur-3xl pointer-events-none" />
-
+    <section id="projects" className="py-24 relative bg-[#090c14] border-t border-white/5 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}

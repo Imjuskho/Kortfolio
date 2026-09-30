@@ -11,13 +11,13 @@ interface ProjectCardProps {
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, onOpenSimulator }) => {
   return (
     <div className={`relative flex flex-col justify-between rounded-2xl glass-panel glass-panel-hover p-6 transition-all duration-300 group border ${
-      project.featured ? 'border-emerald-500/30 bg-[#0e1320]/80 shadow-lg shadow-emerald-950/20' : 'border-white/5 bg-[#0b0e17]/80'
+      project.featured ? 'border-emerald-500/40 bg-[#0e1320] shadow-xl shadow-black/40 hover:border-emerald-400/60' : 'border-white/10 bg-[#0c101a] hover:border-white/20'
     }`}>
       
       {/* Top Meta Bar */}
       <div>
         <div className="flex items-center justify-between gap-2 mb-3">
-          <span className="text-[11px] font-mono font-medium px-2.5 py-1 rounded-md bg-white/[0.04] text-slate-300 border border-white/5">
+          <span className="text-[11px] font-mono font-medium px-2.5 py-1 rounded-md bg-white/[0.04] text-slate-300 border border-white/10">
             {project.category}
           </span>
           <span className="text-xs font-mono text-slate-500">
