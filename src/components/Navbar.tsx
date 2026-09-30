@@ -69,7 +69,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
               </div>
               <p className="text-xs text-slate-400 font-mono tracking-tight flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>Systems Architect & AI</span>
+                <span>Systems Builder & Storyteller</span>
               </p>
             </div>
           </a>
@@ -81,35 +81,35 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
               className="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-full transition-all flex items-center gap-1.5"
             >
               <Layers className="w-3.5 h-3.5 text-emerald-400" />
-              Projects
+              Selected Work
             </a>
             <a 
               href="#architecture-lab" 
               className="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-full transition-all flex items-center gap-1.5"
             >
               <Cpu className="w-3.5 h-3.5 text-amber-400" />
-              Engineering Lab
+              Interactive Lab
             </a>
             <a 
               href="#journey" 
               className="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-full transition-all flex items-center gap-1.5"
             >
               <Server className="w-3.5 h-3.5 text-sky-400" />
-              Architecture Journey
+              My Journey
             </a>
             <a 
               href="#photography" 
               className="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-full transition-all flex items-center gap-1.5"
             >
               <Camera className="w-3.5 h-3.5 text-purple-400" />
-              Visual Archive
+              Field Stories
             </a>
             <a 
               href="#skills" 
               className="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-full transition-all flex items-center gap-1.5"
             >
               <Sparkles className="w-3.5 h-3.5 text-teal-400" />
-              Stack
+              Tools & Craft
             </a>
           </nav>
 
@@ -186,7 +186,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
                 className="px-3 py-2 text-slate-300 hover:text-emerald-400 hover:bg-white/5 rounded-lg flex items-center gap-2"
               >
                 <Layers className="w-4 h-4 text-emerald-400" />
-                Featured Projects
+                Selected Work
               </a>
               <a 
                 href="#architecture-lab" 
@@ -194,7 +194,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
                 className="px-3 py-2 text-slate-300 hover:text-emerald-400 hover:bg-white/5 rounded-lg flex items-center gap-2"
               >
                 <Cpu className="w-4 h-4 text-amber-400" />
-                Engineering Lab
+                Interactive Lab
               </a>
               <a 
                 href="#journey" 
@@ -202,7 +202,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
                 className="px-3 py-2 text-slate-300 hover:text-emerald-400 hover:bg-white/5 rounded-lg flex items-center gap-2"
               >
                 <Server className="w-4 h-4 text-sky-400" />
-                Architecture Journey
+                My Journey
               </a>
               <a 
                 href="#photography" 
@@ -210,7 +210,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
                 className="px-3 py-2 text-slate-300 hover:text-emerald-400 hover:bg-white/5 rounded-lg flex items-center gap-2"
               >
                 <Camera className="w-4 h-4 text-purple-400" />
-                Visual Archive
+                Field Stories
               </a>
               <a 
                 href="#skills" 
@@ -218,7 +218,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
                 className="px-3 py-2 text-slate-300 hover:text-emerald-400 hover:bg-white/5 rounded-lg flex items-center gap-2"
               >
                 <Sparkles className="w-4 h-4 text-teal-400" />
-                Technical Stack
+                Tools & Craft
               </a>
               <div className="pt-2 border-t border-white/10 flex flex-col gap-2">
                 <a
@@ -226,7 +226,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
                   onClick={() => setMobileMenuOpen(false)}
                   className="w-full text-center py-2 bg-emerald-500 text-slate-950 font-bold rounded-lg"
                 >
-                  Contact Kondwani
+                  Say Hello
                 </a>
               </div>
             </div>

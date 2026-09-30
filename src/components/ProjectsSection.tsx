@@ -59,13 +59,13 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenSimulato
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-950/70 border border-emerald-500/30 text-emerald-400 text-xs font-mono mb-3">
               <Layers className="w-3.5 h-3.5" />
-              <span>SYSTEMS ARCHIVE</span>
+              <span>THINGS I'VE BUILT</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Production Architecture & Engineered Platforms
+              Software Made for Real Life
             </h2>
-            <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
-              Studied across the local machine repository: 10 verified software architectures engineered for extreme field constraints, data centre compliance, on-device AI, and cultural preservation.
+            <p className="text-slate-300/90 text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
+              Tools designed for real constraints: patchy mobile signals, off-grid solar power, local disbursements that must balance down to the tambala, and our traditional cultural games.
             </p>
           </div>
 

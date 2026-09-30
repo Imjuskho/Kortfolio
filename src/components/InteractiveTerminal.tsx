@@ -32,9 +32,9 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
       command: 'init',
       output: (
         <div className="space-y-1.5 text-slate-300">
-          <p className="text-emerald-400 font-bold">Kortfolio System CLI v2.8.0 [Host: Lilongwe, Malawi • Node: MW-LLW-01]</p>
+          <p className="text-emerald-400 font-bold">Kondwani Austin Phanga — Interactive Shell</p>
           <p className="text-slate-400">
-            Welcome to Kondwani Austin Phanga's engineering terminal. Type <span className="text-amber-300 font-bold">'help'</span> or select a command below.
+            Hi! If you prefer the command line, you can explore my projects, background, and toolkit right here. Type <span className="text-amber-300 font-bold">'help'</span> or click any quick command below.
           </p>
         </div>
       )
@@ -81,14 +81,14 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
     if (lower === 'help') {
       response = (
         <div className="space-y-1 text-xs">
-          <p className="text-emerald-400 font-bold">Available System Commands:</p>
-          <p><span className="text-amber-300 font-bold">whoami</span> — Display Kondwani Austin Phanga's engineering profile and credentials</p>
-          <p><span className="text-amber-300 font-bold">projects</span> — List all 10 verified local software repositories</p>
-          <p><span className="text-amber-300 font-bold">cat &lt;id&gt;</span> — Inspect specific project details (e.g. `cat amr-fintech`, `cat edge-vision`)</p>
-          <p><span className="text-amber-300 font-bold">stack</span> — Print full engineering and data centre capabilities</p>
-          <p><span className="text-amber-300 font-bold">metrics</span> — View live field telemetry and impact counters</p>
-          <p><span className="text-amber-300 font-bold">contact</span> — Get direct contact details & communication channels</p>
-          <p><span className="text-amber-300 font-bold">clear</span> — Clear terminal output buffer</p>
+          <p className="text-emerald-400 font-bold">Available Commands:</p>
+          <p><span className="text-amber-300 font-bold">whoami</span> — A quick intro to who I am and what I do</p>
+          <p><span className="text-amber-300 font-bold">projects</span> — Browse the software and hardware projects I've built</p>
+          <p><span className="text-amber-300 font-bold">cat &lt;id&gt;</span> — Read the story and tech behind a project (e.g. `cat amr-fintech`, `cat edge-vision`)</p>
+          <p><span className="text-amber-300 font-bold">stack</span> — See the tools, languages, and hardware in my daily toolkit</p>
+          <p><span className="text-amber-300 font-bold">metrics</span> — Real-world numbers from a decade in the field</p>
+          <p><span className="text-amber-300 font-bold">contact</span> — How to reach me directly</p>
+          <p><span className="text-amber-300 font-bold">clear</span> — Clear the screen</p>
         </div>
       );
     } else if (lower === 'clear') {
@@ -100,14 +100,14 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
         <div className="space-y-1.5 text-xs text-slate-300">
           <p><strong className="text-white text-sm">{PERSONAL_INFO.name}</strong> — {PERSONAL_INFO.title}</p>
           <p className="text-emerald-400 font-mono">{PERSONAL_INFO.affiliation}</p>
-          <p className="text-slate-400">Location: {PERSONAL_INFO.location}</p>
+          <p className="text-slate-400">Based in: {PERSONAL_INFO.location}</p>
           <p className="mt-2 text-slate-300 leading-relaxed">{PERSONAL_INFO.bio}</p>
         </div>
       );
     } else if (lower === 'projects') {
       response = (
         <div className="space-y-2 text-xs">
-          <p className="text-emerald-400 font-bold">Discovered Software Repositories ({PROJECTS.length} verified):</p>
+          <p className="text-emerald-400 font-bold">Projects I've Built ({PROJECTS.length} selected works):</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1">
             {PROJECTS.map((p) => (
               <div 
@@ -124,7 +124,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
               </div>
             ))}
           </div>
-          <p className="text-slate-500 mt-2">Click any project card above or type `cat &lt;id&gt;` to inspect architecture.</p>
+          <p className="text-slate-500 mt-2">Click any project above or type `cat &lt;id&gt;` to read more.</p>
         </div>
       );
     } else if (lower.startsWith('cat ')) {
@@ -153,7 +153,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
             </div>
 
             <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[11px]">
-              <span className="text-slate-400 font-mono">Local Repo: <code className="text-amber-300">{proj.localPath}</code></span>
+              <span className="text-slate-400 font-mono">Workspace: <code className="text-amber-300">{proj.localPath}</code></span>
               {['amr-fintech', 'pocket-body', 'bawo', 'edge-vision'].includes(proj.id) && onSelectProject && (
                 <button
                   onClick={() => {
@@ -162,7 +162,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
                   }}
                   className="px-2.5 py-1 rounded bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-[10px] font-mono cursor-pointer transition-all"
                 >
-                  Open Simulator →
+                  Try Interactive Demo →
                 </button>
               )}
             </div>
@@ -171,14 +171,14 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
       } else {
         response = (
           <p className="text-rose-400 text-xs">
-            Repository '{targetId}' not found. Type `projects` to view available IDs.
+            Project '{targetId}' not found. Type `projects` to see the full list.
           </p>
         );
       }
     } else if (lower === 'stack' || lower === 'skills') {
       response = (
         <div className="space-y-3 text-xs">
-          <p className="text-emerald-400 font-bold">Engineering Capability & Tech Domains:</p>
+          <p className="text-emerald-400 font-bold">Tools, Languages & Technical Skills:</p>
           <div className="space-y-2">
             {SKILL_CATEGORIES.map((cat, i) => (
               <div key={i} className="p-2 rounded bg-white/[0.03] border border-white/5">

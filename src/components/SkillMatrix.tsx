@@ -54,13 +54,13 @@ export const SkillMatrix: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-teal-950/70 border border-teal-500/30 text-teal-400 text-xs font-mono mb-3">
             <Wrench className="w-3.5 h-3.5" />
-            <span>FULL ARCHITECTURAL CAPABILITY</span>
+            <span>THE TOOLKIT</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Technical Stack & Interdisciplinary Domains
+            Skills & Practical Craft
           </h2>
           <p className="text-slate-400 text-sm sm:text-base mt-2">
-            Synthesizing low-level edge systems, on-device neural vision, modern cloud architectures, and high-impact media technology infrastructure.
+            Tools are just instruments—what matters is what you build with them. Over the last decade, these are the languages, frameworks, and hardware environments I've developed deep muscle memory in.
           </p>
         </div>
 
@@ -113,9 +113,9 @@ export const SkillMatrix: React.FC = () => {
                   <div className="flex items-center justify-between text-teal-400 font-mono text-xs uppercase tracking-wider mb-3">
                     <div className="flex items-center gap-2">
                       {getDomainIcon(cat.title)}
-                      <span>DOMAIN // 0{idx + 1}</span>
+                      <span>DISCIPLINE // 0{idx + 1}</span>
                     </div>
-                    <span className="text-[10px] text-slate-500">{cat.skills.length} competencies</span>
+                    <span className="text-[10px] text-slate-500">{cat.skills.length} tools & skills</span>
                   </div>
 
                   <h3 className="text-lg font-bold text-white mb-4 tracking-tight group-hover:text-teal-300 transition-colors">
@@ -142,10 +142,10 @@ export const SkillMatrix: React.FC = () => {
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-white/5 text-[11px] font-mono text-slate-500 flex items-center justify-between">
-                  <span className="text-slate-400">Production Validated</span>
+                  <span className="text-slate-400">Battle-Tested</span>
                   <div className="flex items-center gap-1.5 text-teal-400">
                     <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>Active</span>
+                    <span>Active in Production</span>
                   </div>
                 </div>
 
@@ -172,10 +172,10 @@ export const SkillMatrix: React.FC = () => {
         <div className="mt-12 p-4 rounded-xl bg-black/40 border border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-slate-400">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>All {totalSkills} verified capabilities implemented in production environments</span>
+            <span>All {totalSkills} skills learned and used in actual client work, products, or field deployments</span>
           </div>
           <div className="text-slate-500 text-[11px]">
-            Target Architecture: Cloud-Native & Distributed Edge Resiliency
+            Core Philosophy: Pragmatic, Resilient & Built to Last
           </div>
         </div>
 

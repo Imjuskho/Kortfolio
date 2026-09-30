@@ -111,17 +111,17 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, onO
             className="flex-1 py-2 px-3 rounded-xl bg-white/[0.04] hover:bg-emerald-950/50 hover:text-emerald-300 hover:border-emerald-500/30 border border-white/10 text-xs font-medium text-slate-300 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
           >
             <Layers className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Architecture Breakdown</span>
+            <span>How It Works</span>
           </button>
 
           {['amr-fintech', 'pocket-body', 'bawo', 'edge-vision'].includes(project.id) && onOpenSimulator && (
             <button
               onClick={() => onOpenSimulator(project.id)}
               className="py-2 px-3 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-mono transition-all flex items-center gap-1.5 cursor-pointer"
-              title="Simulate in Engineering Lab"
+              title="Test in Interactive Lab"
             >
               <Cpu className="w-3.5 h-3.5" />
-              <span>Simulate</span>
+              <span>Interactive Demo</span>
             </button>
           )}
         </div>

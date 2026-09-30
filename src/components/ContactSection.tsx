@@ -36,15 +36,15 @@ export const ContactSection: React.FC = () => {
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-950/70 border border-emerald-500/30 text-emerald-400 text-xs font-mono mb-4">
                 <MessageSquare className="w-3.5 h-3.5" />
-                <span>INITIATE COLLABORATION</span>
+                <span>SAY HELLO</span>
               </div>
 
               <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
-                Let's Build Resilient Systems Together.
+                Let's Build Something Together.
               </h2>
 
               <p className="text-slate-400 text-sm sm:text-base leading-relaxed mb-8">
-                Available for enterprise cloud architecture, data centre operations, FinTech engineering, edge vision systems, and strategic technology consulting.
+                Whether you have a technical challenge, a cloud architecture to untangle, an edge project, or just want to connect—I'd love to hear from you.
               </p>
 
               {/* Direct links list */}
@@ -167,18 +167,18 @@ export const ContactSection: React.FC = () => {
 
           {/* Right Column: Interactive Contact Form */}
           <div className="lg:col-span-7">
-            <div className="p-6 sm:p-8 rounded-2xl glass-panel bg-[#0d121e] border border-white/10 shadow-2xl">
-              <h3 className="text-lg font-bold text-white mb-2">Send a Message</h3>
+            <div className="p-6 sm:p-8 rounded-2xl glass-panel bg-[#0d121f] border border-white/10 shadow-2xl">
+              <h3 className="text-lg font-bold text-white mb-2">Drop Me a Line</h3>
               <p className="text-xs text-slate-400 font-mono mb-6">
-                Direct transmission dispatched to Kondwani Phanga's primary mailbox.
+                Send a note straight to my inbox, or reach out directly using the contacts on the left.
               </p>
 
               {submitted ? (
                 <div className="p-8 text-center rounded-xl bg-emerald-950/30 border border-emerald-500/30 font-mono">
                   <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto mb-3" />
-                  <div className="text-white font-bold text-base">Transmission Prepared</div>
+                  <div className="text-white font-bold text-base">Opening Email Client</div>
                   <p className="text-slate-300 text-xs mt-1">
-                    Opening your default email client to send your message to {PERSONAL_INFO.email}...
+                    Opening your default email app to send your note to {PERSONAL_INFO.email}...
                   </p>
                 </div>
               ) : (
@@ -186,28 +186,28 @@ export const ContactSection: React.FC = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-[11px] font-mono text-slate-400 mb-1.5 uppercase">
-                        Your Name
+                        What should I call you?
                       </label>
                       <input
                         type="text"
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="Dr. Jane Doe"
+                        placeholder="Your name"
                         className="w-full px-4 py-2.5 rounded-xl bg-[#080b12] border border-white/10 text-white text-xs font-mono focus:outline-none focus:border-emerald-400"
                       />
                     </div>
 
                     <div>
                       <label className="block text-[11px] font-mono text-slate-400 mb-1.5 uppercase">
-                        Email Address
+                        Where can I reply to you?
                       </label>
                       <input
                         type="email"
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="jane@organization.org"
+                        placeholder="your.email@example.com"
                         className="w-full px-4 py-2.5 rounded-xl bg-[#080b12] border border-white/10 text-white text-xs font-mono focus:outline-none focus:border-emerald-400"
                       />
                     </div>
@@ -215,28 +215,28 @@ export const ContactSection: React.FC = () => {
 
                   <div>
                     <label className="block text-[11px] font-mono text-slate-400 mb-1.5 uppercase">
-                      Inquiry Domain / Subject
+                      What's on your mind?
                     </label>
                     <input
                       type="text"
                       required
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      placeholder="e.g. Enterprise Cloud Architecture, FinTech Reconciliation, or Edge AI"
+                      placeholder="e.g. Project idea, consulting, cloud architecture, or just hello"
                       className="w-full px-4 py-2.5 rounded-xl bg-[#080b12] border border-white/10 text-white text-xs font-mono focus:outline-none focus:border-emerald-400"
                     />
                   </div>
 
                   <div>
                     <label className="block text-[11px] font-mono text-slate-400 mb-1.5 uppercase">
-                      Message
+                      Your Message
                     </label>
                     <textarea
                       rows={4}
                       required
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Detail your inquiry, project scope, or research collaboration..."
+                      placeholder="Tell me a bit about what you're working on or what you'd like to discuss..."
                       className="w-full px-4 py-2.5 rounded-xl bg-[#080b12] border border-white/10 text-white text-xs font-mono focus:outline-none focus:border-emerald-400 resize-none"
                     />
                   </div>
@@ -246,7 +246,7 @@ export const ContactSection: React.FC = () => {
                     className="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold text-xs font-mono uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 cursor-pointer"
                   >
                     <Send className="w-4 h-4" />
-                    <span>Send Inquiry</span>
+                    <span>Send Message</span>
                   </button>
                 </form>
               )}

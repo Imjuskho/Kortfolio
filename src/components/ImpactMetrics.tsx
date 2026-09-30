@@ -26,14 +26,14 @@ export const ImpactMetrics: React.FC = () => {
           <div>
             <div className="text-xs font-mono uppercase tracking-widest text-emerald-400 mb-1 flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>VERIFIED ARCHITECTURAL METRICS</span>
+              <span>WHERE CODE MEETS REALITY</span>
             </div>
             <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-              High-Fidelity Engineering Measured by Hard Realities
+              A Decade of Building, Learning, and Delivering
             </h2>
           </div>
-          <div className="text-xs font-mono text-slate-400 max-w-md">
-            Production systems engineered to survive national data centre compliance, off-grid power instability, and high financial audit standards.
+          <div className="text-xs font-mono text-slate-300/80 max-w-md">
+            Numbers don't tell the whole story, but they show the discipline behind the craft—from server rooms in Blantyre to community projects nationwide.
           </div>
         </motion.div>
 

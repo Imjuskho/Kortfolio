@@ -25,13 +25,13 @@ export const ArchitecturalJourney: React.FC = () => {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-950/70 border border-emerald-500/30 text-emerald-400 text-xs font-mono mb-3">
               <Server className="w-3.5 h-3.5" />
-              <span>SYSTEMS ARCHITECT TRAJECTORY</span>
+              <span>MY STORY & PATH</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Enterprise Data Centre to Distributed Edge
+              Where I've Been, What I've Learned
             </h2>
-            <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
-              Over a decade of progressive experience bridging national telecommunications infrastructure, C-suite revenue leadership, and high-concurrency cloud-native platforms.
+            <p className="text-slate-300/90 text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
+              A decade spent working across national telecom server racks, documentary film trips, creative agency direction, and hands-on software development.
             </p>
           </div>
 
@@ -46,7 +46,7 @@ export const ArchitecturalJourney: React.FC = () => {
               }`}
             >
               <Briefcase className="w-3.5 h-3.5" />
-              <span>Career Milestones</span>
+              <span>Where I've Worked</span>
             </button>
             <button
               onClick={() => setActiveTab('education')}
@@ -57,7 +57,7 @@ export const ArchitecturalJourney: React.FC = () => {
               }`}
             >
               <GraduationCap className="w-3.5 h-3.5" />
-              <span>Education & Credentials</span>
+              <span>Education & Studies</span>
             </button>
             <button
               onClick={() => setActiveTab('theses')}
@@ -68,7 +68,7 @@ export const ArchitecturalJourney: React.FC = () => {
               }`}
             >
               <Cpu className="w-3.5 h-3.5" />
-              <span>Architectural Theses</span>
+              <span>Principles & Field Notes</span>
             </button>
           </div>
         </motion.div>
@@ -86,21 +86,21 @@ export const ArchitecturalJourney: React.FC = () => {
           <div className="relative z-10 max-w-4xl">
             <div className="text-xs font-mono uppercase tracking-widest text-emerald-400 mb-4 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>ENGINEERING PHILOSOPHY & EXECUTIVE LEADERSHIP</span>
+              <span>HOW I THINK ABOUT SYSTEMS</span>
             </div>
 
             <blockquote className="text-lg sm:text-xl md:text-2xl font-medium text-slate-100 leading-relaxed tracking-tight mb-6">
-              "I began inside the engine rooms of Malawi's national telecommunications backbone—managing servers, storage, network security, and disaster recovery. Whether safeguarding national billing databases or deploying containerized edge-computing meshes across off-grid districts, systems must be deterministic, fault-tolerant, and verified against hard realities."
+              "I started my career inside the cold server rooms of Malawi Telecommunications Limited. That early experience shaped everything I do: when power cuts hit and national lines stay alive because your failover works, you realize good engineering isn't about vanity metrics or trendy frameworks. It's about respecting the people on the other side of the screen and building things that last."
             </blockquote>
 
             <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-slate-400 pt-4 border-t border-white/10">
               <span className="text-white font-bold">{PERSONAL_INFO.name}</span>
               <span>•</span>
-              <span className="text-emerald-400 font-semibold">{PERSONAL_INFO.title.split('|')[0]}</span>
+              <span className="text-emerald-400 font-semibold">Lilongwe, Malawi</span>
               <span>•</span>
               <span>BSc Computer Engineering (Univ. of Livingstonia)</span>
               <span>•</span>
-              <span className="text-amber-300">AWS Solutions Architect Candidate</span>
+              <span className="text-amber-300">Managing Director, 7arts Agency</span>
             </div>
           </div>
         </motion.div>

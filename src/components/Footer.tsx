@@ -88,10 +88,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTerminal }) => {
         {/* Bottom copyright & attribution */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-500">
           <div>
-            © {new Date().getFullYear()} Kondwani Phanga. Designed & built for the edge of the world.
+            © {new Date().getFullYear()} Kondwani Austin Phanga. Handcrafted with care in Lilongwe, Malawi.
           </div>
           <div className="flex items-center gap-1 text-slate-400">
-            <span>Built with React 19, Vite, Tailwind CSS & Swift/Python edge backends</span>
+            <span>Built with React 19, TypeScript, Tailwind CSS, and a deep respect for real-world constraints.</span>
           </div>
         </div>
 

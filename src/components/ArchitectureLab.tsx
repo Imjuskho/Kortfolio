@@ -88,13 +88,13 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-950/60 border border-amber-500/30 text-amber-400 text-xs font-mono mb-3">
             <Cpu className="w-3.5 h-3.5" />
-            <span>INTERACTIVE ENGINEERING PLAYGROUND</span>
+            <span>HANDS-ON SIMULATORS</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            The Architecture Lab
+            The Interactive Lab
           </h2>
           <p className="text-slate-400 text-sm sm:text-base mt-2">
-            Inspect and test the multi-tenant FinTech reconciliation engine, solar edge CLIP deduplication, on-device kinematics, and deterministic game trees directly in your browser.
+            Instead of just talking about system design, I like to let people play with it. Try out live simulations of mobile money reconciliation, solar edge camera filtering, body motion tracking, and our traditional Bawo board game.
           </p>
         </motion.div>
 
@@ -110,7 +110,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
               }`}
             >
               <DollarSign className="w-3.5 h-3.5" />
-              <span>AMR Mobile Money FinTech</span>
+              <span>Mobile Money Reconciler</span>
             </button>
 
             <button
@@ -122,7 +122,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
               }`}
             >
               <Sun className="w-3.5 h-3.5" />
-              <span>Edge Vision Solar Mesh</span>
+              <span>Solar Edge Vision</span>
             </button>
 
             <button
@@ -134,7 +134,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
               }`}
             >
               <Eye className="w-3.5 h-3.5" />
-              <span>Pocket Body (553 Pts)</span>
+              <span>Pocket Body Motion</span>
             </button>
 
             <button
@@ -146,7 +146,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
               }`}
             >
               <Database className="w-3.5 h-3.5" />
-              <span>Bawo Engine (103 Tests)</span>
+              <span>Bawo Traditional Game</span>
             </button>
           </div>
         </div>

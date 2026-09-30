@@ -3,29 +3,30 @@ import { Project, PhotoAsset, EngineeringThesis, CareerExperience, EducationEntr
 export const PERSONAL_INFO = {
   name: "Kondwani Austin Phanga",
   shortName: "Kondwani Phanga",
-  title: "Cloud & Infrastructure Engineer | Digital Transformation Specialist",
+  title: "Computer Engineer • Systems Builder • Creative Director",
   subtitles: [
-    "Enterprise Data Centre Operations (MTL National Telecoms Backbone)",
-    "Cloud-Native Systems & AWS VPC Architecture",
-    "Distributed Edge Fleet Control Planes (EdgeVision-MW & AMR FinTech)",
-    "Managing Director, 7arts (MWK 200M+ Annual Revenue Delivered)"
+    "Over a decade building systems from telecom server rooms to distributed cloud",
+    "Managing Director at 7arts Creative Agency (Lilongwe, Malawi)",
+    "Crafting resilient edge computing, mobile money tools, and on-device AI",
+    "Grounded in real-world constraints, honest engineering, and human stories"
   ],
-  bio: "Computer engineer and technology leader with over a decade of progressive experience bridging enterprise data centre operations, cloud-native systems architecture, and business-scale technology leadership. Began inside Malawi's national telecommunications backbone (MTL)—managing enterprise servers, SAN/NAS storage, network security, and disaster recovery—before building and running a multi-million-kwacha creative technology agency serving UNDP, UNICEF, the World Bank, the EU, and the US Embassy. Currently architecting containerised, AWS-targeted SaaS platforms and distributed edge-computing control planes, with a verified record of remediating critical security findings to 100% automated test compliance.",
+  bio: "I'm a computer engineer, creative director, and builder living in Lilongwe, Malawi. For over ten years, my work has lived where heavy technical infrastructure meets real human stories—from the quiet humming server rooms of our national telecom backbone (MTL), to directing documentaries across rural villages for the UN and World Bank, to writing code for solar edge devices and mobile payments. I care about systems that work under real constraints, built with craft and care.",
   location: "Lilongwe & Blantyre, Malawi",
   phone: "+265 999 004 667",
   email: "kayphanga@gmail.com",
   linkedin: "https://www.linkedin.com/in/kondwani-austin-phanga/",
   github: "https://github.com/imjuskho",
-  affiliation: "BSc Computer Engineering (Univ. of Livingstonia) • AWS Solutions Architect Candidate (Q4 2026) • Managing Director, 7arts",
+  affiliation: "BSc Computer Engineering (Univ. of Livingstonia) • Managing Director, 7arts • AWS Candidate",
+  quote: "Good technology doesn't demand perfect conditions. It respects the environment and the people it lives with.",
   institutionalClients: [
     "The World Bank", "UNDP", "UNICEF", "European Union (EU)", "US Embassy", 
     "British High Commission", "National Bank of Malawi", "Welthungerhilfe", "Malawi Telecommunications Ltd"
   ],
   stats: [
-    { label: "Data Centre & Cloud Systems", value: "10+ Yrs", detail: "Enterprise SAN/NAS, virtualisation & AWS VPC architectures" },
-    { label: "Security & Reliability Audit", value: "84 Remedied", detail: "Critical findings resolved to 100% automated test pass rate" },
-    { label: "On-Device Kinematic Landmarks", value: "553", detail: "Per frame with zero cloud data transmission (Pocket Body)" },
-    { label: "Institutional Revenue Delivered", value: "MWK 200M+", detail: "Annual revenue delivered through contracts & donor projects" },
+    { label: "Hands-on Experience", value: "10+ Years", detail: "From physical data centre racks to modern AWS cloud" },
+    { label: "Agency Revenue Delivered", value: "MWK 200M+", detail: "Guiding 7arts on major donor & enterprise contracts" },
+    { label: "Security & Test Discipline", value: "84 Fixes", detail: "Closed audit findings to 100% automated test compliance" },
+    { label: "On-Device Movement AI", value: "553 Points", detail: "Tracking body & hands locally with zero cloud leakage" },
   ]
 };
 
@@ -35,11 +36,11 @@ export const CAREER_EXPERIENCES: CareerExperience[] = [
     company: "7arts Creative Agency",
     location: "Lilongwe, Malawi",
     period: "2023 – Present",
-    description: "Driving strategic growth, technology governance, and commercial leadership across multi-million-kwacha creative technology contracts.",
+    description: "Leading 7arts has been about blending creative vision with technical discipline. Beyond managing operations and delivering over MWK 200M in revenue with partners like the World Bank and UN, I've served as our hands-on IT lead—keeping our servers running, our video suites fast, and our data protected.",
     achievements: [
-      "Delivered over MWK 200 million in annual revenue through disciplined institutional contract negotiation, vendor relations, and client retention.",
-      "Served as the agency's sole IT infrastructure lead: administered on-premise servers, managed network security, and maintained backup & DR protocols.",
-      "Managed legal compliance, intellectual property, and donor procurement frameworks aligned with World Bank standards."
+      "Grew agency revenue past MWK 200M through direct relationships with multilateral donors and corporate clients.",
+      "Maintained our entire IT backbone: on-premise servers, network security, off-site backups, and workstations for editors.",
+      "Ensured our production governance and donor contract compliance matched international standards."
     ],
     skills: ["Executive Leadership", "IT Infrastructure", "Server Virtualisation", "Disaster Recovery", "Donor Procurement"]
   },
@@ -48,11 +49,11 @@ export const CAREER_EXPERIENCES: CareerExperience[] = [
     company: "Phanga Studio / Phanga Media",
     location: "Lilongwe, Malawi",
     period: "2017 – 2022",
-    description: "Built an independent creative technology studio delivering high-stakes digital platforms, documentaries, and campaigns for premier multilateral institutions.",
+    description: "I started Phanga Studio to tell authentic stories from Malawi with world-class production value. We documented field missions across the country and photographed heads of state, while I personally built and ran the digital tools our studio ran on.",
     achievements: [
-      "Delivered major technology and media contracts for UNDP, UNICEF, the World Bank, the EU, the US Embassy, and British High Commission.",
-      "Architected internal CRM, client portals, and production web platforms from domain configuration to Linux server hardening.",
-      "Developed a computer-vision prototype for real-time object annotation via live camera feeds, establishing early foundations in ML pipelines."
+      "Produced documentary films, visual assets, and field campaigns for UNDP, UNICEF, the World Bank, EU, and the US Embassy.",
+      "Designed and coded our custom CRM, client delivery portals, and production web platforms from domain setup to server hardening.",
+      "Built an early computer-vision prototype for live camera object tagging, sparking my obsession with on-device vision."
     ],
     skills: ["Full-Stack Architecture", "Linux Hardening", "Computer Vision Prototyping", "Institutional Delivery"]
   },
@@ -61,11 +62,11 @@ export const CAREER_EXPERIENCES: CareerExperience[] = [
     company: "Malawi Telecommunications Limited (MTL)",
     location: "Blantyre & Lilongwe, Malawi",
     period: "2010 – 2013",
-    description: "Operated mission-critical enterprise systems within the engine rooms of Malawi's national telecommunications backbone.",
+    description: "My engineering roots were forged inside the cold server rooms of MTL. When you manage the infrastructure behind national phone lines and internet, you learn that there are no shortcuts. If a system goes down, the whole country feels it.",
     achievements: [
-      "Managed physical enterprise rack servers, SAN/NAS storage arrays, LAN/WAN switching, and virtualised compute supporting national voice and data services.",
-      "Configured perimeter firewalls, IDS/IPS, and access-control lists (ACLs) to safeguard customer billing and subscriber provisioning databases.",
-      "Executed disaster recovery protocols: off-site tape rotation, hot-standby server failover, and operational DR runbooks meeting strict regulatory SLAs."
+      "Managed physical server racks, SAN/NAS storage, and LAN/WAN switches supporting national voice and data services.",
+      "Configured perimeter firewalls and access lists to safeguard subscriber billing and sensitive telco databases.",
+      "Tested disaster recovery drills, off-site tape backups, and hot-standby failovers so our operations met strict regulatory audits."
     ],
     skills: ["Data Centre Operations", "SAN/NAS Storage", "Firewall & IDS/IPS", "Disaster Recovery", "Hot-Standby Failover"]
   },
@@ -74,10 +75,10 @@ export const CAREER_EXPERIENCES: CareerExperience[] = [
     company: "Northern Region Water Board (NRWB)",
     location: "Mzuzu, Malawi",
     period: "2016",
-    description: "Supported industrial control networks and operational-technology (OT) systems for municipal water treatment and distribution.",
+    description: "Spending time around water treatment plants taught me how software connects to physical life. When SCADA networks and industrial PLCs control clean water flowing to thousands of families, reliability is never just a buzzword.",
     achievements: [
-      "Gained hands-on expertise in SCADA networks, industrial PLCs, and real-time telemetry acquisition across converged IT/OT infrastructure.",
-      "Contributed to disaster recovery and backup planning for plant control systems, mapping dependencies between PLCs and historian databases."
+      "Learned industrial control networks and real-time sensor telemetry across plant operational technology.",
+      "Mapped dependencies between PLCs, historian databases, and control desks to help keep clean water running safely."
     ],
     skills: ["SCADA Systems", "Industrial Control Networks", "Converged IT/OT", "Real-Time Telemetry"]
   }
@@ -116,34 +117,34 @@ export const EDUCATION_CREDENTIALS: EducationEntry[] = [
 
 export const ENGINEERING_THESES: EngineeringThesis[] = [
   {
-    title: "Mission-Critical Telecoms Data Centre Operations & Business Continuity",
-    domain: "Enterprise Data Centre Infrastructure",
+    title: "Why Telecom Server Rooms Taught Me Resilience",
+    domain: "Data Centre Infrastructure & Reliability",
     period: "2010 – 2013 (MTL)",
-    summary: "Managing high-availability enterprise compute, SAN storage arrays, and network perimeter security in the engine rooms of Malawi's national telecommunications provider.",
+    summary: "High availability isn't bought from a vendor; it's earned through disciplined runbooks, honest failover drills, and anticipating power cuts before they happen.",
     architectureDetails: "Hardware virtualisation, SAN/NAS storage provisioning, firewall ACL segmentation protecting subscriber billing, and off-site hot-standby failover runbooks.",
-    impact: "Maintained 99.9% uptime compliance across mission-critical national voice and broadband billing databases."
+    impact: "Kept core voice and broadband billing databases online across nationwide demand cycles."
   },
   {
-    title: "Distributed Edge Computing Fleet Control Planes Under Severe Power Constraints",
+    title: "Building Edge Cameras for the Real Malawi",
     domain: "Edge Systems & Telemetry Engineering",
     period: "2024 – 2026 (EdgeVision)",
-    summary: "Architecting a resilient hybrid-cloud control plane for solar-powered edge devices deployed across rural Malawi, featuring on-device neural feature filtering and local telemetry buffering.",
+    summary: "You cannot assume 5G connectivity or steady power when monitoring rural roads or fields. If your device can't buffer footage locally and survive solar battery drops, it's not ready for Africa.",
     architectureDetails: "FastAPI control plane, Celery asynchronous sync workers, partitioned local NVMe buffers, and CLIP cosine-similarity deduplication.",
     impact: "Remediated 84 critical security and concurrency findings to 100% automated pytest pass rate, slashing uplink bandwidth costs by 78%."
   },
   {
-    title: "Multi-Tenant Cloud Financial Infrastructure & Mobile Money Interoperability",
-    domain: "FinTech & Cloud Architecture",
+    title: "Why Mobile Money Reconciliation Has to Be Bulletproof",
+    domain: "FinTech & Human Trust",
     period: "2024 – 2026 (AMR Platform)",
-    summary: "Designing a high-throughput mobile-money reconciliation and bulk disbursement SaaS platform across Airtel Money, TNM Mpamba, and M-Pesa.",
+    summary: "When organizations disburse emergency relief or payroll across Airtel Money and Mpamba, a missing SMS hash or rounding bug means someone doesn't get their money. Reconciling every tambala in real time is a matter of basic human trust.",
     architectureDetails: "AWS VPC network isolation, encrypted RDS PostgreSQL, BullMQ transaction queues, KMS key management, and maker-checker approval workflows.",
     impact: "Automates reconciliation for thousands of daily transactions for institutional NGOs and enterprises with zero ledger discrepancy."
   },
   {
-    title: "Deterministic Engine Verification & Traditional Game Preservation",
-    domain: "Computational Algorithms & Swift Systems",
+    title: "Preserving Bawo in Modern Code",
+    domain: "Cultural Heritage & Algorithmic Craft",
     period: "2025 – 2026 (Bawo)",
-    summary: "Engineered a tournament-grade deterministic game engine preserving East Africa's count-and-capture board games with strict algorithmic verification.",
+    summary: "Bawo is one of the world's oldest and most mathematically subtle count-and-capture games. Preserving its traditional rules in clean, test-driven Swift was about honoring our heritage with the same care we give to enterprise code.",
     architectureDetails: "Pure Swift Package SPM architecture, 103 test-pinned traditional rules, 6 fitness functions, and 4-depth Alpha-Beta search trees.",
     impact: "Achieved 100% rule alignment with Klubo Internacia de Bao-Amantoj (KIBA) tournament standards with zero UI coupling."
   }

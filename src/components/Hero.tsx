@@ -37,11 +37,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              <span className="font-semibold tracking-wide">ENTERPRISE CLOUD & DATA CENTRE ARCHITECT</span>
+              <span className="font-semibold tracking-wide">ENGINEER • CREATIVE DIRECTOR • BUILDER</span>
               <span className="text-white/20">|</span>
               <span className="text-slate-300 flex items-center gap-1">
                 <MapPin className="w-3 h-3 text-emerald-400" />
-                Malawi
+                Lilongwe, Malawi
               </span>
             </motion.div>
 
@@ -52,7 +52,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
               transition={{ delay: 0.2, duration: 0.6 }}
               className="text-4xl sm:text-5xl xl:text-6xl font-extrabold tracking-tight text-white leading-[1.1] mb-6"
             >
-              Architecting <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300">Mission-Critical Systems</span> from National Core to Distributed Edge.
+              Building systems that hold up in the <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300">real world.</span>
             </motion.h1>
 
             {/* Sub-headline / Role */}
@@ -64,7 +64,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
             >
               <span className="text-emerald-400 font-mono font-semibold">BSc Computer Engineering</span>
               <span className="text-slate-600">•</span>
-              <span className="text-slate-200">MTL Data Centre Alum</span>
+              <span className="text-slate-200">Telecom & Cloud Veteran</span>
               <span className="text-slate-600">•</span>
               <span className="text-amber-400 font-mono">Managing Director, 7arts</span>
             </motion.div>
@@ -74,9 +74,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="text-base sm:text-lg text-slate-400 leading-relaxed max-w-2xl mb-8"
+              className="text-base sm:text-lg text-slate-300/90 leading-relaxed max-w-2xl mb-8"
             >
-              Over a decade of progressive experience bridging national telecommunications data centre operations, cloud-native systems architecture, and business-scale technology leadership. From managing servers, storage arrays, and network security inside <strong className="text-white font-semibold">Malawi Telecommunications Limited</strong> to building platforms serving <strong className="text-white font-semibold">UNDP, UNICEF, and the World Bank</strong>.
+              I’m Kondwani. Over the last decade, my work has lived where heavy infrastructure meets human stories—from the quiet hum of server racks inside <strong className="text-white font-semibold">Malawi Telecommunications Limited</strong>, to directing documentaries across rural communities for <strong className="text-white font-semibold">the UN, World Bank, and EU</strong>, to writing code for solar edge hardware and mobile payments. I care about building things that work with honesty and care.
             </motion.p>
 
             {/* Key Engineering Pillars Chips */}
@@ -88,27 +88,27 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
             >
               <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-slate-300 hover:border-emerald-500/30 transition-colors">
                 <Server className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
-                <span>Enterprise SAN/NAS</span>
+                <span>Telecom Server Roots</span>
               </div>
               <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-slate-300 hover:border-teal-500/30 transition-colors">
                 <ShieldCheck className="w-3.5 h-3.5 text-teal-400 flex-shrink-0" />
-                <span>AWS VPC & KMS</span>
+                <span>AWS Cloud Architecture</span>
               </div>
               <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-slate-300 hover:border-amber-500/30 transition-colors">
                 <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
-                <span>84 Audit Fixes (100%)</span>
+                <span>84 Security Fixes Closed</span>
               </div>
               <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-slate-300 hover:border-sky-500/30 transition-colors">
                 <Cpu className="w-3.5 h-3.5 text-sky-400 flex-shrink-0" />
-                <span>Solar Edge Meshes</span>
+                <span>Solar Edge & Offline AI</span>
               </div>
               <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-slate-300 hover:border-purple-500/30 transition-colors">
                 <Database className="w-3.5 h-3.5 text-purple-400 flex-shrink-0" />
-                <span>Disaster Recovery DR</span>
+                <span>Mobile Money Reconciler</span>
               </div>
               <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-slate-300 hover:border-rose-500/30 transition-colors">
                 <Sparkles className="w-3.5 h-3.5 text-rose-400 flex-shrink-0" />
-                <span>MWK 200M+ Contracts</span>
+                <span>7arts Studio Leader</span>
               </div>
             </motion.div>
 
@@ -123,7 +123,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
                 href="#projects"
                 className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 group cursor-pointer"
               >
-                <span>Explore Production Systems</span>
+                <span>See My Work</span>
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </a>
 
@@ -132,7 +132,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
                 className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#0f141f] hover:bg-[#161d2b] border border-white/10 hover:border-amber-400/50 text-white font-medium text-sm transition-all flex items-center justify-center gap-2 group cursor-pointer"
               >
                 <Cpu className="w-4 h-4 text-amber-400" />
-                <span>Engineering Lab</span>
+                <span>Try the Lab</span>
               </a>
 
               <a
@@ -150,7 +150,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
               <button
                 onClick={onOpenTerminal}
                 className="px-4 py-3.5 rounded-xl bg-black/40 hover:bg-black/70 border border-emerald-500/30 text-emerald-400 font-mono text-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
-                title="Open Kortfolio CLI"
+                title="Open Kortfolio CLI (⌘K)"
               >
                 <Terminal className="w-4 h-4" />
                 <span className="hidden sm:inline">kortfolio&gt;_</span>
@@ -215,18 +215,18 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
                 {/* Telemetry Strip below image */}
                 <div className="mt-3 grid grid-cols-2 gap-2 text-center text-xs font-mono">
                   <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
-                    <div className="text-[10px] text-slate-500 uppercase">Core Discipline</div>
-                    <div className="text-emerald-400 font-semibold truncate">Data Centre Cloud</div>
+                    <div className="text-[10px] text-slate-500 uppercase">Focus</div>
+                    <div className="text-emerald-400 font-semibold truncate">Systems & Stories</div>
                   </div>
                   <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
-                    <div className="text-[10px] text-slate-500 uppercase">Field Location</div>
-                    <div className="text-amber-300 font-semibold truncate">Lilongwe, MW</div>
+                    <div className="text-[10px] text-slate-500 uppercase">Home Base</div>
+                    <div className="text-amber-300 font-semibold truncate">Lilongwe, Malawi</div>
                   </div>
                 </div>
 
                 {/* Subtitle Quote */}
-                <div className="mt-2 p-2.5 text-center text-[11px] text-slate-400 italic font-mono border-t border-white/5">
-                  "Deterministic, fault-tolerant infrastructure built to survive real-world operational constraints."
+                <div className="mt-2 p-2.5 text-center text-[11px] text-slate-300 italic font-mono border-t border-white/5">
+                  "Good technology doesn't demand perfect conditions. It respects the environment and the people it lives with."
                 </div>
 
               </div>

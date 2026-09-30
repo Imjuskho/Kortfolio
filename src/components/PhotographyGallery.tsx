@@ -59,13 +59,13 @@ export const PhotographyGallery: React.FC = () => {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-purple-950/70 border border-purple-500/30 text-purple-400 text-xs font-mono mb-3">
               <Camera className="w-3.5 h-3.5" />
-              <span>VISUAL STORYTELLING ARCHIVE</span>
+              <span>THROUGH THE LENS</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Field Documentation & Visual Ethnography
+              Stories & Photographs from the Field
             </h2>
             <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
-              Photographic archives from Phanga Studio, 7arts Agency, and multilateral donor field missions across Malawi (World Bank, UNDP, UNICEF, European Union). Grounding technology in the lived human landscape.
+              Before code and alongside it, I've spent years with a camera in hand. These are glimpses from documentary trips and field missions across Malawi—quiet moments, rural resilience, and everyday dignity captured for Phanga Studio, 7arts, and partner organizations.
             </p>
           </div>
 
