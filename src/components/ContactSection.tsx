@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, Send, CheckCircle2, Globe, MessageSquare } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle2, Globe, MessageSquare, Phone } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 export const ContactSection: React.FC = () => {
@@ -35,11 +35,11 @@ export const ContactSection: React.FC = () => {
               </h2>
 
               <p className="text-slate-400 text-sm sm:text-base leading-relaxed mb-8">
-                Available for global health research partnerships, edge computing & on-device AI system architecture, cultural tech preservation, and documentary storytelling.
+                Available for enterprise data centre & cloud architecture, global health research partnerships, edge computing & on-device AI system architecture, and documentary storytelling.
               </p>
 
               {/* Direct links list */}
-              <div className="space-y-4 font-mono text-xs">
+              <div className="space-y-3 font-mono text-xs">
                 <a
                   href={`mailto:${PERSONAL_INFO.email}`}
                   className="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-emerald-500/40 text-slate-300 hover:text-white transition-all group"
@@ -50,6 +50,19 @@ export const ContactSection: React.FC = () => {
                   <div>
                     <div className="text-[10px] text-slate-500 uppercase">Direct Email</div>
                     <div className="text-white font-semibold">{PERSONAL_INFO.email}</div>
+                  </div>
+                </a>
+
+                <a
+                  href={`tel:${PERSONAL_INFO.phone}`}
+                  className="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-emerald-500/40 text-slate-300 hover:text-white transition-all group"
+                >
+                  <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 group-hover:scale-110 transition-transform">
+                    <Phone className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="text-[10px] text-slate-500 uppercase">Direct Telephone</div>
+                    <div className="text-white font-semibold">{PERSONAL_INFO.phone}</div>
                   </div>
                 </a>
 

@@ -99,6 +99,18 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
                 <span>Launch Interactive Lab</span>
               </a>
 
+              <a
+                href={PERSONAL_INFO.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-[#0077b5]/20 hover:bg-[#0077b5]/30 border border-[#0077b5]/50 text-[#38bdf8] font-mono text-xs transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-[#0077b5]/10"
+              >
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+                <span>LinkedIn Profile</span>
+              </a>
+
               <button
                 onClick={onOpenTerminal}
                 className="px-4 py-3.5 rounded-xl bg-black/40 hover:bg-black/70 border border-emerald-500/30 text-emerald-400 font-mono text-xs transition-all flex items-center justify-center gap-2"
@@ -125,7 +137,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
                 <div className="flex items-center justify-between px-3 py-2 bg-black/60 rounded-xl border border-white/5 mb-3 text-[11px] font-mono text-slate-400">
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-                    <span className="text-white font-bold">KONDWANI PHANGA</span>
+                    <span className="text-white font-bold">KONDWANI AUSTIN PHANGA</span>
                   </div>
                   <span className="text-emerald-400/80">ID: KP-26-MW</span>
                 </div>
@@ -134,7 +146,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
                 <div className="relative rounded-xl overflow-hidden aspect-[4/5] bg-slate-900 border border-white/10 shadow-inner group">
                   <img
                     src="/assets/profile/kondwani.jpg"
-                    alt="Kondwani Phanga"
+                    alt="Kondwani Austin Phanga"
                     className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   />
                   
@@ -148,13 +160,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
                   <div className="absolute bottom-16 right-3 w-4 h-4 border-b-2 border-r-2 border-emerald-400/80" />
 
                   {/* Bottom Portrait Badge */}
-                  <div className="absolute bottom-3 left-3 right-3 p-3 rounded-lg bg-[#090b10]/85 backdrop-blur-md border border-white/10 text-xs">
+                  <div className="absolute bottom-3 left-3 right-3 p-3 rounded-lg bg-[#090b10]/90 backdrop-blur-md border border-white/10 text-xs">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="font-semibold text-white">University of Oxford Prospect</span>
-                      <span className="text-emerald-400 font-mono text-[10px]">2026/28</span>
+                      <span className="font-semibold text-white">BSc Computer Engineering</span>
+                      <span className="text-emerald-400 font-mono text-[10px]">Univ of Livingstonia</span>
                     </div>
                     <p className="text-[11px] text-slate-400 line-clamp-1">
-                      PGDip in Global Health Research • Health Communication
+                      Univ of Oxford PGDip Global Health Research Candidate
                     </p>
                   </div>
                 </div>

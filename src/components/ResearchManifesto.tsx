@@ -95,29 +95,41 @@ export const ResearchManifesto: React.FC = () => {
             Institutional Experience & Interdisciplinary Trajectory
           </h4>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 font-mono text-xs">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 font-mono text-xs">
             <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
-              <div className="text-sky-400 font-bold mb-1">University of Malawi</div>
-              <div className="text-slate-300">Chancellor College</div>
-              <div className="text-slate-500 text-[11px] mt-2">Bachelor of Social Science • Environmental Awareness & Behavior Practicum</div>
+              <div className="text-emerald-400 font-bold mb-1">Univ. of Livingstonia</div>
+              <div className="text-white">BSc Computer Engineering</div>
+              <div className="text-slate-400 text-[11px] mt-2">Network Security, Distributed Systems, Relational Database Management, Software Architecture</div>
             </div>
 
             <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
-              <div className="text-sky-400 font-bold mb-1">Beit CURE International</div>
-              <div className="text-slate-300">Hospital Malawi</div>
-              <div className="text-slate-500 text-[11px] mt-2">Communications Officer • Pediatric orthopedics, disability access, and health promotion</div>
+              <div className="text-teal-400 font-bold mb-1">Malawi Telecoms Ltd (MTL)</div>
+              <div className="text-white">National Data Centre Operations</div>
+              <div className="text-slate-400 text-[11px] mt-2">Managed core enterprise server virtualization, SAN/NAS arrays, perimeter firewalls, and DR hot-standby</div>
             </div>
 
             <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
-              <div className="text-sky-400 font-bold mb-1">Phanga Media & Zisamale</div>
-              <div className="text-slate-300">Founder & Creative Director</div>
-              <div className="text-slate-500 text-[11px] mt-2">Directing health communications during COVID-19, community video, and digital platforms</div>
+              <div className="text-sky-400 font-bold mb-1">University of Oxford</div>
+              <div className="text-white">PGDip Global Health (Candidate)</div>
+              <div className="text-slate-400 text-[11px] mt-2">Implementation science, health information intermediaries, and community research translation</div>
             </div>
 
             <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
-              <div className="text-sky-400 font-bold mb-1">British Council</div>
-              <div className="text-slate-300">Fashion Futures Initiative</div>
-              <div className="text-slate-500 text-[11px] mt-2">Cross-border field researcher across Malawi and Namibia examining sustainability</div>
+              <div className="text-purple-400 font-bold mb-1">7arts Creative & Phanga Studio</div>
+              <div className="text-white">Managing Director (MWK 200M+)</div>
+              <div className="text-slate-400 text-[11px] mt-2">Institutional contracts for UNDP, UNICEF, World Bank, EU, and US Embassy; IT infrastructure lead</div>
+            </div>
+
+            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+              <div className="text-amber-400 font-bold mb-1">Beit CURE Hospital</div>
+              <div className="text-white">Health Communications Lead</div>
+              <div className="text-slate-400 text-[11px] mt-2">Pediatric orthopedic surgery access, caregiver storytelling, and community engagement in rural Malawi</div>
+            </div>
+
+            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
+              <div className="text-rose-400 font-bold mb-1">Northern Region Water Board</div>
+              <div className="text-white">SCADA & Infrastructure</div>
+              <div className="text-slate-400 text-[11px] mt-2">Industrial control networks, real-time telemetry acquisition, and converged IT/OT water plant systems</div>
             </div>
           </div>
         </div>

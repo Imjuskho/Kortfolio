@@ -1,29 +1,158 @@
 import { Project, PhotoAsset, ResearchTopic } from '../types';
 
 export const PERSONAL_INFO = {
-  name: "Kondwani Phanga",
-  title: "Systems Architect & Health AI Engineer",
+  name: "Kondwani Austin Phanga",
+  shortName: "Kondwani Phanga",
+  title: "Data Centre Cloud Architect | Systems & Health AI Engineer",
   subtitles: [
-    "Edge Computing & On-Device AI Specialist",
-    "Digital Health Systems Researcher",
-    "Cultural Technologist & Computational Anthropologist",
-    "Creative Director & Documentary Storyteller"
+    "Enterprise Data Centre & Cloud-Native Systems Specialist",
+    "Edge Computing & On-Device AI Architect",
+    "Digital Health Systems Researcher (Oxford PGDip Candidate)",
+    "Creative Director & Managing Director (MWK 200M+ Delivered)"
   ],
-  bio: "Designing resilient computing systems at the edge of the world. From solar-powered edge vision fleets across rural Malawi and on-device kinematic perception, to AI-augmented community health intelligence supporting 450 Health Surveillance Assistants and the mathematical preservation of traditional East African count-and-capture games.",
+  bio: "Computer engineer and technology leader with over a decade of progressive experience bridging national telecommunications data centre operations, cloud-native systems architecture, and business-scale technology leadership. From managing national telecoms backbone infrastructure at MTL to architecting solar edge-computing meshes, on-device kinematic perception with zero cloud egress, and AI-augmented health systems supporting 450+ frontline health workers.",
   location: "Lilongwe & Blantyre, Malawi",
-  affiliation: "University of Oxford PGDip Global Health Research (Candidate) • Founder, Zisamale & Phanga Media",
+  phone: "+265 999 004 667",
   email: "kayphanga@gmail.com",
+  linkedin: "https://www.linkedin.com/in/kondwani-austin-phanga/",
   github: "https://github.com/spotmw",
-  linkedin: "https://www.linkedin.com/in/kondwaniphanga",
+  affiliation: "BSc Computer Engineering (Univ. of Livingstonia) • Oxford PGDip Global Health Research (Candidate) • MD, 7arts Creative Agency",
+  institutionalClients: [
+    "UNDP", "UNICEF", "The World Bank", "European Union (EU)", "US Embassy", 
+    "British High Commission", "National Bank of Malawi", "Malawi Ministry of Health", "Welthungerhilfe"
+  ],
+  education: [
+    {
+      degree: "BSc in Computer Engineering",
+      institution: "University of Livingstonia, Malawi",
+      period: "2013 – 2017",
+      focus: "Network Security, Distributed Systems, Database Management, Software Engineering"
+    },
+    {
+      degree: "PGDip in Global Health Research (Candidate)",
+      institution: "University of Oxford",
+      period: "2026 – 2028 (Prospect)",
+      focus: "Implementation Science, Community Translation, Health Intermediaries & Research Uptake"
+    },
+    {
+      degree: "International Diploma in Computing",
+      institution: "NACIT (National Advisory Committee on Information Technology), Blantyre",
+      period: "2010 – 2011",
+      focus: "Systems Administration, Enterprise IT Infrastructure, Technical Support"
+    },
+    {
+      degree: "Malawi School Certificate of Education (MSCE)",
+      institution: "Domasi Secondary School, Zomba, Malawi",
+      period: "2003 – 2006",
+      focus: "Sciences & Mathematics"
+    }
+  ],
+  experience: [
+    {
+      role: "Managing Director & Studio Manager",
+      company: "7arts Creative Agency",
+      location: "Lilongwe, Malawi",
+      period: "2023 – Present",
+      achievements: [
+        "Delivered over MWK 200 million in annual revenue through disciplined institutional contract negotiation and business development.",
+        "Served as sole IT infrastructure lead administering on-premise servers, network security, and backup/DR protocols.",
+        "Managed compliance, donor procurement frameworks, and high-stakes media/technology deliverables."
+      ]
+    },
+    {
+      role: "Founder & Creative Director",
+      company: "Phanga Studio / Phanga Media",
+      location: "Lilongwe, Malawi",
+      period: "2017 – 2022",
+      achievements: [
+        "Delivered major technology and documentary productions for UNDP, UNICEF, World Bank, EU, and US Embassy.",
+        "Architected internal CRM, client portals, and production systems (including youthenterprises.org).",
+        "Developed early computer vision prototypes for real-time object annotation via live camera input."
+      ]
+    },
+    {
+      role: "IT Officer — Enterprise Data Centre Operations",
+      company: "Malawi Telecommunications Limited (MTL)",
+      location: "Blantyre & Lilongwe, Malawi",
+      period: "2010 – 2013",
+      achievements: [
+        "Managed physical server hardware, SAN/NAS storage arrays, and virtualized compute within Malawi's national telecommunications backbone.",
+        "Configured perimeter firewalls, IDS/IPS, and ACLs protecting customer billing and provisioning databases.",
+        "Executed disaster recovery protocols: off-site tape rotation, hot-standby server failover, and audited SLAs."
+      ]
+    },
+    {
+      role: "IT Intern — SCADA & Infrastructure",
+      company: "Northern Region Water Board (NRWB)",
+      location: "Mzuzu, Malawi",
+      period: "2016",
+      achievements: [
+        "Supported SCADA industrial control systems, real-time data acquisition, and converged IT/OT networks for municipal water treatment."
+      ]
+    },
+    {
+      role: "Communications Officer",
+      company: "Beit CURE International Hospital Malawi",
+      location: "Blantyre, Malawi",
+      period: "2022 – 2024",
+      achievements: [
+        "Led patient-centered storytelling, health promotion campaigns, and community engagement for treatable pediatric orthopedic conditions."
+      ]
+    }
+  ],
   stats: [
+    { label: "Data Centre & Cloud Experience", value: "10+ Yrs", detail: "From MTL national backbone to AWS hybrid architectures" },
     { label: "Community Health Workers Supported", value: "450+", detail: "Across 3 Malawi districts via Zisamale" },
-    { label: "On-Device Kinematic Landmarks", value: "553", detail: "Per frame with zero cloud data transmission" },
+    { label: "On-Device Kinematic Landmarks", value: "553", detail: "Per frame with zero cloud data transmission (Pocket Body)" },
     { label: "Test-Pinned Game Engine Rules", value: "103", detail: "Passing tests enforcing East African Bawo traditions" },
-    { label: "Offline-First Architectures", value: "100%", detail: "Resilient against power grid and cellular outages" },
   ]
 };
 
 export const PROJECTS: Project[] = [
+  {
+    id: "amr-fintech",
+    title: "AMR — Mobile Money Reconciliation SaaS",
+    tagline: "Multi-tenant FinTech platform automating bulk mobile-money disbursement and reconciliation across Airtel Money, TNM Mpamba, and M-Pesa.",
+    category: "FinTech & Governance",
+    featured: true,
+    role: "Lead Cloud Architect & Backend Engineer",
+    period: "2024 – 2026",
+    localPath: "/Users/mac/Sites/Kortfolio/docs/amr",
+    badges: ["AWS VPC Isolation", "Airtel / TNM Mpamba / M-Pesa", "Multi-Tenant SaaS", "Prisma & PostgreSQL"],
+    impactMetrics: [
+      { label: "Daily Volume", value: "Thousands", detail: "Bulk mobile transactions reconciled" },
+      { label: "Disbursement Gateways", value: "4 Telecos", detail: "Airtel, TNM Mpamba, MTN, M-Pesa" },
+      { label: "Security Compliance", value: "Zero Findings", detail: "Role-based approval & audit ledger" },
+      { label: "Cloud Arch", value: "AWS Encrypted", detail: "VPC, RDS PostgreSQL, S3 KMS" }
+    ],
+    techStack: ["Node.js", "Express", "TypeScript", "React", "PostgreSQL", "Prisma ORM", "AWS VPC", "Docker", "Redis"],
+    summary: "Architected a multi-tenant SaaS platform automating bulk mobile-money disbursement and reconciliation across Airtel Money, M-Pesa, TNM Mpamba, and MTN, processing thousands of daily transactions for NGOs and institutional enterprises across rural and urban Malawi.",
+    problemStatement: "NGOs and businesses disbursing emergency relief and per-diems across Malawi manually juggle multi-SIM handsets and fragmented spreadsheets, causing severe reconciliation errors, double-payments, and compliance audit failures.",
+    solutionArchitecture: "An AWS-targeted deployment model featuring VPC isolation, encrypted RDS PostgreSQL instances, S3-backed document storage with server-side encryption, and IAM role-based access control aligned to least-privilege principles. Includes automated reconciliation engines against operator statement feeds.",
+    offlineConsiderations: "Batched offline disbursement queues with cryptographic dual-signature authorization preventing duplicate payouts during intermittent connectivity.",
+    architectureLayers: [
+      {
+        name: "Operator Gateway Ingestion",
+        components: ["Airtel Money API Adapter", "TNM Mpamba Webhook Listener", "M-Pesa B2C Gateway", "MTN Mobile Money Bridge"],
+        description: "Standardizes heterogeneous telecommunications protocols into a unified transaction stream."
+      },
+      {
+        name: "Multi-Tenant Isolation Core",
+        components: ["PostgreSQL Row-Level Security (RLS)", "Prisma Client Extension", "BullMQ Asynchronous Settlement", "KMS Secret Vault"],
+        description: "Guarantees strict data and financial boundary segregation between organizational tenants."
+      },
+      {
+        name: "Audit & Finance Portal",
+        components: ["Real-time Reconciliation Meter", "Double-Entry General Ledger", "Maker-Checker Approval Flow"],
+        description: "Zero-trust verification interface for CFOs, external auditors, and donor compliance officers."
+      }
+    ],
+    keyHighlights: [
+      "Conducted a comprehensive pre-launch security audit remediating critical isolation vectors before onboarding pilot institutions.",
+      "Automated matching engine pairing bank withdrawal records with teleco mobile wallet SMS confirmation hashes.",
+      "Built for institutional donors (World Bank, UN agencies) requiring strict anti-fraud verification trails."
+    ]
+  },
   {
     id: "zisamale",
     title: "Zisamale — AI-Augmented Community Health Intelligence",
@@ -148,23 +277,6 @@ export const PROJECTS: Project[] = [
     problemStatement: "Most digital implementations of African traditional games reduce rich, ancient mathematical traditions into generic 2-row mancala reskins. The authentic nuances—such as the kunamua sowing phase, reverse-direction safaris, and tactical house-preservation—were in danger of digital erasure.",
     solutionArchitecture: "Engineered with strict separation between a deterministic game engine (packaged as a pure Swift Package) and an authentic, carved-wood SwiftUI presentation layer with ceremonial soundscapes and directional haptic feedback.",
     offlineConsiderations: "Completely standalone offline play against 3 tiers of deterministic AI, plus local pass-and-play and Game Center multiplayer.",
-    architectureLayers: [
-      {
-        name: "Pure Deterministic Engine (Swift Package)",
-        components: ["TraditionalGameEngine.swift", "ChiMake Rule Verifier", "Capture Chain Propagator", "Takasia Threat Matrix"],
-        description: "103 unit tests pinning exact traditional rule behaviors with zero UI dependencies."
-      },
-      {
-        name: "AI & Decision Tree",
-        components: ["4-Depth Alpha-Beta Search", "Positional Sowing Evaluation", "Front-Row Depletion Heuristics"],
-        description: "Challenging AI that respects traditional strategies instead of brute-force shortcuts."
-      },
-      {
-        name: "Ceremonial Presentation (SwiftUI)",
-        components: ["Hand-Carved Board Rendering", "Dynamic Motion Wobble", "Spatial Pit Audio", "Accessible Contrast Modes"],
-        description: "Dignified cultural representation celebrating East African craft."
-      }
-    ],
     keyHighlights: [
       "103 engine tests verifying compliance with Klubo Internacia de Bao-Amantoj (KIBA) tournament standards.",
       "Authentic linguistic terms: nyumba, kichwa, mtaji, takasa, safari, ku goma, kunamua.",
@@ -174,48 +286,31 @@ export const PROJECTS: Project[] = [
   {
     id: "edge-vision",
     title: "Edge Vision Data Platform — Solar-Powered Rural Vision Fleet",
-    tagline: "Distributed edge computing mesh capturing agricultural, road, and wildlife imagery under extreme African power constraints.",
+    tagline: "Distributed edge computing mesh managing solar-powered edge devices with local telemetry buffering and 84-finding audit remediation.",
     category: "Edge Computing & CV",
     featured: true,
     role: "Backend Architect & Distributed Systems Engineer",
     period: "2024 – 2026",
     localPath: "/Users/mac/EDGE VISION DATA PLATFORMS",
-    badges: ["Solar Edge Fleet", "CLIP Deduplication", "FastAPI & Celery", "Distributed Mesh"],
+    badges: ["Solar Edge Fleet", "CLIP Deduplication", "FastAPI & Celery", "84 Audit Fixes"],
     previewImages: [
       "/assets/photos/photo_aerial.jpg"
     ],
     impactMetrics: [
-      { label: "Edge Fleet", value: "Distributed", detail: "Solar nodes deployed across rural Malawi" },
+      { label: "Edge Fleet", value: "Solar Mesh", detail: "Solar nodes deployed across rural Malawi" },
       { label: "Bandwidth Saved", value: "78%", detail: "Via on-device neural CLIP deduplication" },
-      { label: "Pipeline", value: "Asynchronous", detail: "Celery workers with Alembic migrations" },
-      { label: "Domain", value: "Agri & Wildlife", detail: "High-resolution contextual visual datasets" }
+      { label: "Security Audit", value: "84 Remedied", detail: "Race conditions, ledgers & API hardening" },
+      { label: "Test Pass Rate", value: "100%", detail: "Automated pytest regression suites" }
     ],
-    techStack: ["Python", "FastAPI", "PyTorch", "CLIP", "Celery", "PostgreSQL", "Alembic", "Redis", "React", "Docker", "Linux Edge"],
-    summary: "A robust edge-computing and dataset platform built for the physical realities of rural Sub-Saharan Africa. Solar-powered edge devices collect road conditions, crop health, wildlife movement, and documentary footage, intelligently filtering and deduplicating data locally before queueing transfers over limited cellular links.",
-    problemStatement: "Collecting high-value computer vision data in developing regions is thwarted by frequent power failures, exorbitant satellite/cellular bandwidth costs, and high rates of visual redundancy.",
-    solutionArchitecture: "Distributed edge nodes capture raw frames, pass them through a lightweight on-device CLIP feature extractor to eliminate near-duplicate frames, and queue high-entropy candidates into an intermittent sync buffer. The cloud control plane manages worker queues and human-in-the-loop QA.",
-    offlineConsiderations: "Nodes store hours of visual telemetry locally in encrypted flash storage, negotiating opportunistic sync whenever 3G/4G connectivity becomes available.",
-    architectureLayers: [
-      {
-        name: "Edge Device Firmware",
-        components: ["Solar Power Watchdog", "Camera Capture Controller", "CLIP Image Embedder", "Local SQLite Queue"],
-        description: "Optimized for thermal endurance and low power consumption."
-      },
-      {
-        name: "Control Plane Backend",
-        components: ["FastAPI Service", "Celery Distributed Workers", "PostgreSQL Data Lake", "Batch Activation Engine"],
-        description: "Manages device telemetry, task distribution, and batch image pipelines."
-      },
-      {
-        name: "Data Marketplace & Annotation UI",
-        components: ["Human-in-the-Loop QA Dashboard", "Dataset Assembler", "Bounding Box & Tagging Portal"],
-        description: "Produces validated, commercial-grade datasets for environmental and developmental research."
-      }
-    ],
+    techStack: ["FastAPI", "Async SQLAlchemy", "PyTorch", "CLIP", "Celery", "PostgreSQL", "Alembic", "Redis", "Docker", "Kubernetes"],
+    summary: "Built a cloud-native control plane managing a distributed fleet of solar-powered edge devices across rural Malawi. The platform orchestrates device provisioning, over-the-air updates, telemetry-driven health monitoring, and consent-compliant visual data ingestion with zero data leakage.",
+    problemStatement: "Operating computer vision hardware in off-grid African settings requires surviving frequent power loss, extreme thermal cycles, and prohibitive cellular data costs while ensuring rigorous biometric data privacy.",
+    solutionArchitecture: "A hybrid-cloud data pipeline: edge devices buffer telemetry locally during connectivity outages; Celery workers orchestrate asynchronous sync to cloud PostgreSQL; real-time dashboards provide fleet visibility to field engineers.",
+    offlineConsiderations: "Nodes store hours of visual telemetry locally in encrypted flash storage, negotiating opportunistic sync whenever cellular links recover.",
     keyHighlights: [
       "Custom CLIP neural deduplication module (`clip_dedup`) achieving over 75% reduction in uplink payloads.",
-      "Hardware power-management daemon protecting batteries during consecutive overcast days in rainy season.",
-      "Full human-in-the-loop verification pipeline for verified agricultural pathology annotations."
+      "Full security and reliability audit remediation: resolved 84 findings including database race conditions and decimal precision in ledgers.",
+      "100% automated pytest pass rate across edge telemetry ingestion and API gateways."
     ]
   },
   {
@@ -239,23 +334,6 @@ export const PROJECTS: Project[] = [
     problemStatement: "Rural clinics in Malawi lose vital child vaccination continuity when paper health passports tear, wash away in rain, or disagree with clinic logbooks. Premature attempts to deploy fragile cloud tablets often fail due to dust, theft, and power blackouts.",
     solutionArchitecture: "A pragmatic 'manual-first' hybrid: pre-printed boxed stickers allow HSAs to record one numeral per box. Mobile phone photos of pages are ingested into a local SQLite ledger, where an offline clerk review queue validates values against image crops before committing to child longitudinal reports.",
     offlineConsiderations: "Runs completely standalone on a single low-power district office laptop with local salted PIN security, zero cloud dependency, and automated USB flash drive replication.",
-    architectureLayers: [
-      {
-        name: "Physical Machine-Friendly Protocol",
-        components: ["Boxed Digit Fields (DD/MM/YY)", "Pre-printed 2-Digit Village Codes", "Vaccine Checklist Boxes", "HSA Unique Identifier"],
-        description: "Designed for human writing that is mathematically bounded for computer verification."
-      },
-      {
-        name: "Local Review & Reconciler",
-        components: ["Express Review Queue", "Side-by-side Photo Crop Validator", "Overdue Child Scheduler", "Duplicate Photo Rejector"],
-        description: "Safety-net architecture ensuring every automated proposal is checked by a human clerk."
-      },
-      {
-        name: "Core Ledger",
-        components: ["SQLite Transaction Journal", "Local Salted PIN Gate", "District Aggregation Reports"],
-        description: "Reliable local records that survive battery exhaustion and sudden OS restarts."
-      }
-    ],
     keyHighlights: [
       "Pragmatic human-centered design: treats paper as the primary legal document and software as the corroborating witness.",
       "Constrained character bounding removes OCR ambiguity for birth dates, weights, and village codes.",
@@ -369,33 +447,6 @@ export const PROJECTS: Project[] = [
       "On-premise vector RAG querying router documentation and live interface statistics simultaneously.",
       "Support for multiple local open-weights models: Llama 3, Mistral 7B, and Phi-3."
     ]
-  },
-  {
-    id: "malawi-governance",
-    title: "Malawi Governance Thesis — Civic Policy Engine",
-    tagline: "Interactive academic and policy synthesis webapp with dynamic browser-side DOCX document compilation.",
-    category: "FinTech & Governance",
-    featured: false,
-    role: "Research Author & Frontend Architect",
-    period: "2025 – 2026",
-    localPath: "/Users/mac/malawi-governance-webapp",
-    badges: ["Civic Tech", "In-Browser DOCX Engine", "React 18", "Policy Analysis"],
-    impactMetrics: [
-      { label: "Document Engine", value: "DOCX Export", detail: "Compiled in real-time in the browser" },
-      { label: "Policy Scope", value: "National", detail: "Malawian macroeconomic & governance reform" },
-      { label: "Client-Side", value: "Zero Backend", detail: "Instant static generation and download" },
-      { label: "UX", value: "Interactive", detail: "Interactive chapters and citation linkages" }
-    ],
-    techStack: ["React", "TypeScript", "Vite", "Tailwind CSS", "docx.js", "FileSaver"],
-    summary: "A civic research and governance policy platform delivering an interactive breakdown of developmental governance strategies for Malawi. Features a client-side document synthesis engine capable of compiling formatted academic manuscripts directly in the browser.",
-    problemStatement: "In-depth policy research and academic theses are usually locked inside static PDF files that are hard to navigate on mobile devices and difficult for policymakers to selectively reference.",
-    solutionArchitecture: "Combines responsive digital chapter navigation with client-side Microsoft Word DOCX compilation using `docx.js`, enabling instant, customized exports with full academic typography.",
-    offlineConsiderations: "Completely static and offline-functional; the entire thesis and export logic run locally in the browser.",
-    keyHighlights: [
-      "In-browser binary synthesis of publication-ready DOCX documents with structured footnotes and tables.",
-      "Comprehensive economic and developmental framework tailored for Sub-Saharan governance.",
-      "Instant responsive reading experience with deep-linking across sections."
-    ]
   }
 ];
 
@@ -476,23 +527,43 @@ export const PHOTOGRAPHY_GALLERY: PhotoAsset[] = [
 
 export const SKILL_CATEGORIES = [
   {
-    title: "Edge & Systems Architecture",
-    skills: ["Offline-First Design", "Solar Edge Nodes", "FastAPI / Python", "Microservices", "Docker & Helm", "PostgreSQL & SQLite WAL", "Redis & RabbitMQ", "MikroTik RouterOS"]
+    title: "Data Centre & Cloud Architecture",
+    skills: [
+      "Enterprise Data Centre Operations", "AWS Well-Architected / VPC", "Hybrid Cloud Modeling", 
+      "SAN/NAS Storage Arrays", "Firewall & IDS/IPS Perimeter", "Disaster Recovery (RPO/RTO)", 
+      "Docker & Kubernetes", "Multi-Tenancy Isolation", "FastAPI & Async SQLAlchemy"
+    ]
   },
   {
-    title: "AI, Vision & Kinematics",
-    skills: ["MediaPipe Tasks Vision", "Apple Vision Framework", "On-Device Inference", "PyTorch & CLIP", "Three.js / WebGL Kinematics", "Local RAG (Ollama / Chroma)", "Time-Series Forecasting"]
+    title: "Edge Systems & On-Device AI",
+    skills: [
+      "Offline-First Distributed Sync", "MediaPipe Tasks Vision (553 pts)", "Apple Vision Framework", 
+      "Solar Edge Nodes (Linux)", "PyTorch & CLIP Deduplication", "Local RAG (Ollama / Chroma)", 
+      "SQLite WAL Crash-Safe Ledgers", "Three.js / WebGL Kinematics"
+    ]
   },
   {
-    title: "Mobile & Full-Stack",
-    skills: ["Swift 5.10 / SwiftUI", "Android / Kotlin / Jetpack Compose", "React 19 / TypeScript", "Expo 57 / React Native", "Node.js & Fastify", "Tailwind CSS", "TanStack Query", "Turborepo"]
+    title: "Full-Stack & Mobile Engineering",
+    skills: [
+      "TypeScript & React 19", "Swift 5.10 / SwiftUI", "Android / Kotlin / Compose", 
+      "Expo 57 / React Native", "Node.js & Fastify / Express", "Prisma ORM & PostgreSQL", 
+      "Tailwind CSS", "BullMQ & Redis"
+    ]
+  },
+  {
+    title: "Executive Leadership & FinTech",
+    skills: [
+      "MWK 200M+ Revenue Leadership", "Multi-Tenant Mobile Money Reconciliation", 
+      "Donor-Funded Procurement (World Bank / UN)", "Contract Negotiation & Compliance", 
+      "SLA & Disaster Recovery Runbooks", "Security Audit Remediation"
+    ]
   },
   {
     title: "Health Systems & Research",
-    skills: ["DHIS2 & iCHIS Protocols", "Maternal & Child Health (iCCM)", "Qualitative Health Research", "In-Depth Interviews", "Ethics & Informed Consent", "Community Translation", "Public Understanding of Science"]
-  },
-  {
-    title: "Creative Direction & Craft",
-    skills: ["Documentary Photography", "Visual Storytelling", "Cinematography", "Chichewa / English Translation", "Audio & Haptic Design", "Editorial Direction"]
+    skills: [
+      "DHIS2 & iCHIS Protocols", "Maternal & Child Health (iCCM)", "Qualitative Health Research", 
+      "Oxford Global Health Fellowship Candidate", "Community Translation", "Public Understanding of Science", 
+      "Documentary Photography & Direction"
+    ]
   }
 ];
