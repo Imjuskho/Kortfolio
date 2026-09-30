@@ -15,7 +15,7 @@ export const PERSONAL_INFO = {
   phone: "+265 999 004 667",
   email: "kayphanga@gmail.com",
   linkedin: "https://www.linkedin.com/in/kondwani-austin-phanga/",
-  github: "https://github.com/spotmw",
+  github: "https://github.com/imjuskho",
   affiliation: "BSc Computer Engineering (Univ. of Livingstonia) • AWS Solutions Architect Candidate (Q4 2026) • Managing Director, 7arts",
   institutionalClients: [
     "The World Bank", "UNDP", "UNICEF", "European Union (EU)", "US Embassy", 
@@ -203,6 +203,7 @@ export const PROJECTS: Project[] = [
     role: "Backend Architect & Distributed Systems Engineer",
     period: "2024 – 2026",
     localPath: "/Users/mac/EDGE VISION DATA PLATFORMS",
+    githubUrl: "https://github.com/imjuskho/edgevision-mw",
     badges: ["Solar Edge Fleet", "CLIP Deduplication", "FastAPI & Celery", "84 Audit Fixes"],
     previewImages: [
       "/assets/photos/photo_aerial.jpg"
