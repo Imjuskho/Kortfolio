@@ -51,7 +51,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
           {/* Brand Logo & Name */}
           <a href="#" className="flex items-center gap-3 group">
             <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500/20 to-teal-500/10 border border-emerald-500/30 flex items-center justify-center overflow-hidden transition-all group-hover:border-emerald-400 group-hover:shadow-[0_0_15px_rgba(16,185,129,0.3)]">
-              <span className="font-mono font-bold text-lg text-emerald-400 tracking-tighter">KP</span>
+              <img
+                src="/assets/profile/kondwani.png"
+                alt={PERSONAL_INFO.name}
+                className="w-full h-full object-cover object-top"
+              />
               <div className="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
             <div>

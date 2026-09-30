@@ -143,15 +143,15 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
                 </div>
 
                 {/* Portrait with Optical Framing */}
-                <div className="relative rounded-xl overflow-hidden aspect-[4/5] bg-slate-900 border border-white/10 shadow-inner group">
+                <div className="relative rounded-xl overflow-hidden aspect-square bg-slate-900 border border-white/10 shadow-inner group">
                   <img
-                    src="/assets/profile/kondwani.jpg"
+                    src="/assets/profile/kondwani.png"
                     alt="Kondwani Austin Phanga"
                     className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   />
                   
                   {/* Subtle Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#090b10] via-transparent to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#090b10] via-transparent to-transparent opacity-75" />
 
                   {/* Corner Target Marks */}
                   <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-emerald-400/80" />
