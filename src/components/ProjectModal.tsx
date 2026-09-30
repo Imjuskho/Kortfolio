@@ -34,7 +34,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
           </div>
 
           <div className="flex items-center gap-2">
-            {['zisamale', 'pocket-body', 'bawo', 'edge-vision'].includes(project.id) && onOpenSimulator && (
+            {['amr-fintech', 'pocket-body', 'bawo', 'edge-vision'].includes(project.id) && onOpenSimulator && (
               <button
                 onClick={() => {
                   onClose();

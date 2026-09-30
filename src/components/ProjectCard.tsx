@@ -114,7 +114,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, onO
             <span>Architecture Breakdown</span>
           </button>
 
-          {['zisamale', 'pocket-body', 'bawo', 'edge-vision'].includes(project.id) && onOpenSimulator && (
+          {['amr-fintech', 'pocket-body', 'bawo', 'edge-vision'].includes(project.id) && onOpenSimulator && (
             <button
               onClick={() => onOpenSimulator(project.id)}
               className="py-2 px-3 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-mono transition-all flex items-center gap-1.5 cursor-pointer"

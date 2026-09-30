@@ -35,7 +35,7 @@ export const ContactSection: React.FC = () => {
               </h2>
 
               <p className="text-slate-400 text-sm sm:text-base leading-relaxed mb-8">
-                Available for enterprise data centre & cloud architecture, global health research partnerships, edge computing & on-device AI system architecture, and documentary storytelling.
+                Available for enterprise cloud architecture, data centre operations, FinTech engineering, edge vision systems, and strategic technology consulting.
               </p>
 
               {/* Direct links list */}
@@ -81,8 +81,8 @@ export const ContactSection: React.FC = () => {
                     <Globe className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-[10px] text-slate-500 uppercase">Academic / Research Track</div>
-                    <div className="text-white font-semibold">University of Oxford Candidate</div>
+                    <div className="text-[10px] text-slate-500 uppercase">Degree & Credentials</div>
+                    <div className="text-white font-semibold">BSc Computer Engineering (Univ. of Livingstonia)</div>
                   </div>
                 </div>
               </div>
@@ -173,7 +173,7 @@ export const ContactSection: React.FC = () => {
                       required
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      placeholder="e.g. Zisamale Clinical Deployment or Oxford Global Health"
+                      placeholder="e.g. Enterprise Cloud Architecture, FinTech Reconciliation, or Edge AI"
                       className="w-full px-4 py-2.5 rounded-xl bg-[#080b12] border border-white/10 text-white text-xs font-mono focus:outline-none focus:border-emerald-400"
                     />
                   </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, Cpu, Sparkles, BookOpen, Camera, Layers, Mail, Menu, X, Globe2 } from 'lucide-react';
+import { Terminal, Cpu, Sparkles, BookOpen, Camera, Layers, Mail, Menu, X, Globe2, Server } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 interface NavbarProps {
@@ -91,11 +91,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
               Engineering Lab
             </a>
             <a 
-              href="#research" 
+              href="#journey" 
               className="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-full transition-all flex items-center gap-1.5"
             >
-              <BookOpen className="w-3.5 h-3.5 text-sky-400" />
-              Research & Vision
+              <Server className="w-3.5 h-3.5 text-sky-400" />
+              Architecture Journey
             </a>
             <a 
               href="#photography" 
@@ -194,12 +194,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
                 Engineering Lab
               </a>
               <a 
-                href="#research" 
+                href="#journey" 
                 onClick={() => setMobileMenuOpen(false)}
                 className="px-3 py-2 text-slate-300 hover:text-emerald-400 hover:bg-white/5 rounded-lg flex items-center gap-2"
               >
-                <BookOpen className="w-4 h-4 text-sky-400" />
-                Research Manifesto
+                <Server className="w-4 h-4 text-sky-400" />
+                Architecture Journey
               </a>
               <a 
                 href="#photography" 

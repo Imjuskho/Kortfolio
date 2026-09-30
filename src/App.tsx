@@ -4,7 +4,7 @@ import { Hero } from './components/Hero';
 import { ImpactMetrics } from './components/ImpactMetrics';
 import { ProjectsSection } from './components/ProjectsSection';
 import { ArchitectureLab } from './components/ArchitectureLab';
-import { ResearchManifesto } from './components/ResearchManifesto';
+import { ArchitecturalJourney } from './components/ArchitecturalJourney';
 import { PhotographyGallery } from './components/PhotographyGallery';
 import { SkillMatrix } from './components/SkillMatrix';
 import { ContactSection } from './components/ContactSection';
@@ -13,7 +13,7 @@ import { InteractiveTerminal } from './components/InteractiveTerminal';
 
 export function App() {
   const [terminalOpen, setTerminalOpen] = useState(false);
-  const [labSimulator, setLabSimulator] = useState<string>('zisamale');
+  const [labSimulator, setLabSimulator] = useState<string>('amr');
 
   const handleOpenSimulator = (projectId: string) => {
     setLabSimulator(projectId);
@@ -43,8 +43,8 @@ export function App() {
         {/* Interactive Architecture & Engineering Lab */}
         <ArchitectureLab initialSimulator={labSimulator} />
 
-        {/* Research Manifesto & Philosophy */}
-        <ResearchManifesto />
+        {/* Architectural Journey: Career, Education & Engineering Theses */}
+        <ArchitecturalJourney />
 
         {/* Photography & Documentary Visual Archive */}
         <PhotographyGallery />

@@ -1,9 +1,9 @@
 export type ProjectCategory = 
   | 'All'
-  | 'Health AI & Surveillance'
+  | 'Cloud & Data Centre'
   | 'Edge Computing & CV'
+  | 'FinTech & SaaS'
   | 'Cultural Tech & Gaming'
-  | 'FinTech & Governance'
   | 'Systems & Infra';
 
 export interface ProjectMetric {
@@ -51,11 +51,29 @@ export interface PhotoAsset {
   cameraInfo?: string;
 }
 
-export interface ResearchTopic {
+export interface EngineeringThesis {
   title: string;
-  institution: string;
+  domain: string;
   period: string;
   summary: string;
-  methodology: string;
-  relevance: string;
+  architectureDetails: string;
+  impact: string;
+}
+
+export interface CareerExperience {
+  role: string;
+  company: string;
+  location: string;
+  period: string;
+  description: string;
+  achievements: string[];
+  skills: string[];
+}
+
+export interface EducationEntry {
+  degree: string;
+  institution: string;
+  period: string;
+  focus: string;
+  location: string;
 }
