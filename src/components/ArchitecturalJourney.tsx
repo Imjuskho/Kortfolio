@@ -7,7 +7,7 @@ export const ArchitecturalJourney: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'experience' | 'education' | 'theses'>('experience');
 
   return (
-    <section id="journey" className="py-24 relative bg-[#080b12] border-t border-white/5 overflow-hidden">
+    <section id="journey" className="scroll-mt-24 py-24 relative bg-[#080b12] border-t border-white/5 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
@@ -145,7 +145,7 @@ export const ArchitecturalJourney: React.FC = () => {
 
                     <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/5">
                       {exp.skills.map((skill, sIdx) => (
-                        <span key={sIdx} className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/[0.03] text-slate-300 border border-white/5">
+                        <span key={sIdx} className="text-xs font-mono px-2 py-0.5 rounded bg-white/[0.03] text-slate-300 border border-white/5">
                           {skill}
                         </span>
                       ))}
@@ -191,7 +191,7 @@ export const ArchitecturalJourney: React.FC = () => {
                     </p>
                   </div>
 
-                  <div className="pt-4 mt-6 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-500">
+                  <div className="pt-4 mt-6 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-400">
                     <span>Verified Academic Credential</span>
                     <ShieldCheck className="w-4 h-4 text-emerald-400" />
                   </div>
@@ -231,8 +231,8 @@ export const ArchitecturalJourney: React.FC = () => {
                     </p>
 
                     <div className="p-3.5 rounded-xl bg-black/40 border border-white/5 font-mono text-xs space-y-1.5 mb-4">
-                      <div className="text-[10px] text-slate-500 uppercase">Architecture & Implementation:</div>
-                      <div className="text-slate-300 text-[11px] leading-relaxed">{thesis.architectureDetails}</div>
+                      <div className="text-xs text-slate-400 uppercase">Architecture & Implementation:</div>
+                      <div className="text-slate-300 text-xs leading-relaxed">{thesis.architectureDetails}</div>
                     </div>
                   </div>
 
@@ -248,7 +248,7 @@ export const ArchitecturalJourney: React.FC = () => {
 
         {/* Institutional Client Marquee */}
         <div className="mt-16 pt-12 border-t border-white/5">
-          <div className="text-center text-xs font-mono text-slate-500 uppercase tracking-widest mb-6">
+          <div className="text-center text-xs font-mono text-slate-400 uppercase tracking-widest mb-6">
             Institutional Organizations, Donors & Multilateral Partners Served
           </div>
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 font-mono text-xs">

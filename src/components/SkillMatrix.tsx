@@ -44,7 +44,7 @@ export const SkillMatrix: React.FC = () => {
   }, []);
 
   return (
-    <section id="skills" className="py-24 relative bg-[#090c14] border-t border-white/5 overflow-hidden">
+    <section id="skills" className="scroll-mt-24 py-24 relative bg-[#090c14] border-t border-white/5 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
@@ -112,7 +112,7 @@ export const SkillMatrix: React.FC = () => {
                       {getDomainIcon(cat.title)}
                       <span>DISCIPLINE // 0{idx + 1}</span>
                     </div>
-                    <span className="text-[10px] text-slate-500">{cat.skills.length} tools & skills</span>
+                    <span className="text-xs text-slate-400">{cat.skills.length} tools & skills</span>
                   </div>
 
                   <h3 className="text-lg font-bold text-white mb-4 tracking-tight group-hover:text-teal-300 transition-colors">
@@ -138,7 +138,7 @@ export const SkillMatrix: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-white/5 text-[11px] font-mono text-slate-500 flex items-center justify-between">
+                <div className="mt-6 pt-4 border-t border-white/5 text-xs font-mono text-slate-400 flex items-center justify-between">
                   <span className="text-slate-400">Battle-Tested</span>
                   <div className="flex items-center gap-1.5 text-teal-400">
                     <CheckCircle2 className="w-3.5 h-3.5" />
@@ -171,7 +171,7 @@ export const SkillMatrix: React.FC = () => {
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
             <span>All {totalSkills} skills learned and used in actual client work, products, or field deployments</span>
           </div>
-          <div className="text-slate-500 text-[11px]">
+          <div className="text-slate-400 text-xs">
             Core Philosophy: Pragmatic, Resilient & Built to Last
           </div>
         </div>

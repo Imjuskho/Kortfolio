@@ -12,7 +12,7 @@ export const ImpactMetrics: React.FC = () => {
   ];
 
   return (
-    <section id="impact" className="py-14 border-y border-white/5 bg-[#0b0f19]/70 relative overflow-hidden">
+    <section id="impact" className="scroll-mt-24 py-14 border-y border-white/5 bg-[#0b0f19]/70 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Subtitle Header */}
@@ -56,7 +56,7 @@ export const ImpactMetrics: React.FC = () => {
                 <div className="p-2.5 rounded-xl bg-white/[0.04] border border-white/10 group-hover:scale-110 transition-transform">
                   {metricIcons[idx % metricIcons.length]}
                 </div>
-                <span className="text-[11px] font-mono text-slate-500 uppercase tracking-wider">
+                <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">
                   SPEC // 0{idx + 1}
                 </span>
               </div>

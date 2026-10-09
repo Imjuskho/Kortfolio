@@ -82,7 +82,7 @@
 - **Elevated Surfaces:** Surface Slate (`#0E131F`), Hover (`#141B2D`)
 - **Primary Text:** Crisp White (`#F8FAFC`)
 - **Secondary Text:** Slate 300 (`#CBD5E1`)
-- **Muted / Technical Text:** Slate 500 (`#64748B`)
+- **Muted / Technical Text:** Slate 400 (`#94A3B8`) — 7.68:1 on the base canvas. _Deviation: the brief originally specified Slate 500 (`#64748B`), which measures 4.02–4.18:1 across all five section backgrounds and fails WCAG AA 4.5:1 for body text. Slate 500 remains acceptable only for non-text decoration._
 - **Accents:**
   - Field Emerald (`#10B981` / `#059669`): Online status, verified production checks.
   - Solar Amber (`#F59E0B` / `#D97706`): Interactive controls, highlighted code tokens.
@@ -106,3 +106,34 @@
 - [ ] Present Taste Direction Investment Gate to user.
 - [ ] Apply refined typography, crisp border systems, and remove generic ambient glow blobs across all views.
 - [ ] Verify build and responsive layouts.
+
+### Accessibility & Craft Remediation (2026-09-30)
+
+Correctness fixes applied ahead of the visual-evolution work above. These were
+defects, not taste decisions, so they did not require a new investment gate.
+
+- [x] Replaced non-functional `animate-in fade-in` classes (no `tailwindcss-animate`
+      installed) with a native `.animate-fade-in` utility in `src/index.css`.
+- [x] Added `src/hooks/useDialogA11y.ts`: focus trap, focus restore, Escape
+      handling, and background scroll lock. Wired into all three overlays
+      (`ProjectModal`, `PhotographyGallery`, `InteractiveTerminal`).
+- [x] Added `role="dialog"`, `aria-modal`, `aria-label`, and accessible names to
+      icon-only controls across the three overlays.
+- [x] Added `prefers-reduced-motion` support: CSS reset in `src/index.css` plus
+      `<MotionConfig reducedMotion="user">` in `src/App.tsx`.
+- [x] Added `scroll-mt-24` to all seven anchored sections so headings clear the
+      fixed navbar.
+- [x] Raised the 12px type floor: 50× `text-[10px]` and 33× `text-[11px]` → `text-xs`.
+- [x] Swapped 32× `text-slate-500` → `text-slate-400` for AA contrast (see §6).
+- [x] Verified: `tsc --noEmit` clean, production build passes, and browser checks
+      confirm 0 sub-12px text, no horizontal overflow at 390px, working focus
+      traps and focus restore, and working Escape/scroll-lock on all overlays.
+
+### Still Open
+
+- [ ] The banned ambient glow blob remains at `Hero.tsx:14` + `index.css:33-35`.
+- [ ] 15 `backdrop-blur` sites remain; §7 calls for crisper surfaces.
+- [ ] Bundle is 542 kB with no code splitting.
+- [ ] `ProjectCard` preview image is a clickable `<div>` (`ProjectCard.tsx:47`)
+      — not keyboard reachable. Needs to become a real `<button>`.
+- [ ] `npm run lint` does not exist in `package.json`; only `dev`, `build`, `preview`.

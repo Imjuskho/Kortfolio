@@ -75,7 +75,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
   };
 
   return (
-    <section id="architecture-lab" className="py-24 relative bg-[#07090e] border-t border-white/5 overflow-hidden">
+    <section id="architecture-lab" className="scroll-mt-24 py-24 relative bg-[#07090e] border-t border-white/5 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Lab Header */}
@@ -225,20 +225,20 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                 }`}>
                   <div className="flex items-center justify-between mb-3 font-mono">
                     <span className="text-xs font-bold text-emerald-400">01 // AWS VPC GATEWAY</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-400">INGESTION</span>
+                    <span className="text-xs px-2 py-0.5 rounded bg-white/5 text-slate-400">INGESTION</span>
                   </div>
                   <div className="text-sm font-semibold text-white mb-1">Disbursement Batch</div>
                   <p className="text-xs text-slate-400 mb-3">
                     Batch received via encrypted TLS endpoint with AWS IAM role auth.
                   </p>
                   {amrStep >= 1 ? (
-                    <div className="p-2.5 rounded-lg bg-black/60 font-mono text-[11px] text-emerald-300 space-y-1">
+                    <div className="p-2.5 rounded-lg bg-black/60 font-mono text-xs text-emerald-300 space-y-1">
                       <div>Tenant: <span className="text-white">UNICEF_RELIEF_MW</span></div>
                       <div>Recipients: <span className="text-amber-400">1,450 beneficiaries</span></div>
                       <div>Total Value: <span className="text-sky-300">MWK 42,500,000</span></div>
                     </div>
                   ) : (
-                    <div className="text-[11px] font-mono text-slate-600">Awaiting disbursement trigger...</div>
+                    <div className="text-xs font-mono text-slate-600">Awaiting disbursement trigger...</div>
                   )}
                 </div>
 
@@ -248,20 +248,20 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                 }`}>
                   <div className="flex items-center justify-between mb-3 font-mono">
                     <span className="text-xs font-bold text-sky-400">02 // OPERATOR DISPATCH</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-400">TELECO B2C</span>
+                    <span className="text-xs px-2 py-0.5 rounded bg-white/5 text-slate-400">TELECO B2C</span>
                   </div>
                   <div className="text-sm font-semibold text-white mb-1">Gateway Execution</div>
                   <p className="text-xs text-slate-400 mb-3">
                     Asynchronous BullMQ worker dispatches requests to operator B2C API.
                   </p>
                   {amrStep >= 2 ? (
-                    <div className="p-2.5 rounded-lg bg-black/60 font-mono text-[11px] text-sky-300 space-y-1">
+                    <div className="p-2.5 rounded-lg bg-black/60 font-mono text-xs text-sky-300 space-y-1">
                       <div>Gateway: <span className="text-white uppercase">{amrOperator} B2C API</span></div>
                       <div>Concurrency: <span className="text-emerald-400">50 req/sec</span></div>
                       <div>Operator Status: <span className="text-emerald-400">200 SUCCESS</span></div>
                     </div>
                   ) : (
-                    <div className="text-[11px] font-mono text-slate-600">Waiting for worker queue...</div>
+                    <div className="text-xs font-mono text-slate-600">Waiting for worker queue...</div>
                   )}
                 </div>
 
@@ -271,20 +271,20 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                 }`}>
                   <div className="flex items-center justify-between mb-3 font-mono">
                     <span className="text-xs font-bold text-amber-400">03 // STATEMENT MATCHING</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-400">RECONCILER</span>
+                    <span className="text-xs px-2 py-0.5 rounded bg-white/5 text-slate-400">RECONCILER</span>
                   </div>
                   <div className="text-sm font-semibold text-white mb-1">Hash Verification</div>
                   <p className="text-xs text-slate-400 mb-3">
                     Automated reconciliation matching teleco txn IDs with bank ledger debits.
                   </p>
                   {amrStep >= 3 ? (
-                    <div className="p-2.5 rounded-lg bg-black/60 font-mono text-[11px] text-amber-300 space-y-1">
+                    <div className="p-2.5 rounded-lg bg-black/60 font-mono text-xs text-amber-300 space-y-1">
                       <div>Matched: <span className="text-emerald-400">1,450 / 1,450 (100%)</span></div>
                       <div>Discrepancies: <span className="text-white font-bold">0.00 MWK</span></div>
                       <div>Hash: <span className="text-slate-400 truncate">sha256:7f9a8b...</span></div>
                     </div>
                   ) : (
-                    <div className="text-[11px] font-mono text-slate-600">Awaiting operator callback...</div>
+                    <div className="text-xs font-mono text-slate-600">Awaiting operator callback...</div>
                   )}
                 </div>
 
@@ -294,20 +294,20 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                 }`}>
                   <div className="flex items-center justify-between mb-3 font-mono">
                     <span className="text-xs font-bold text-purple-400">04 // AUDIT COMMIT</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-white/5 text-slate-400">IMMUTABLE</span>
+                    <span className="text-xs px-2 py-0.5 rounded bg-white/5 text-slate-400">IMMUTABLE</span>
                   </div>
                   <div className="text-sm font-semibold text-white mb-1">General Ledger Sign-off</div>
                   <p className="text-xs text-slate-400 mb-3">
                     PostgreSQL row-level security commit with cryptographic audit stamp.
                   </p>
                   {amrStep >= 4 ? (
-                    <div className="p-2.5 rounded-lg bg-black/60 font-mono text-[11px] text-purple-300 space-y-1">
+                    <div className="p-2.5 rounded-lg bg-black/60 font-mono text-xs text-purple-300 space-y-1">
                       <div>Audit Status: <span className="text-emerald-400 font-bold">VERIFIED</span></div>
                       <div>Tenant Isolation: <span className="text-white">RLS Enforced</span></div>
                       <div>Report: <span className="text-emerald-300">Generated (PDF + CSV)</span></div>
                     </div>
                   ) : (
-                    <div className="text-[11px] font-mono text-slate-600">Awaiting double-entry commit...</div>
+                    <div className="text-xs font-mono text-slate-600">Awaiting double-entry commit...</div>
                   )}
                 </div>
 
@@ -399,7 +399,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                       onChange={(e) => setBatteryLevel(Number(e.target.value))}
                       className="w-full accent-emerald-400 cursor-pointer"
                     />
-                    <div className="text-[10px] text-slate-500">
+                    <div className="text-xs text-slate-400">
                       {batteryLevel < 25 ? '⚠️ Power conservation mode: throttling camera FPS' : 'Normal solar absorption cycle'}
                     </div>
                   </div>
@@ -421,7 +421,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                       onChange={(e) => setClipThreshold(Number(e.target.value))}
                       className="w-full accent-amber-400 cursor-pointer"
                     />
-                    <div className="text-[10px] text-slate-500">
+                    <div className="text-xs text-slate-400">
                       Frames with cosine similarity &gt; {clipThreshold} are purged locally before upload.
                     </div>
                   </div>
@@ -429,31 +429,31 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
 
                 {/* Visual Pipeline Display */}
                 <div className="lg:col-span-8 p-5 rounded-xl bg-black/50 border border-white/10 font-mono text-xs space-y-4">
-                  <div className="text-slate-400 uppercase text-[10px]">Active Data Pipeline Status</div>
+                  <div className="text-slate-400 uppercase text-xs">Active Data Pipeline Status</div>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div className="p-3 rounded-lg bg-white/[0.03] border border-white/5">
-                      <div className="text-[10px] text-slate-500">RAW INGESTION</div>
+                      <div className="text-xs text-slate-400">RAW INGESTION</div>
                       <div className="text-white font-bold text-sm mt-0.5">1,240 frames/hr</div>
-                      <div className="text-[10px] text-emerald-400 mt-1">Camera Sensor Online</div>
+                      <div className="text-xs text-emerald-400 mt-1">Camera Sensor Online</div>
                     </div>
 
                     <div className="p-3 rounded-lg bg-emerald-950/30 border border-emerald-500/20">
-                      <div className="text-[10px] text-emerald-400">CLIP FILTERING</div>
+                      <div className="text-xs text-emerald-400">CLIP FILTERING</div>
                       <div className="text-emerald-300 font-bold text-sm mt-0.5">-78% Redundancy</div>
-                      <div className="text-[10px] text-slate-300 mt-1">967 near-duplicates purged</div>
+                      <div className="text-xs text-slate-300 mt-1">967 near-duplicates purged</div>
                     </div>
 
                     <div className="p-3 rounded-lg bg-white/[0.03] border border-white/5">
-                      <div className="text-[10px] text-slate-500">TRANSMISSION BUFFER</div>
+                      <div className="text-xs text-slate-400">TRANSMISSION BUFFER</div>
                       <div className="text-white font-bold text-sm mt-0.5">273 high-entropy frames</div>
-                      <div className="text-[10px] text-amber-400 mt-1">
+                      <div className="text-xs text-amber-400 mt-1">
                         {networkStatus === 'offline' ? 'Queued to local SSD' : 'Transmitting via 2G burst'}
                       </div>
                     </div>
                   </div>
 
-                  <div className="p-3.5 rounded-lg bg-[#070b12] border border-white/5 text-[11px] leading-relaxed text-slate-300">
+                  <div className="p-3.5 rounded-lg bg-[#070b12] border border-white/5 text-xs leading-relaxed text-slate-300">
                     <strong>Monthly Bandwidth Savings:</strong> Over 75% uplink payloads saved through neural deduplication. Raw frames stored safely in partitioned NVMe storage, transmitting during off-peak night windows.
                   </div>
                 </div>
@@ -570,20 +570,20 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                     <circle cx="235" cy="230" r="3.5" fill="#10b981" />
                   </svg>
 
-                  <div className="absolute top-3 left-3 p-2 rounded-lg bg-black/80 backdrop-blur-md border border-white/10 text-[11px] font-mono space-y-0.5">
+                  <div className="absolute top-3 left-3 p-2 rounded-lg bg-black/80 backdrop-blur-md border border-white/10 text-xs font-mono space-y-0.5">
                     <div className="text-emerald-400 font-bold">● PERCEPTION: ACTIVE (60 FPS)</div>
                     <div className="text-slate-400">Total Keypoints: <span className="text-white font-bold">{trackingMode === 'full' ? '553' : trackingMode === 'pose' ? '33' : trackingMode === 'hands' ? '42' : '478'}</span></div>
                     <div className="text-slate-400">Depth Mode: <span className="text-amber-400">{metricDepth ? 'World Metric (mm)' : 'Normalized (0..1)'}</span></div>
                   </div>
 
-                  <div className="absolute bottom-3 right-3 p-2 rounded-lg bg-emerald-950/80 backdrop-blur-md border border-emerald-500/30 text-[10px] font-mono text-emerald-300">
+                  <div className="absolute bottom-3 right-3 p-2 rounded-lg bg-emerald-950/80 backdrop-blur-md border border-emerald-500/30 text-xs font-mono text-emerald-300">
                     Zero Cloud Egress Guaranteed
                   </div>
                 </div>
 
                 <div className="lg:col-span-4 space-y-3 font-mono text-xs">
                   <div className="p-4 rounded-xl bg-black/40 border border-white/5 space-y-2">
-                    <div className="text-slate-400 uppercase text-[10px]">Data Sovereignty Audit</div>
+                    <div className="text-slate-400 uppercase text-xs">Data Sovereignty Audit</div>
                     <div className="flex items-center justify-between text-slate-300">
                       <span>Cloud Packets Sent:</span>
                       <span className="text-emerald-400 font-bold">0.00 KB</span>
@@ -603,11 +603,11 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                   </div>
 
                   <div className="p-4 rounded-xl bg-black/40 border border-white/5 space-y-2">
-                    <div className="text-slate-400 uppercase text-[10px]">Guided 6-Pose Scan</div>
-                    <div className="text-[11px] text-slate-300 leading-relaxed">
+                    <div className="text-slate-400 uppercase text-xs">Guided 6-Pose Scan</div>
+                    <div className="text-xs text-slate-300 leading-relaxed">
                       Ensures anterior, posterior, and lateral joint planes are unoccluded before export.
                     </div>
-                    <div className="p-2 rounded bg-emerald-950/40 text-emerald-300 text-[10px]">
+                    <div className="p-2 rounded bg-emerald-950/40 text-emerald-300 text-xs">
                       ✓ Coronal plane verified (100% confidence)
                     </div>
                   </div>
@@ -678,7 +678,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                           selectedPit === idx ? 'border-amber-400 bg-amber-950/80 scale-105' : 'border-amber-950/80 bg-black/60 hover:border-amber-700/60'
                         }`}
                       >
-                        <span className="text-[10px] font-mono text-amber-700">{idx}</span>
+                        <span className="text-xs font-mono text-amber-700">{idx}</span>
                         <span className="text-lg font-bold font-mono text-amber-200">{seeds}</span>
                       </button>
                     ))}
@@ -694,7 +694,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                           selectedPit === idx + 8 ? 'border-amber-400 bg-amber-950/80 scale-105' : 'border-amber-950/80 bg-black/60 hover:border-amber-700/60'
                         }`}
                       >
-                        <span className="text-[10px] font-mono text-amber-700">{idx + 8}</span>
+                        <span className="text-xs font-mono text-amber-700">{idx + 8}</span>
                         <span className="text-lg font-bold font-mono text-amber-200">{seeds}</span>
                       </button>
                     ))}
@@ -714,7 +714,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                             isNyumba ? 'border-amber-500/60 bg-amber-950/40' : 'border-amber-950/80 bg-black/60 hover:border-emerald-700/60'
                           }`}
                         >
-                          <span className="text-[10px] font-mono text-amber-700">
+                          <span className="text-xs font-mono text-amber-700">
                             {pitIndex} {isNyumba && '★'}
                           </span>
                           <span className="text-lg font-bold font-mono text-white">{seeds}</span>
@@ -736,7 +736,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                           selectedPit === idx + 24 ? 'border-emerald-400 bg-emerald-950/80 scale-105' : 'border-amber-950/80 bg-black/60 hover:border-emerald-700/60'
                         }`}
                       >
-                        <span className="text-[10px] font-mono text-amber-700">{idx + 24}</span>
+                        <span className="text-xs font-mono text-amber-700">{idx + 24}</span>
                         <span className="text-lg font-bold font-mono text-amber-200">{seeds}</span>
                       </button>
                     ))}

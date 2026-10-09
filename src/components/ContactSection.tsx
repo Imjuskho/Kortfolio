@@ -26,7 +26,7 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-24 relative bg-[#06080e] border-t border-white/5">
+    <section id="contact" className="scroll-mt-24 py-24 relative bg-[#06080e] border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -58,14 +58,14 @@ export const ContactSection: React.FC = () => {
                       <Mail className="w-4 h-4" />
                     </div>
                     <div className="truncate">
-                      <div className="text-[10px] text-slate-500 uppercase">Direct Email</div>
+                      <div className="text-xs text-slate-400 uppercase">Direct Email</div>
                       <div className="text-white font-semibold truncate hover:text-emerald-300 transition-colors">{PERSONAL_INFO.email}</div>
                     </div>
                   </a>
                   <button
                     type="button"
                     onClick={(e) => handleCopy(PERSONAL_INFO.email, 'email', e)}
-                    className="ml-2 px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-emerald-500/20 text-slate-400 hover:text-emerald-300 transition-all flex items-center gap-1 text-[10px] cursor-pointer flex-shrink-0"
+                    className="ml-2 px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-emerald-500/20 text-slate-400 hover:text-emerald-300 transition-all flex items-center gap-1 text-xs cursor-pointer flex-shrink-0"
                     title="Copy email to clipboard"
                   >
                     {copiedField === 'email' ? (
@@ -91,14 +91,14 @@ export const ContactSection: React.FC = () => {
                       <Phone className="w-4 h-4" />
                     </div>
                     <div className="truncate">
-                      <div className="text-[10px] text-slate-500 uppercase">Direct Telephone</div>
+                      <div className="text-xs text-slate-400 uppercase">Direct Telephone</div>
                       <div className="text-white font-semibold hover:text-emerald-300 transition-colors">{PERSONAL_INFO.phone}</div>
                     </div>
                   </a>
                   <button
                     type="button"
                     onClick={(e) => handleCopy(PERSONAL_INFO.phone, 'phone', e)}
-                    className="ml-2 px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-emerald-500/20 text-slate-400 hover:text-emerald-300 transition-all flex items-center gap-1 text-[10px] cursor-pointer flex-shrink-0"
+                    className="ml-2 px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-emerald-500/20 text-slate-400 hover:text-emerald-300 transition-all flex items-center gap-1 text-xs cursor-pointer flex-shrink-0"
                     title="Copy phone to clipboard"
                   >
                     {copiedField === 'phone' ? (
@@ -120,7 +120,7 @@ export const ContactSection: React.FC = () => {
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-[10px] text-slate-500 uppercase">Geographical Base</div>
+                    <div className="text-xs text-slate-400 uppercase">Geographical Base</div>
                     <div className="text-white font-semibold">{PERSONAL_INFO.location}</div>
                   </div>
                 </div>
@@ -130,7 +130,7 @@ export const ContactSection: React.FC = () => {
                     <Globe className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-[10px] text-slate-500 uppercase">Degree & Credentials</div>
+                    <div className="text-xs text-slate-400 uppercase">Degree & Credentials</div>
                     <div className="text-white font-semibold">BSc Computer Engineering (Univ. of Livingstonia)</div>
                   </div>
                 </div>
@@ -185,7 +185,7 @@ export const ContactSection: React.FC = () => {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[11px] font-mono text-slate-400 mb-1.5 uppercase">
+                      <label className="block text-xs font-mono text-slate-400 mb-1.5 uppercase">
                         What should I call you?
                       </label>
                       <input
@@ -199,7 +199,7 @@ export const ContactSection: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-mono text-slate-400 mb-1.5 uppercase">
+                      <label className="block text-xs font-mono text-slate-400 mb-1.5 uppercase">
                         Where can I reply to you?
                       </label>
                       <input
@@ -214,7 +214,7 @@ export const ContactSection: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-mono text-slate-400 mb-1.5 uppercase">
+                    <label className="block text-xs font-mono text-slate-400 mb-1.5 uppercase">
                       What's on your mind?
                     </label>
                     <input
@@ -228,7 +228,7 @@ export const ContactSection: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-mono text-slate-400 mb-1.5 uppercase">
+                    <label className="block text-xs font-mono text-slate-400 mb-1.5 uppercase">
                       Your Message
                     </label>
                     <textarea

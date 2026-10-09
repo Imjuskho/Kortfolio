@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion, useScroll, useSpring, MotionConfig } from 'framer-motion';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ImpactMetrics } from './components/ImpactMetrics';
@@ -45,6 +45,7 @@ export function App() {
   };
 
   return (
+    <MotionConfig reducedMotion="user">
     <div className="min-h-screen bg-[#090b10] text-[#e2e8f0] flex flex-col font-['Plus_Jakarta_Sans',sans-serif] selection:bg-emerald-500/30 selection:text-emerald-300 relative">
       
       {/* Scroll Progress Bar at very top of screen */}
@@ -94,6 +95,7 @@ export function App() {
       />
 
     </div>
+    </MotionConfig>
   );
 }
 

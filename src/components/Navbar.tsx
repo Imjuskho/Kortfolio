@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Terminal, Cpu, Sparkles, BookOpen, Camera, Layers, Mail, Menu, X, Globe2, Server } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
+import { asset } from '../lib/asset';
 
 interface NavbarProps {
   onOpenTerminal: () => void;
@@ -52,7 +53,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
           <a href="#" className="flex items-center gap-3 group">
             <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500/20 to-teal-500/10 border border-emerald-500/30 flex items-center justify-center overflow-hidden transition-all group-hover:border-emerald-400 group-hover:shadow-[0_0_15px_rgba(16,185,129,0.3)]">
               <img
-                src="/assets/profile/kondwani.png"
+                src={asset('/assets/profile/kondwani.png')}
                 alt={PERSONAL_INFO.name}
                 className="w-full h-full object-cover object-top"
               />
@@ -63,7 +64,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
                 <span className="font-bold tracking-tight text-white group-hover:text-emerald-300 transition-colors">
                   {PERSONAL_INFO.name}
                 </span>
-                <span className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-mono font-medium bg-emerald-950/80 text-emerald-400 border border-emerald-800/60">
+                <span className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded text-xs font-mono font-medium bg-emerald-950/80 text-emerald-400 border border-emerald-800/60">
                   MW 🇲🇼
                 </span>
               </div>
@@ -129,7 +130,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
             >
               <Terminal className="w-3.5 h-3.5 text-emerald-400" />
               <span className="font-semibold">CLI</span>
-              <kbd className="hidden lg:inline-flex items-center px-1.5 py-0.5 rounded text-[10px] bg-black/60 text-emerald-400/80 border border-emerald-500/20 group-hover:border-emerald-500/40 font-mono">
+              <kbd className="hidden lg:inline-flex items-center px-1.5 py-0.5 rounded text-xs bg-black/60 text-emerald-400/80 border border-emerald-500/20 group-hover:border-emerald-500/40 font-mono">
                 ⌘K
               </kbd>
             </button>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowUpRight, Cpu, HardDrive, ShieldCheck, Terminal, Layers, CheckCircle } from 'lucide-react';
 import { Project } from '../types';
+import { asset } from '../lib/asset';
 
 interface ProjectCardProps {
   project: Project;
@@ -17,10 +18,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, onO
       {/* Top Meta Bar */}
       <div>
         <div className="flex items-center justify-between gap-2 mb-3">
-          <span className="text-[11px] font-mono font-medium px-2.5 py-1 rounded-md bg-white/[0.04] text-slate-300 border border-white/10">
+          <span className="text-xs font-mono font-medium px-2.5 py-1 rounded-md bg-white/[0.04] text-slate-300 border border-white/10">
             {project.category}
           </span>
-          <span className="text-xs font-mono text-slate-500">
+          <span className="text-xs font-mono text-slate-400">
             {project.period}
           </span>
         </div>
@@ -49,12 +50,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, onO
             className="relative mb-4 rounded-xl overflow-hidden aspect-video bg-slate-900 border border-white/10 cursor-pointer group/img"
           >
             <img 
-              src={project.previewImages[0]} 
+              src={asset(project.previewImages[0])} 
               alt={project.title}
               className="w-full h-full object-cover object-center group-hover/img:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover/img:opacity-40 transition-opacity" />
-            <div className="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-[10px] font-mono text-emerald-300 border border-white/10">
+            <div className="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-xs font-mono text-emerald-300 border border-white/10">
               {project.previewImages.length} Screenshots
             </div>
           </div>
@@ -65,7 +66,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, onO
           {project.badges.slice(0, 3).map((badge, idx) => (
             <span 
               key={idx} 
-              className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-300/90 border border-emerald-800/40"
+              className="text-xs font-mono px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-300/90 border border-emerald-800/40"
             >
               {badge}
             </span>
@@ -76,7 +77,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, onO
         <div className="grid grid-cols-2 gap-2 mb-5 p-3 rounded-xl bg-black/30 border border-white/5 text-xs font-mono">
           {project.impactMetrics.slice(0, 2).map((m, idx) => (
             <div key={idx} className="flex flex-col">
-              <span className="text-[10px] text-slate-500 uppercase">{m.label}</span>
+              <span className="text-xs text-slate-400 uppercase">{m.label}</span>
               <span className="text-white font-bold text-sm tracking-tight group-hover:text-emerald-300 transition-colors">
                 {m.value}
               </span>
@@ -92,13 +93,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, onO
           {project.techStack.slice(0, 5).map((tech, idx) => (
             <span 
               key={idx}
-              className="text-[11px] font-mono px-2 py-0.5 rounded-md bg-white/[0.03] text-slate-400 border border-white/5"
+              className="text-xs font-mono px-2 py-0.5 rounded-md bg-white/[0.03] text-slate-400 border border-white/5"
             >
               {tech}
             </span>
           ))}
           {project.techStack.length > 5 && (
-            <span className="text-[11px] font-mono px-1.5 py-0.5 text-slate-500">
+            <span className="text-xs font-mono px-1.5 py-0.5 text-slate-400">
               +{project.techStack.length - 5}
             </span>
           )}

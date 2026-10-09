@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, Cpu, ShieldCheck, Terminal, MapPin, Sparkles, Download, CheckCircle2, ChevronRight, Server, Database } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
+import { asset } from '../lib/asset';
 
 interface HeroProps {
   onOpenTerminal: () => void;
@@ -169,7 +170,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
               <div className="relative rounded-2xl glass-panel p-4 overflow-hidden border border-white/10 bg-[#0c101a] shadow-2xl ring-1 ring-white/5">
                 
                 {/* HUD Header Bar */}
-                <div className="flex items-center justify-between px-3 py-2 bg-black/60 rounded-xl border border-white/5 mb-3 text-[11px] font-mono text-slate-400">
+                <div className="flex items-center justify-between px-3 py-2 bg-black/60 rounded-xl border border-white/5 mb-3 text-xs font-mono text-slate-400">
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
                     <span className="text-white font-bold">{PERSONAL_INFO.name}</span>
@@ -180,7 +181,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
                 {/* Headshot Portrait with Optical Framing */}
                 <div className="relative rounded-xl overflow-hidden aspect-square bg-slate-900 border border-white/10 shadow-inner group">
                   <img
-                    src="/assets/profile/kondwani.png"
+                    src={asset('/assets/profile/kondwani.png')}
                     alt={PERSONAL_INFO.name}
                     className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   />
@@ -198,9 +199,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
                   <div className="absolute bottom-3 left-3 right-3 p-3 rounded-lg bg-[#090b10]/90 backdrop-blur-md border border-white/10 text-xs">
                     <div className="flex items-center justify-between mb-1">
                       <span className="font-semibold text-white">BSc Computer Engineering</span>
-                      <span className="text-emerald-400 font-mono text-[10px]">Univ of Livingstonia</span>
+                      <span className="text-emerald-400 font-mono text-xs">Univ of Livingstonia</span>
                     </div>
-                    <p className="text-[11px] text-slate-400 line-clamp-1">
+                    <p className="text-xs text-slate-400 line-clamp-1">
                       AWS Solutions Architect Candidate • 10+ Yrs Systems Leadership
                     </p>
                   </div>
@@ -209,17 +210,17 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
                 {/* Telemetry Strip below image */}
                 <div className="mt-3 grid grid-cols-2 gap-2 text-center text-xs font-mono">
                   <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
-                    <div className="text-[10px] text-slate-500 uppercase">Focus</div>
+                    <div className="text-xs text-slate-400 uppercase">Focus</div>
                     <div className="text-emerald-400 font-semibold truncate">Systems & Stories</div>
                   </div>
                   <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
-                    <div className="text-[10px] text-slate-500 uppercase">Home Base</div>
+                    <div className="text-xs text-slate-400 uppercase">Home Base</div>
                     <div className="text-amber-300 font-semibold truncate">Lilongwe, Malawi</div>
                   </div>
                 </div>
 
                 {/* Subtitle Quote */}
-                <div className="mt-2 p-2.5 text-center text-[11px] text-slate-300 italic font-mono border-t border-white/5">
+                <div className="mt-2 p-2.5 text-center text-xs text-slate-300 italic font-mono border-t border-white/5">
                   "Good technology doesn't demand perfect conditions. It respects the environment and the people it lives with."
                 </div>
 
@@ -235,7 +236,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
       <div className="max-w-7xl mx-auto px-4 mt-16 text-center">
         <a 
           href="#impact" 
-          className="inline-flex flex-col items-center text-slate-500 hover:text-emerald-400 transition-colors text-xs font-mono"
+          className="inline-flex flex-col items-center text-slate-400 hover:text-emerald-400 transition-colors text-xs font-mono"
         >
           <span className="mb-1">SYSTEM TELEMETRY</span>
           <ArrowDown className="w-4 h-4 animate-bounce" />

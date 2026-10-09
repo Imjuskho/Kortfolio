@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Layers, Cpu, ShieldAlert, CheckCircle2, HardDrive, Terminal, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project } from '../types';
+import { useDialogA11y } from '../hooks/useDialogA11y';
+import { asset } from '../lib/asset';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -10,17 +12,29 @@ interface ProjectModalProps {
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, onOpenSimulator }) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const dialogRef = useDialogA11y(!!project, onClose);
+
+  useEffect(() => {
+    setActiveImageIndex(0);
+  }, [project?.id]);
 
   if (!project) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/80 backdrop-blur-md animate-fade-in">
       
       {/* Background dismiss click */}
       <div className="fixed inset-0" onClick={onClose} />
 
       {/* Modal Dialog Card */}
-      <div className="relative w-full max-w-4xl rounded-2xl glass-panel bg-[#0d121e] border border-white/10 shadow-2xl overflow-hidden z-10 max-h-[90vh] flex flex-col">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${project.title} project details`}
+        tabIndex={-1}
+        className="relative w-full max-w-4xl rounded-2xl glass-panel bg-[#0d121e] border border-white/10 shadow-2xl overflow-hidden z-10 max-h-[90vh] flex flex-col"
+      >
         
         {/* Modal Top Bar */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-[#090d16]">
@@ -48,6 +62,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
             )}
             <button
               onClick={onClose}
+              aria-label="Close project details"
               className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-all cursor-pointer"
               title="Close modal"
             >
@@ -80,14 +95,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
                   <Layers className="w-3.5 h-3.5 text-emerald-400" />
                   Visual Interface & Artifacts
                 </span>
-                <span className="text-xs font-mono text-slate-500">
+                <span className="text-xs font-mono text-slate-400">
                   {activeImageIndex + 1} of {project.previewImages.length}
                 </span>
               </div>
 
               <div className="relative rounded-xl overflow-hidden aspect-video bg-black border border-white/10 shadow-lg group">
                 <img 
-                  src={project.previewImages[activeImageIndex]} 
+                  src={asset(project.previewImages[activeImageIndex])} 
                   alt={`${project.title} screenshot`}
                   className="w-full h-full object-contain"
                 />
@@ -96,12 +111,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
                   <>
                     <button
                       onClick={() => setActiveImageIndex((prev) => (prev > 0 ? prev - 1 : project.previewImages!.length - 1))}
+                      aria-label="Previous screenshot"
                       className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 hover:bg-black/90 text-white backdrop-blur-md transition-all cursor-pointer"
                     >
                       <ChevronLeft className="w-5 h-5" />
                     </button>
                     <button
                       onClick={() => setActiveImageIndex((prev) => (prev < project.previewImages!.length - 1 ? prev + 1 : 0))}
+                      aria-label="Next screenshot"
                       className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/60 hover:bg-black/90 text-white backdrop-blur-md transition-all cursor-pointer"
                     >
                       <ChevronRight className="w-5 h-5" />
@@ -117,11 +134,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
                     <button
                       key={idx}
                       onClick={() => setActiveImageIndex(idx)}
+                      aria-label={`Show screenshot ${idx + 1} of ${project.previewImages!.length}`}
+                      aria-current={activeImageIndex === idx}
                       className={`relative w-20 h-14 rounded-lg overflow-hidden flex-shrink-0 border-2 transition-all cursor-pointer ${
                         activeImageIndex === idx ? 'border-emerald-400 scale-105' : 'border-white/10 opacity-60 hover:opacity-100'
                       }`}
                     >
-                      <img src={img} alt="thumbnail" className="w-full h-full object-cover" />
+                      <img src={asset(img)} alt="" className="w-full h-full object-cover" />
                     </button>
                   ))}
                 </div>
@@ -137,9 +156,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {project.impactMetrics.map((m, idx) => (
                 <div key={idx} className="p-3.5 rounded-xl bg-black/40 border border-white/5 font-mono">
-                  <div className="text-[10px] text-slate-500 uppercase">{m.label}</div>
+                  <div className="text-xs text-slate-400 uppercase">{m.label}</div>
                   <div className="text-lg font-bold text-emerald-400 tracking-tight">{m.value}</div>
-                  {m.detail && <div className="text-[11px] text-slate-400 mt-0.5">{m.detail}</div>}
+                  {m.detail && <div className="text-xs text-slate-400 mt-0.5">{m.detail}</div>}
                 </div>
               ))}
             </div>
@@ -245,7 +264,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
               <span>Host Machine Path:</span>
               <code className="text-emerald-300">{project.localPath}</code>
             </div>
-            <span className="text-[10px] text-slate-500">Verified Local Repository</span>
+            <span className="text-xs text-slate-400">Verified Local Repository</span>
           </div>
 
         </div>

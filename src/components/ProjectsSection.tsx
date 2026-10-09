@@ -41,7 +41,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenSimulato
   }, [selectedCategory, searchQuery]);
 
   return (
-    <section id="projects" className="py-24 relative bg-[#090c14] border-t border-white/5 overflow-hidden">
+    <section id="projects" className="scroll-mt-24 py-24 relative bg-[#090c14] border-t border-white/5 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
@@ -80,7 +80,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenSimulato
 
         {/* Category Filter Tabs */}
         <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
-          <Filter className="w-4 h-4 text-slate-500 flex-shrink-0 mr-1" />
+          <Filter className="w-4 h-4 text-slate-400 flex-shrink-0 mr-1" />
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
@@ -92,7 +92,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenSimulato
               }`}
             >
               {cat}
-              <span className="ml-1.5 opacity-60 text-[10px]">
+              <span className="ml-1.5 opacity-60 text-xs">
                 ({cat === 'All' ? PROJECTS.length : PROJECTS.filter((p) => p.category === cat).length})
               </span>
             </button>

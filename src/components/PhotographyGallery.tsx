@@ -1,12 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Camera, MapPin, Eye, X, ChevronLeft, ChevronRight, Sliders, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PHOTOGRAPHY_GALLERY } from '../data/portfolioData';
 import { PhotoAsset } from '../types';
+import { useDialogA11y } from '../hooks/useDialogA11y';
+import { asset } from '../lib/asset';
 
 export const PhotographyGallery: React.FC = () => {
   const [selectedPhoto, setSelectedPhoto] = useState<PhotoAsset | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>('All');
+
+  const closeLightbox = useCallback(() => setSelectedPhoto(null), []);
+  const dialogRef = useDialogA11y(!!selectedPhoto, closeLightbox);
 
   const categories = ['All', 'Documentary', 'Portraits', 'Infrastructure', 'Landscape', 'Aerial'];
 
@@ -18,37 +23,36 @@ export const PhotographyGallery: React.FC = () => {
     ? filteredPhotos.findIndex((p) => p.id === selectedPhoto.id) 
     : -1;
 
-  const handlePrev = (e?: React.MouseEvent) => {
+  const handlePrev = useCallback((e?: React.MouseEvent) => {
     e?.stopPropagation();
     if (currentIndex > 0) {
       setSelectedPhoto(filteredPhotos[currentIndex - 1]);
     } else {
       setSelectedPhoto(filteredPhotos[filteredPhotos.length - 1]);
     }
-  };
+  }, [currentIndex, filteredPhotos]);
 
-  const handleNext = (e?: React.MouseEvent) => {
+  const handleNext = useCallback((e?: React.MouseEvent) => {
     e?.stopPropagation();
     if (currentIndex < filteredPhotos.length - 1) {
       setSelectedPhoto(filteredPhotos[currentIndex + 1]);
     } else {
       setSelectedPhoto(filteredPhotos[0]);
     }
-  };
+  }, [currentIndex, filteredPhotos]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!selectedPhoto) return;
-      if (e.key === 'Escape') setSelectedPhoto(null);
       if (e.key === 'ArrowLeft') handlePrev();
       if (e.key === 'ArrowRight') handleNext();
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedPhoto, currentIndex, filteredPhotos]);
+  }, [selectedPhoto, currentIndex, filteredPhotos, handlePrev, handleNext]);
 
   return (
-    <section id="photography" className="py-24 relative bg-[#07090e] border-t border-white/5 overflow-hidden">
+    <section id="photography" className="scroll-mt-24 py-24 relative bg-[#07090e] border-t border-white/5 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
@@ -99,7 +103,7 @@ export const PhotographyGallery: React.FC = () => {
                 className="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-slate-900 border border-white/10 hover:border-purple-400/50 transition-all duration-300 shadow-xl cursor-pointer"
               >
                 <img
-                  src={photo.url}
+                  src={asset(photo.url)}
                   alt={photo.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
@@ -109,7 +113,7 @@ export const PhotographyGallery: React.FC = () => {
 
                 {/* Info on hover / bottom */}
                 <div className="absolute bottom-0 left-0 right-0 p-5 text-left transform translate-y-1 group-hover:translate-y-0 transition-transform">
-                  <div className="flex items-center gap-2 text-[10px] font-mono text-purple-300 mb-1">
+                  <div className="flex items-center gap-2 text-xs font-mono text-purple-300 mb-1">
                     <MapPin className="w-3 h-3" />
                     <span>{photo.location}</span>
                     <span>•</span>
@@ -138,10 +142,17 @@ export const PhotographyGallery: React.FC = () => {
 
       {/* Full-Screen Lightbox Modal */}
       {selectedPhoto && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/95 backdrop-blur-xl animate-in fade-in duration-200">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/95 backdrop-blur-xl animate-fade-in">
           <div className="fixed inset-0" onClick={() => setSelectedPhoto(null)} />
 
-          <div className="relative max-w-5xl w-full max-h-[92vh] flex flex-col z-10">
+          <div
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Photo viewer: ${selectedPhoto.title}`}
+            tabIndex={-1}
+            className="relative max-w-5xl w-full max-h-[92vh] flex flex-col z-10"
+          >
             {/* Top Bar */}
             <div className="flex justify-between items-center pb-3 text-white">
               <div className="font-mono text-xs text-purple-400 flex items-center gap-2">
@@ -153,9 +164,10 @@ export const PhotographyGallery: React.FC = () => {
                 <span className="text-slate-400">{currentIndex + 1} of {filteredPhotos.length}</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="hidden sm:inline-block text-[10px] text-slate-500 font-mono">Arrow keys to navigate • ESC to close</span>
+                <span className="hidden sm:inline-block text-xs text-slate-400 font-mono">Arrow keys to navigate • ESC to close</span>
                 <button
                   onClick={() => setSelectedPhoto(null)}
+                  aria-label="Close photo viewer"
                   className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all cursor-pointer"
                   title="Close lightbox (ESC)"
                 >
@@ -167,7 +179,7 @@ export const PhotographyGallery: React.FC = () => {
             {/* Photo Preview Container with Prev/Next buttons */}
             <div className="relative rounded-2xl overflow-hidden bg-black border border-white/10 flex-1 flex items-center justify-center group">
               <img
-                src={selectedPhoto.url}
+                src={asset(selectedPhoto.url)}
                 alt={selectedPhoto.title}
                 className="max-h-[68vh] w-auto object-contain mx-auto select-none"
               />
@@ -175,6 +187,7 @@ export const PhotographyGallery: React.FC = () => {
               {/* Prev Button */}
               <button
                 onClick={handlePrev}
+                aria-label="Previous photo"
                 className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/70 hover:bg-purple-600 text-white backdrop-blur-md transition-all cursor-pointer"
                 title="Previous photo (Left Arrow)"
               >
@@ -184,6 +197,7 @@ export const PhotographyGallery: React.FC = () => {
               {/* Next Button */}
               <button
                 onClick={handleNext}
+                aria-label="Next photo"
                 className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/70 hover:bg-purple-600 text-white backdrop-blur-md transition-all cursor-pointer"
                 title="Next photo (Right Arrow)"
               >

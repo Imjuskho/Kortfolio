@@ -34,7 +34,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTerminal }) => {
   };
 
   return (
-    <footer className="py-12 bg-[#040609] border-t border-white/5 font-mono text-xs text-slate-500">
+    <footer className="py-12 bg-[#040609] border-t border-white/5 font-mono text-xs text-slate-400">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/5">
@@ -47,14 +47,14 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTerminal }) => {
               <span className="text-white font-bold tracking-tight text-sm">
                 {PERSONAL_INFO.name}
               </span>
-              <p className="text-[11px] text-slate-400">
+              <p className="text-xs text-slate-400">
                 {PERSONAL_INFO.title}
               </p>
             </div>
           </div>
 
           {/* Center: System Status & Lilongwe Clock */}
-          <div className="flex flex-wrap items-center justify-center gap-4 text-[11px]">
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs">
             <div className="flex items-center gap-1.5 text-emerald-400">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
               <span>Host Node: MW-LLW-01 (Online)</span>
@@ -86,7 +86,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTerminal }) => {
         </div>
 
         {/* Bottom copyright & attribution */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-500">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
           <div>
             © {new Date().getFullYear()} Kondwani Austin Phanga. Handcrafted with care in Lilongwe, Malawi.
           </div>

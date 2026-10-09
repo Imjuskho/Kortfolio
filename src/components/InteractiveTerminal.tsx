@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Terminal as TerminalIcon, X, Maximize2, Minimize2, CornerDownLeft, Sparkles, ArrowRight } from 'lucide-react';
 import { PERSONAL_INFO, PROJECTS, SKILL_CATEGORIES } from '../data/portfolioData';
+import { useDialogA11y } from '../hooks/useDialogA11y';
 
 interface InteractiveTerminalProps {
   isOpen: boolean;
@@ -46,21 +47,13 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  const dialogRef = useDialogA11y(isOpen, onClose, inputRef);
+
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => inputRef.current?.focus(), 100);
     }
   }, [isOpen]);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) {
-        onClose();
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onClose]);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
@@ -117,14 +110,14 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
               >
                 <div className="flex items-center justify-between">
                   <span className="text-amber-300 font-bold">{p.id}</span>
-                  <span className="text-[10px] text-slate-500">{p.period}</span>
+                  <span className="text-xs text-slate-400">{p.period}</span>
                 </div>
                 <div className="text-white font-medium truncate mt-0.5">{p.title.split('—')[0]}</div>
-                <div className="text-[10px] text-slate-400 truncate">{p.category}</div>
+                <div className="text-xs text-slate-400 truncate">{p.category}</div>
               </div>
             ))}
           </div>
-          <p className="text-slate-500 mt-2">Click any project above or type `cat &lt;id&gt;` to read more.</p>
+          <p className="text-slate-400 mt-2">Click any project above or type `cat &lt;id&gt;` to read more.</p>
         </div>
       );
     } else if (lower.startsWith('cat ')) {
@@ -136,23 +129,23 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
           <div className="space-y-2 text-xs p-3.5 rounded-xl bg-black/50 border border-emerald-500/30">
             <div className="flex items-center justify-between">
               <span className="text-emerald-400 font-bold text-sm">{proj.title}</span>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">
+              <span className="text-xs font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">
                 {proj.category}
               </span>
             </div>
-            <div className="text-slate-400 font-mono text-[11px]">{proj.tagline}</div>
+            <div className="text-slate-400 font-mono text-xs">{proj.tagline}</div>
             <div className="text-white mt-1 leading-relaxed">{proj.summary}</div>
             
             <div className="pt-2 border-t border-white/10 flex flex-wrap gap-1.5 items-center">
-              <span className="text-slate-500 font-mono text-[10px]">Stack:</span>
+              <span className="text-slate-400 font-mono text-xs">Stack:</span>
               {proj.techStack.map((tech, i) => (
-                <span key={i} className="px-1.5 py-0.5 rounded bg-white/5 text-[10px] text-slate-300 font-mono">
+                <span key={i} className="px-1.5 py-0.5 rounded bg-white/5 text-xs text-slate-300 font-mono">
                   {tech}
                 </span>
               ))}
             </div>
 
-            <div className="pt-2 border-t border-white/10 flex items-center justify-between text-[11px]">
+            <div className="pt-2 border-t border-white/10 flex items-center justify-between text-xs">
               <span className="text-slate-400 font-mono">Workspace: <code className="text-amber-300">{proj.localPath}</code></span>
               {['amr-fintech', 'pocket-body', 'bawo', 'edge-vision'].includes(proj.id) && onSelectProject && (
                 <button
@@ -160,7 +153,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
                     onClose();
                     onSelectProject(proj.id);
                   }}
-                  className="px-2.5 py-1 rounded bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-[10px] font-mono cursor-pointer transition-all"
+                  className="px-2.5 py-1 rounded bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs font-mono cursor-pointer transition-all"
                 >
                   Try Interactive Demo →
                 </button>
@@ -183,7 +176,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
             {SKILL_CATEGORIES.map((cat, i) => (
               <div key={i} className="p-2 rounded bg-white/[0.03] border border-white/5">
                 <div className="text-amber-300 font-semibold mb-1">{cat.title}</div>
-                <div className="text-slate-300 font-mono text-[11px] leading-relaxed">
+                <div className="text-slate-300 font-mono text-xs leading-relaxed">
                   {cat.skills.join(' • ')}
                 </div>
               </div>
@@ -198,7 +191,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
             <div key={idx} className="p-2.5 rounded-lg bg-black/40 border border-white/5">
               <div className="text-emerald-400 font-bold text-base">{s.value}</div>
               <div className="text-white text-xs">{s.label}</div>
-              <div className="text-slate-400 text-[10px]">{s.detail}</div>
+              <div className="text-slate-400 text-xs">{s.detail}</div>
             </div>
           ))}
         </div>
@@ -252,10 +245,17 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md animate-fade-in">
       <div className="fixed inset-0" onClick={onClose} />
 
-      <div className="relative w-full max-w-3xl rounded-2xl glass-panel bg-[#0a0d15] border border-emerald-500/30 shadow-2xl overflow-hidden z-10 flex flex-col h-[540px]">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Kortfolio interactive terminal"
+        tabIndex={-1}
+        className="relative w-full max-w-3xl rounded-2xl glass-panel bg-[#0a0d15] border border-emerald-500/30 shadow-2xl overflow-hidden z-10 flex flex-col h-[540px]"
+      >
         
         {/* Terminal Header */}
         <div className="flex items-center justify-between px-4 py-3 bg-[#07090e] border-b border-white/10 font-mono text-xs">
@@ -267,15 +267,16 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="hidden sm:inline-block text-[10px] text-slate-500">ESC to close</span>
+            <span className="hidden sm:inline-block text-xs text-slate-400">ESC to close</span>
             <button
               onClick={() => setHistory([])}
-              className="px-2 py-0.5 rounded text-[10px] text-slate-400 hover:text-white bg-white/5 hover:bg-white/10 cursor-pointer"
+              className="px-2 py-0.5 rounded text-xs text-slate-400 hover:text-white bg-white/5 hover:bg-white/10 cursor-pointer"
             >
               Clear
             </button>
             <button
               onClick={onClose}
+              aria-label="Close terminal"
               className="p-1 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white transition-all cursor-pointer"
               title="Close terminal"
             >
@@ -289,7 +290,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
           {history.map((item, idx) => (
             <div key={idx} className="space-y-1.5">
               <div className="flex items-center gap-2 text-emerald-400">
-                <span className="text-slate-500">kortfolio&gt;</span>
+                <span className="text-slate-400">kortfolio&gt;</span>
                 <span className="text-white font-semibold">{item.command}</span>
               </div>
               <div className="pl-4 border-l border-white/10">{item.output}</div>
@@ -298,8 +299,8 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
         </div>
 
         {/* Quick Suggestion Pills */}
-        <div className="px-4 py-2 bg-[#080b12] border-t border-white/5 flex items-center gap-1.5 overflow-x-auto text-[11px] font-mono no-scrollbar">
-          <span className="text-slate-500 flex-shrink-0 text-[10px]">Quick:</span>
+        <div className="px-4 py-2 bg-[#080b12] border-t border-white/5 flex items-center gap-1.5 overflow-x-auto text-xs font-mono no-scrollbar">
+          <span className="text-slate-400 flex-shrink-0 text-xs">Quick:</span>
           {SUGGESTED_COMMANDS.map((cmd) => (
             <button
               key={cmd}
