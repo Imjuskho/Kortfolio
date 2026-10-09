@@ -12,6 +12,16 @@ export interface ProjectMetric {
   detail?: string;
 }
 
+export interface ImpactStat {
+  tag: string;
+  value: string;
+  number: string;
+  label: string;
+  detail: string;
+  prefix?: string;
+  unit?: string;
+}
+
 export interface ArchitectureLayer {
   name: string;
   components: string[];

@@ -1,4 +1,4 @@
-import { Project, PhotoAsset, EngineeringThesis, CareerExperience, EducationEntry } from '../types';
+import { Project, PhotoAsset, EngineeringThesis, CareerExperience, EducationEntry, ImpactStat } from '../types';
 
 export const PERSONAL_INFO = {
   name: "Kondwani Austin Phanga",
@@ -23,11 +23,11 @@ export const PERSONAL_INFO = {
     "British High Commission", "National Bank of Malawi", "Welthungerhilfe", "Malawi Telecommunications Ltd"
   ],
   stats: [
-    { label: "Hands-on Experience", value: "10+ Years", detail: "From physical data centre racks to modern AWS cloud" },
-    { label: "Agency Revenue Delivered", value: "MWK 200M+", detail: "Guiding 7arts on major donor & enterprise contracts" },
-    { label: "Security & Test Discipline", value: "84 Fixes", detail: "Closed audit findings to 100% automated test compliance" },
-    { label: "On-Device Movement AI", value: "553 Points", detail: "Tracking body & hands locally with zero cloud leakage" },
-  ]
+    { tag: "TENURE", value: "10+ Years", number: "10+", unit: "Years", label: "Hands-on engineering", detail: "From data-centre racks in Blantyre to AWS running in production." },
+    { tag: "REVENUE", value: "MWK 200M+", prefix: "MWK", number: "200M+", label: "Revenue delivered at 7arts", detail: "Led donor and enterprise contracts as Managing Director." },
+    { tag: "SECURITY", value: "84 Fixes", number: "84", unit: "Fixes", label: "Audit findings closed", detail: "Drove every open item to 100% automated-test compliance." },
+    { tag: "EDGE AI", value: "553 Points", number: "553", unit: "Points", label: "On-device movement AI", detail: "Pose and hand tracking that runs locally — no cloud, no signal." },
+  ] as ImpactStat[]
 };
 
 // Client & partner organizations. `mark` is the typographic seal rendered
