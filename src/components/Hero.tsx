@@ -64,8 +64,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
               <span className="text-accent font-mono font-semibold">BSc Computer Engineering</span>
               <span className="text-faint">•</span>
               <span className="text-foreground">Telecom & Cloud Veteran</span>
-              <span className="text-faint">•</span>
-              <span className="text-warn font-mono">Managing Director, 7arts</span>
             </motion.div>
 
             {/* Bio paragraph */}
