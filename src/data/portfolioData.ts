@@ -40,15 +40,15 @@ export interface ClientPartner {
 }
 
 export const CLIENT_PARTNERS: ClientPartner[] = [
-  { name: "The World Bank", mark: "WB", sector: "Development Finance" },
-  { name: "UNDP", mark: "UNDP", sector: "United Nations" },
-  { name: "UNICEF", sector: "United Nations", mark: "UNICEF" },
-  { name: "European Union (EU)", mark: "EU", sector: "Multilateral" },
-  { name: "US Embassy", mark: "US", sector: "Diplomatic Mission" },
-  { name: "British High Commission", mark: "UK", sector: "Diplomatic Mission" },
-  { name: "National Bank of Malawi", mark: "NBM", sector: "Banking & Finance" },
-  { name: "Welthungerhilfe", mark: "WHH", sector: "Humanitarian NGO" },
-  { name: "Malawi Telecommunications Ltd", mark: "MTL", sector: "Telecommunications" },
+  { name: "The World Bank", mark: "WB", sector: "Development Finance", logo: "/assets/logos/worldbank.svg" },
+  { name: "UNDP", mark: "UNDP", sector: "United Nations", logo: "/assets/logos/undp.svg" },
+  { name: "UNICEF", sector: "United Nations", mark: "UNICEF", logo: "/assets/logos/unicef.svg" },
+  { name: "European Union (EU)", mark: "EU", sector: "Multilateral", logo: "/assets/logos/eu.svg" },
+  { name: "US Embassy", mark: "US", sector: "Diplomatic Mission", logo: "/assets/logos/us-embassy.png" },
+  { name: "British High Commission", mark: "UK", sector: "Diplomatic Mission", logo: "/assets/logos/british-high-commission.png" },
+  { name: "National Bank of Malawi", mark: "NBM", sector: "Banking & Finance", logo: "/assets/logos/nbm.png" },
+  { name: "Welthungerhilfe", mark: "WHH", sector: "Humanitarian NGO", logo: "/assets/logos/welthungerhilfe.svg" },
+  { name: "Malawi Telecommunications Ltd", mark: "MTL", sector: "Telecommunications", logo: "/assets/logos/mtl.png" },
 ];
 
 export const CAREER_EXPERIENCES: CareerExperience[] = [

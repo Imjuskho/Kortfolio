@@ -11,14 +11,20 @@ interface MarqueeRowProps {
 }
 
 const LogoCard: React.FC<{ client: (typeof CLIENT_PARTNERS)[number] }> = ({ client }) => (
-  <div className="group/tile flex items-center gap-3 pl-4 pr-5 py-3 rounded-2xl bg-surface border border-border hover:border-accent/50 hover:shadow-[0_10px_30px_-16px_var(--shadow-strong)] transition-all duration-300 min-w-[248px]">
-    <div className="w-11 h-11 shrink-0 rounded-xl bg-surface-2 border border-border flex items-center justify-center font-mono text-[11px] font-bold tracking-tight text-muted group-hover/tile:text-accent group-hover/tile:border-accent/40 transition-colors overflow-hidden">
-      {client.logo ? (
-        <img src={asset(client.logo)} alt="" className="w-6 h-6 object-contain" />
-      ) : (
-        client.mark
-      )}
-    </div>
+  <div className="group/tile flex items-center gap-3 pl-4 pr-5 py-3 rounded-2xl bg-surface border border-border hover:border-accent/50 hover:shadow-[0_10px_30px_-16px_var(--shadow-strong)] transition-all duration-300 min-w-[264px]">
+    {client.logo ? (
+      <div className="h-12 w-20 shrink-0 flex items-center justify-start overflow-hidden">
+        <img
+          src={asset(client.logo)}
+          alt=""
+          className="max-h-10 max-w-[80px] w-auto object-contain opacity-85 group-hover/tile:opacity-100 transition-opacity"
+        />
+      </div>
+    ) : (
+      <div className="w-11 h-11 shrink-0 rounded-xl bg-surface-2 border border-border flex items-center justify-center font-mono text-[11px] font-bold tracking-tight text-muted group-hover/tile:text-accent group-hover/tile:border-accent/40 transition-colors overflow-hidden">
+        {client.mark}
+      </div>
+    )}
     <div className="flex flex-col leading-tight">
       <span className="text-sm font-semibold text-foreground group-hover/tile:text-accent transition-colors whitespace-nowrap">
         {client.name}
