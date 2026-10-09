@@ -230,6 +230,8 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/imjuskho/edgevision-mw",
     badges: ["Solar Edge Fleet", "CLIP Deduplication", "FastAPI & Celery", "84 Audit Fixes"],
     previewImages: [
+      "/assets/projects/edgevision-annotate.jpg",
+      "/assets/projects/edgevision-segment.jpg",
       "/assets/photos/photo_aerial.jpg"
     ],
     impactMetrics: [
@@ -362,6 +364,10 @@ export const PROJECTS: Project[] = [
     period: "2025 – 2026",
     localPath: "/Users/mac/Tilemera",
     badges: ["Malawi Stock Exchange", "B2B SaaS", "Fastify & Prisma", "Turborepo"],
+    previewImages: [
+      "/assets/projects/tilemera-01.jpg",
+      "/assets/projects/tilemera-02.jpg"
+    ],
     impactMetrics: [
       { label: "Compliance Pillars", value: "10 Criteria", detail: "Financials, governance, board diversity" },
       { label: "Stack", value: "Turborepo", detail: "Fastify 4 + Prisma + React 18 + BullMQ" },
@@ -389,6 +395,10 @@ export const PROJECTS: Project[] = [
     period: "2025 – 2026",
     localPath: "/Users/mac/MG1",
     badges: ["MAGLA Sandbox", "Pari-Mutuel Math", "Chilimba Circles", "Chichewa First"],
+    previewImages: [
+      "/assets/projects/mwayi-grid-01.jpg",
+      "/assets/projects/mwayi-grid-02.jpg"
+    ],
     impactMetrics: [
       { label: "Markets", value: "6 Authentic", detail: "Magetsi, Nyengo, Ndalama, Masewero, etc." },
       { label: "Circle Size", value: "Up to 8", detail: "Communal Chilimba group micro-staking" },
@@ -443,6 +453,9 @@ export const PROJECTS: Project[] = [
     period: "2025 – 2026",
     localPath: "/Users/mac/routerpass",
     badges: ["MikroTik RouterOS v7", "Local Vector RAG", "Ollama LLM", "Zero Cloud Exposure"],
+    previewImages: [
+      "/assets/projects/routerpass-terminal.jpg"
+    ],
     impactMetrics: [
       { label: "API Target", value: "RouterOS v7", detail: "REST API over local LAN subnet" },
       { label: "LLM Support", value: "Llama 3 / Mistral", detail: "Private local inference via Ollama" },
@@ -470,6 +483,10 @@ export const PROJECTS: Project[] = [
     period: "2024 – Present",
     localPath: "/Users/mac/Zisamale",
     badges: ["Offline SQLite WAL", "FastAPI Cloud Gateway", "Docker / Helm", "Health Data Sovereignty"],
+    previewImages: [
+      "/assets/projects/zisamale-01.jpg",
+      "/assets/projects/zisamale-02.jpg"
+    ],
     impactMetrics: [
       { label: "Field Attendants", value: "450 CHWs", detail: "Synchronizing offline mobile ledgers" },
       { label: "Facilities", value: "45 Clinics", detail: "Connected across 3 District Health Offices" },
@@ -497,6 +514,10 @@ export const PROJECTS: Project[] = [
     period: "2025 – 2026",
     localPath: "/Users/mac/mboni",
     badges: ["Manual-First Verification", "Paper-Witness Architecture", "SQLite WAL", "District Continuity"],
+    previewImages: [
+      "/assets/projects/mboni-01.jpg",
+      "/assets/projects/mboni-02.jpg"
+    ],
     impactMetrics: [
       { label: "Design Principle", value: "Paper Witness", detail: "Witnesses paper; does not replace it" },
       { label: "Data Integrity", value: "100% Audit", detail: "Every record tied to photographed sticker" },
@@ -512,6 +533,68 @@ export const PROJECTS: Project[] = [
       "Pragmatic human-centered design: treats paper as the primary legal document and software as the corroborating witness.",
       "Constrained character bounding removes OCR ambiguity for birth dates, weights, and village codes.",
       "Immediate overdue vaccination reports generated locally without internet access."
+    ]
+  },
+  {
+    id: "youth-enterprises",
+    title: "Youth Enterprises — Apprenticeship & Employment Mediation Platform",
+    tagline: "Progressive web app connecting Malawi's youth to apprenticeship placements, employment pathways, and vetted employer partners.",
+    category: "FinTech & SaaS",
+    featured: false,
+    role: "Full-Stack Engineer",
+    period: "2024 – 2026",
+    localPath: "https://youthenterprises.org (live)",
+    badges: ["React + TanStack Query", "PWA / Offline-Ready", "244+ Youth Placed", "Lilongwe & Blantyre"],
+    previewImages: [
+      "/assets/projects/youthenterprises-01.jpg",
+      "/assets/projects/youthenterprises-02.jpg"
+    ],
+    impactMetrics: [
+      { label: "Youth Placed", value: "244+", detail: "Into workplace learning since 2022" },
+      { label: "Success Rate", value: "92%", detail: "Of mediated placements into employment" },
+      { label: "Partner VTIs", value: "18", detail: "Vocational training institutions" },
+      { label: "Active Apprentices", value: "127", detail: "Currently in mediated placements" }
+    ],
+    techStack: ["React", "TypeScript", "TanStack Query", "React Router", "Recharts", "Node.js", "REST API", "Vite", "PWA"],
+    summary: "Youth Enterprises is an employment-mediation platform connecting young Malawians leaving vocational training with apprenticeship placements, direct job opportunities, and employer partners. It gives youth a single place to browse matched opportunities, educators a placement-tracking coordination tool, and employers a source of pre-vetted, motivated candidates.",
+    problemStatement: "Young Malawians leave vocational training with practical skills but weak employer networks, while organisations seeking skilled youth lack a trusted, transparent channel to find and place them — leaving training-to-employment pathways fragmented.",
+    solutionArchitecture: "A React and TypeScript progressive web app backed by a REST API and TanStack Query for caching and offline resilience. Role-aware journeys serve youth, educators, and employers from one codebase, with Recharts for impact reporting and an installable PWA shell for low-bandwidth access.",
+    offlineConsiderations: "Ships as an installable PWA with a web manifest, lazy-loaded routes, and skeleton loaders, so core browsing and placement discovery remain usable on intermittent 2G/3G connections.",
+    keyHighlights: [
+      "Matched opportunity browsing for youth plus placement coordination tools for educators and employers.",
+      "Impact surfaced directly in the product — 244+ youth placed, a 92% success rate, and 18 partner VTIs.",
+      "Installable PWA with lazy-loaded routes and skeleton loaders tuned for low-bandwidth Malawian networks."
+    ]
+  },
+  {
+    id: "malawi-governance",
+    title: "Malawi Governance Atlas — Interactive Thesis & Resource Map",
+    tagline: "Interactive D3 + Leaflet atlas presenting a Malawi governance thesis with geographic resource layers and in-browser DOCX export.",
+    category: "Cloud & Data Centre",
+    featured: false,
+    role: "Data Visualisation Engineer",
+    period: "2025 – 2026",
+    localPath: "/Users/mac/malawi-governance-webapp",
+    badges: ["D3 Visualisation", "Leaflet Geo Layers", "Browser DOCX Export", "GSAP Motion"],
+    previewImages: [
+      "/assets/projects/malawi-governance-01.jpg",
+      "/assets/projects/malawi-governance-02.jpg"
+    ],
+    impactMetrics: [
+      { label: "Map Engine", value: "Leaflet", detail: "Calibrated geographic resource layers" },
+      { label: "Analytics", value: "D3", detail: "Interactive governance data charts" },
+      { label: "Export", value: "DOCX", detail: "Full thesis generated in-browser" },
+      { label: "Motion", value: "GSAP", detail: "Scroll-driven narrative storytelling" }
+    ],
+    techStack: ["React", "TypeScript", "D3", "Leaflet", "react-leaflet", "docx", "GSAP", "Vite"],
+    summary: "The Malawi Governance Atlas presents a governance thesis as an interactive, map-led experience. D3 charts and calibrated Leaflet geographic layers let readers move between analysis and place, while the full thesis can be exported to DOCX directly in the browser.",
+    problemStatement: "Governance research is typically delivered as static, linear documents that are hard to scan and disconnected from geography, limiting how quickly decision-makers and the public can engage with the underlying evidence.",
+    solutionArchitecture: "A Vite + React single-page atlas combining D3 for analytical charts and react-leaflet for calibrated geographic resource layers, with GSAP-driven motion guiding the narrative. Document export is composed client-side with the docx package, requiring no server round-trip.",
+    offlineConsiderations: "Ships as a static build with all rendering and DOCX generation performed client-side, so the atlas runs from any static host without backend infrastructure.",
+    keyHighlights: [
+      "Calibrated Leaflet map with layered governance and resource overlays across Malawi.",
+      "D3-driven charts paired with GSAP motion to guide readers through the thesis.",
+      "Client-side DOCX generation lets readers export the full document without a backend."
     ]
   }
 ];

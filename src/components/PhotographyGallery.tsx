@@ -1,187 +1,147 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Camera, MapPin, Eye, X, ChevronLeft, ChevronRight } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useCallback, useEffect } from 'react';
+import { Camera, X, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { PHOTOGRAPHY_GALLERY, PERSONAL_INFO } from '../data/portfolioData';
 import { PhotoAsset } from '../types';
 import { useDialogA11y } from '../hooks/useDialogA11y';
 import { asset } from '../lib/asset';
 
 const InstagramIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
-    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+  <svg viewBox="0 0 24 24" className={className} aria-hidden="true" fill="currentColor">
+    <path d="M12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
   </svg>
 );
 
+const FEATURED_PHOTO_IDS = [
+  'p_ig_01',
+  'p_aerial',
+  'p_ig_04',
+  'p_ig_10',
+  'p_ig_03',
+  'p_ig_09',
+  'p_ig_06',
+  'p_ig_11',
+];
+
 export const PhotographyGallery: React.FC = () => {
-  const [selectedPhoto, setSelectedPhoto] = useState<PhotoAsset | null>(null);
-  const [activeCategory, setActiveCategory] = useState<string>('All');
+  const photos = FEATURED_PHOTO_IDS
+    .map((id) => PHOTOGRAPHY_GALLERY.find((p) => p.id === id))
+    .filter((p): p is PhotoAsset => Boolean(p));
 
-  const closeLightbox = useCallback(() => setSelectedPhoto(null), []);
-  const dialogRef = useDialogA11y(!!selectedPhoto, closeLightbox);
-
-  const categories = ['All', 'Documentary', 'Portraits', 'Infrastructure', 'Landscape', 'Aerial'];
-
-  const filteredPhotos = PHOTOGRAPHY_GALLERY.filter((p) => 
-    activeCategory === 'All' || p.category === activeCategory
-  );
-
-  const currentIndex = selectedPhoto 
-    ? filteredPhotos.findIndex((p) => p.id === selectedPhoto.id) 
-    : -1;
-
-  const handlePrev = useCallback((e?: React.MouseEvent) => {
-    e?.stopPropagation();
-    if (currentIndex > 0) {
-      setSelectedPhoto(filteredPhotos[currentIndex - 1]);
-    } else {
-      setSelectedPhoto(filteredPhotos[filteredPhotos.length - 1]);
-    }
-  }, [currentIndex, filteredPhotos]);
-
-  const handleNext = useCallback((e?: React.MouseEvent) => {
-    e?.stopPropagation();
-    if (currentIndex < filteredPhotos.length - 1) {
-      setSelectedPhoto(filteredPhotos[currentIndex + 1]);
-    } else {
-      setSelectedPhoto(filteredPhotos[0]);
-    }
-  }, [currentIndex, filteredPhotos]);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (!selectedPhoto) return;
-      if (e.key === 'ArrowLeft') handlePrev();
-      if (e.key === 'ArrowRight') handleNext();
+    if (activeIndex === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        setActiveIndex((prev) => (prev === null || prev <= 0 ? photos.length - 1 : prev - 1));
+      } else if (e.key === 'ArrowRight') {
+        setActiveIndex((prev) => (prev === null || prev >= photos.length - 1 ? 0 : prev + 1));
+      }
     };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedPhoto, currentIndex, filteredPhotos, handlePrev, handleNext]);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [activeIndex, photos.length]);
+
+  const closeLightbox = useCallback(() => setActiveIndex(null), []);
+  const dialogRef = useDialogA11y(activeIndex !== null, closeLightbox);
 
   return (
-    <section className="py-24 relative bg-background border-t border-border overflow-hidden">
+    <section className="py-16 relative bg-background border-t border-border overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+
+        {/* Compact Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-violet/10 border border-violet/30 text-violet text-xs font-mono mb-3">
               <Camera className="w-3.5 h-3.5" />
-              <span>THROUGH THE LENS</span>
+              <span>FIELD NOTES</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight">
-              Stories & Photographs from the Field
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
+              The camera that came before the code
             </h2>
-            <p className="text-muted text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
-              Before code and alongside it, I've spent years with a camera in hand. These are glimpses from documentary trips, field missions, portraits, and recent commissions across Malawi—quiet moments, rural resilience, and everyday dignity captured for Phanga Studio, 7arts, and partner organizations.
+            <p className="text-muted text-sm mt-2 max-w-2xl leading-relaxed">
+              Documentary trips, field missions, and commissions across Malawi. A short
+              roll of favourites—the full archive lives on Instagram.
             </p>
-            <a
-              href={PERSONAL_INFO.instagram}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 mt-4 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-fuchsia-500/15 to-violet-500/10 border border-violet/30 text-violet hover:border-violet-400/60 hover:from-pink-500/15 hover:to-purple-500/10 text-xs font-mono transition-all"
-            >
-              <InstagramIcon className="w-3.5 h-3.5" />
-              More frames on Instagram · @_phanga
-            </a>
           </div>
 
-          {/* Categories */}
-          <div className="flex flex-wrap gap-1.5 font-mono text-xs">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer ${
-                  activeCategory === cat
-                    ? 'bg-violet-600 dark:bg-purple-500 text-white font-bold shadow-md shadow-violet-500/20'
-                    : 'bg-surface hover:bg-surface-2 text-muted border border-border'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
+          <a
+            href={PERSONAL_INFO.instagram}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 flex-shrink-0 px-3.5 py-2 rounded-xl bg-surface hover:bg-surface-2 border border-border text-muted hover:text-violet text-xs font-mono transition-all"
+          >
+            <InstagramIcon className="w-3.5 h-3.5" />
+            @_phanga
+            <ArrowRight className="w-3.5 h-3.5" />
+          </a>
         </div>
 
-        {/* Gallery Grid */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AnimatePresence>
-            {filteredPhotos.map((photo, idx) => (
-              <motion.div
+        {/* Filmstrip roll */}
+        <div className="relative">
+          <div className="flex gap-3 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-none">
+            {photos.map((photo, idx) => (
+              <button
                 key={photo.id}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3, delay: idx * 0.05 }}
-                onClick={() => setSelectedPhoto(photo)}
-                className="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-surface-2 border border-border hover:border-violet-400/50 transition-all duration-300 shadow-xl cursor-pointer"
+                onClick={() => setActiveIndex(idx)}
+                aria-label={`View photo: ${photo.title}`}
+                className="group relative flex-shrink-0 snap-start w-[220px] sm:w-[260px] aspect-[4/3] rounded-xl overflow-hidden border border-border bg-surface-2 cursor-pointer"
               >
                 <img
                   src={asset(photo.url)}
                   alt={photo.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  loading="lazy"
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
                 />
-
-                {/* Gradient Mask */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-
-                {/* Info on hover / bottom */}
-                <div className="absolute bottom-0 left-0 right-0 p-5 text-left transform translate-y-1 group-hover:translate-y-0 transition-transform">
-                  <div className="flex items-center gap-2 text-xs font-mono text-purple-300 mb-1">
-                    <MapPin className="w-3 h-3" />
-                    <span>{photo.location}</span>
-                    <span>•</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent opacity-80 group-hover:opacity-70 transition-opacity" />
+                <div className="absolute bottom-0 left-0 right-0 p-3 text-left">
+                  <div className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider text-emerald-300/90">
+                    <Camera className="w-3 h-3" />
                     <span>{photo.category}</span>
                   </div>
-
-                  <h3 className="text-base font-bold text-white tracking-tight leading-snug group-hover:text-purple-200 transition-colors">
+                  <h3 className="text-sm font-semibold text-white tracking-tight leading-snug mt-0.5">
                     {photo.title}
                   </h3>
-
-                  <p className="text-xs text-slate-300 mt-1 line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {photo.description}
-                  </p>
                 </div>
-
-                {/* Zoom pill */}
-                <div className="absolute top-3 right-3 p-2 rounded-full bg-black/60 backdrop-blur-md text-white/80 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <Eye className="w-4 h-4" />
-                </div>
-              </motion.div>
+              </button>
             ))}
-          </AnimatePresence>
-        </motion.div>
+          </div>
+
+          <div className="flex items-center justify-between mt-1 font-mono text-[11px] text-faint">
+            <span>Scroll sideways for the roll →</span>
+            <span>{photos.length} frames</span>
+          </div>
+        </div>
 
       </div>
 
       {/* Full-Screen Lightbox Modal */}
-      {selectedPhoto && (
+      {activeIndex !== null && photos[activeIndex] && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/95 backdrop-blur-xl animate-fade-in">
-          <div className="fixed inset-0" onClick={() => setSelectedPhoto(null)} />
+          <div className="fixed inset-0" onClick={() => setActiveIndex(null)} />
 
           <div
             ref={dialogRef}
             role="dialog"
             aria-modal="true"
-            aria-label={`Photo viewer: ${selectedPhoto.title}`}
+            aria-label={`Photo viewer: ${photos[activeIndex].title}`}
             tabIndex={-1}
             className="relative max-w-5xl w-full max-h-[92vh] flex flex-col z-10"
           >
             {/* Top Bar */}
             <div className="flex justify-between items-center pb-3 text-white">
-              <div className="font-mono text-xs text-purple-400 flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5" />
-                <span>{selectedPhoto.location}</span>
+              <div className="font-mono text-xs text-emerald-300 flex items-center gap-2">
+                <Camera className="w-3.5 h-3.5" />
+                <span>{photos[activeIndex].location}</span>
                 <span className="text-slate-600">|</span>
-                <span className="text-slate-400">{selectedPhoto.cameraInfo}</span>
+                <span className="text-slate-400">{photos[activeIndex].cameraInfo}</span>
                 <span className="text-slate-600">|</span>
-                <span className="text-slate-400">{currentIndex + 1} of {filteredPhotos.length}</span>
+                <span className="text-slate-400">{activeIndex + 1} of {photos.length}</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="hidden sm:inline-block text-xs text-slate-400 font-mono">Arrow keys to navigate • ESC to close</span>
                 <button
-                  onClick={() => setSelectedPhoto(null)}
+                  onClick={() => setActiveIndex(null)}
                   aria-label="Close photo viewer"
                   className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all cursor-pointer"
                   title="Close lightbox (ESC)"
@@ -191,40 +151,38 @@ export const PhotographyGallery: React.FC = () => {
               </div>
             </div>
 
-            {/* Photo Preview Container with Prev/Next buttons */}
-            <div className="relative rounded-2xl overflow-hidden bg-black border border-white/10 flex-1 flex items-center justify-center group">
+            {/* Photo Preview */}
+            <div className="relative rounded-2xl overflow-hidden bg-black border border-white/10 flex-1 flex items-center justify-center">
               <img
-                src={asset(selectedPhoto.url)}
-                alt={selectedPhoto.title}
+                src={asset(photos[activeIndex].url)}
+                alt={photos[activeIndex].title}
                 className="max-h-[68vh] w-auto object-contain mx-auto select-none"
               />
 
-              {/* Prev Button */}
               <button
-                onClick={handlePrev}
+                onClick={() => setActiveIndex((prev) => (prev === null || prev <= 0 ? photos.length - 1 : prev - 1))}
                 aria-label="Previous photo"
-                className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/70 hover:bg-purple-600 text-white backdrop-blur-md transition-all cursor-pointer"
+                className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/70 hover:bg-emerald-600 text-white backdrop-blur-md transition-all cursor-pointer"
                 title="Previous photo (Left Arrow)"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
 
-              {/* Next Button */}
               <button
-                onClick={handleNext}
+                onClick={() => setActiveIndex((prev) => (prev === null || prev >= photos.length - 1 ? 0 : prev + 1))}
                 aria-label="Next photo"
-                className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/70 hover:bg-purple-600 text-white backdrop-blur-md transition-all cursor-pointer"
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/70 hover:bg-emerald-600 text-white backdrop-blur-md transition-all cursor-pointer"
                 title="Next photo (Right Arrow)"
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
             </div>
 
-            {/* Photo Caption */}
+            {/* Caption */}
             <div className="pt-4 text-left">
-              <h3 className="text-lg font-bold text-white tracking-tight">{selectedPhoto.title}</h3>
+              <h3 className="text-lg font-bold text-white tracking-tight">{photos[activeIndex].title}</h3>
               <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-3xl leading-relaxed">
-                {selectedPhoto.description}
+                {photos[activeIndex].description}
               </p>
             </div>
           </div>
