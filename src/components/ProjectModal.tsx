@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Layers, Cpu, ShieldAlert, CheckCircle2, HardDrive, Terminal, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, Layers, Cpu, ShieldAlert, CheckCircle2, HardDrive, Terminal, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project } from '../types';
 import { useDialogA11y } from '../hooks/useDialogA11y';
 import { asset } from '../lib/asset';
@@ -22,7 +22,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/80 backdrop-blur-md animate-fade-in">
-      
+
       {/* Background dismiss click */}
       <div className="fixed inset-0" onClick={onClose} />
 
@@ -33,16 +33,16 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
         aria-modal="true"
         aria-label={`${project.title} project details`}
         tabIndex={-1}
-        className="relative w-full max-w-4xl rounded-2xl glass-panel bg-[#0d121e] border border-white/10 shadow-2xl overflow-hidden z-10 max-h-[90vh] flex flex-col"
+        className="relative w-full max-w-4xl rounded-2xl glass-panel border border-border shadow-[0_24px_60px_-20px_var(--shadow-strong)] overflow-hidden z-10 max-h-[90vh] flex flex-col"
       >
-        
+
         {/* Modal Top Bar */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-[#090d16]">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-surface-2">
           <div className="flex items-center gap-3">
-            <span className="text-xs font-mono font-medium px-2.5 py-1 rounded bg-emerald-950/80 text-emerald-400 border border-emerald-800/60">
+            <span className="text-xs font-mono font-medium px-2.5 py-1 rounded bg-accent/10 text-accent border border-accent/30">
               {project.category}
             </span>
-            <span className="text-xs font-mono text-slate-400">
+            <span className="text-xs font-mono text-muted">
               {project.period}
             </span>
           </div>
@@ -54,7 +54,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
                   onClose();
                   onOpenSimulator(project.id);
                 }}
-                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-mono transition-all cursor-pointer"
+                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-warn/10 hover:bg-warn/20 text-warn border border-warn/30 text-xs font-mono transition-all cursor-pointer"
               >
                 <Cpu className="w-3.5 h-3.5" />
                 <span>Test in Lab</span>
@@ -63,7 +63,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
             <button
               onClick={onClose}
               aria-label="Close project details"
-              className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-all cursor-pointer"
+              className="p-1.5 rounded-lg bg-surface hover:bg-surface-2 text-muted hover:text-foreground transition-all cursor-pointer"
               title="Close modal"
             >
               <X className="w-5 h-5" />
@@ -73,16 +73,16 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
 
         {/* Modal Scrollable Content */}
         <div className="overflow-y-auto p-6 sm:p-8 space-y-8">
-          
+
           {/* Header Title & Tagline */}
           <div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight mb-2">
               {project.title}
             </h2>
-            <p className="text-sm sm:text-base text-emerald-400 font-mono">
+            <p className="text-sm sm:text-base text-accent font-mono">
               {project.role}
             </p>
-            <p className="text-slate-300 text-base mt-2 leading-relaxed">
+            <p className="text-muted text-base mt-2 leading-relaxed">
               {project.summary}
             </p>
           </div>
@@ -91,18 +91,18 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
           {project.previewImages && project.previewImages.length > 0 && (
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-                  <Layers className="w-3.5 h-3.5 text-emerald-400" />
+                <span className="text-xs font-mono uppercase tracking-wider text-muted flex items-center gap-1.5">
+                  <Layers className="w-3.5 h-3.5 text-accent" />
                   Visual Interface & Artifacts
                 </span>
-                <span className="text-xs font-mono text-slate-400">
+                <span className="text-xs font-mono text-muted">
                   {activeImageIndex + 1} of {project.previewImages.length}
                 </span>
               </div>
 
-              <div className="relative rounded-xl overflow-hidden aspect-video bg-black border border-white/10 shadow-lg group">
-                <img 
-                  src={asset(project.previewImages[activeImageIndex])} 
+              <div className="relative rounded-xl overflow-hidden aspect-video bg-black border border-border shadow-lg group">
+                <img
+                  src={asset(project.previewImages[activeImageIndex])}
                   alt={`${project.title} screenshot`}
                   className="w-full h-full object-contain"
                 />
@@ -137,7 +137,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
                       aria-label={`Show screenshot ${idx + 1} of ${project.previewImages!.length}`}
                       aria-current={activeImageIndex === idx}
                       className={`relative w-20 h-14 rounded-lg overflow-hidden flex-shrink-0 border-2 transition-all cursor-pointer ${
-                        activeImageIndex === idx ? 'border-emerald-400 scale-105' : 'border-white/10 opacity-60 hover:opacity-100'
+                        activeImageIndex === idx ? 'border-accent scale-105' : 'border-border opacity-60 hover:opacity-100'
                       }`}
                     >
                       <img src={asset(img)} alt="" className="w-full h-full object-cover" />
@@ -150,15 +150,15 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
 
           {/* Impact Metrics Grid */}
           <div>
-            <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-3">
+            <h4 className="text-xs font-mono uppercase tracking-wider text-muted mb-3">
               Verified Metrics & Performance Specs
             </h4>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {project.impactMetrics.map((m, idx) => (
-                <div key={idx} className="p-3.5 rounded-xl bg-black/40 border border-white/5 font-mono">
-                  <div className="text-xs text-slate-400 uppercase">{m.label}</div>
-                  <div className="text-lg font-bold text-emerald-400 tracking-tight">{m.value}</div>
-                  {m.detail && <div className="text-xs text-slate-400 mt-0.5">{m.detail}</div>}
+                <div key={idx} className="p-3.5 rounded-xl bg-surface-2 border border-border font-mono">
+                  <div className="text-xs text-muted uppercase">{m.label}</div>
+                  <div className="text-lg font-bold text-accent tracking-tight">{m.value}</div>
+                  {m.detail && <div className="text-xs text-muted mt-0.5">{m.detail}</div>}
                 </div>
               ))}
             </div>
@@ -166,22 +166,22 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
 
           {/* Problem Statement vs Solution Architecture */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-5 rounded-xl bg-rose-950/20 border border-rose-800/30">
-              <h4 className="text-xs font-mono font-semibold text-rose-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+            <div className="p-5 rounded-xl bg-rose-500/5 dark:bg-rose-950/20 border border-rose-500/20 dark:border-rose-800/30">
+              <h4 className="text-xs font-mono font-semibold text-rose-600 dark:text-rose-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
                 <ShieldAlert className="w-4 h-4" />
                 The Structural Challenge
               </h4>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <p className="text-xs sm:text-sm text-muted leading-relaxed">
                 {project.problemStatement}
               </p>
             </div>
 
-            <div className="p-5 rounded-xl bg-emerald-950/20 border border-emerald-800/30">
-              <h4 className="text-xs font-mono font-semibold text-emerald-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+            <div className="p-5 rounded-xl bg-accent/5 border border-accent/20 dark:border-emerald-800/30">
+              <h4 className="text-xs font-mono font-semibold text-accent uppercase tracking-wider mb-2 flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4" />
                 Engineering Solution
               </h4>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <p className="text-xs sm:text-sm text-muted leading-relaxed">
                 {project.solutionArchitecture}
               </p>
             </div>
@@ -190,20 +190,20 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
           {/* Architecture Layers Breakdown */}
           {project.architectureLayers && (
             <div>
-              <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-1.5">
-                <Layers className="w-3.5 h-3.5 text-emerald-400" />
+              <h4 className="text-xs font-mono uppercase tracking-wider text-muted mb-3 flex items-center gap-1.5">
+                <Layers className="w-3.5 h-3.5 text-accent" />
                 Multi-Tier Architecture Topology
               </h4>
               <div className="space-y-3">
                 {project.architectureLayers.map((layer, idx) => (
-                  <div key={idx} className="p-4 rounded-xl bg-[#090d16] border border-white/5">
+                  <div key={idx} className="p-4 rounded-xl bg-surface-2 border border-border">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
-                      <span className="font-bold text-white text-sm tracking-tight">{layer.name}</span>
-                      <span className="text-xs text-slate-400 font-mono">{layer.description}</span>
+                      <span className="font-bold text-foreground text-sm tracking-tight">{layer.name}</span>
+                      <span className="text-xs text-muted font-mono">{layer.description}</span>
                     </div>
                     <div className="flex flex-wrap gap-1.5 mt-2">
                       {layer.components.map((comp, cIdx) => (
-                        <span key={cIdx} className="text-xs font-mono px-2.5 py-1 rounded-md bg-white/[0.04] text-slate-300 border border-white/5">
+                        <span key={cIdx} className="text-xs font-mono px-2.5 py-1 rounded-md bg-surface text-muted border border-border">
                           {comp}
                         </span>
                       ))}
@@ -215,25 +215,25 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
           )}
 
           {/* Offline-First & Real-World Constraints */}
-          <div className="p-4 rounded-xl bg-amber-950/20 border border-amber-800/30">
-            <h4 className="text-xs font-mono font-semibold text-amber-300 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+          <div className="p-4 rounded-xl bg-warn/5 dark:bg-amber-950/20 border border-warn/20 dark:border-amber-800/30">
+            <h4 className="text-xs font-mono font-semibold text-warn uppercase tracking-wider mb-1 flex items-center gap-1.5">
               <HardDrive className="w-4 h-4" />
               Offline-First & Power Fault Tolerance
             </h4>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            <p className="text-xs sm:text-sm text-muted leading-relaxed">
               {project.offlineConsiderations}
             </p>
           </div>
 
           {/* Key Highlights Bullets */}
           <div>
-            <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-3">
+            <h4 className="text-xs font-mono uppercase tracking-wider text-muted mb-3">
               Engineering Hallmarks & Field Insights
             </h4>
             <ul className="space-y-2">
               {project.keyHighlights.map((hl, idx) => (
-                <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-muted">
+                  <CheckCircle2 className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
                   <span>{hl}</span>
                 </li>
               ))}
@@ -242,14 +242,14 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
 
           {/* Tech Stack Full Matrix */}
           <div>
-            <h4 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-3">
+            <h4 className="text-xs font-mono uppercase tracking-wider text-muted mb-3">
               Full Technology Ecosystem
             </h4>
             <div className="flex flex-wrap gap-2">
               {project.techStack.map((tech, idx) => (
-                <span 
+                <span
                   key={idx}
-                  className="px-3 py-1 rounded-lg bg-white/[0.04] text-slate-300 font-mono text-xs border border-white/10"
+                  className="px-3 py-1 rounded-lg bg-surface-2 text-muted font-mono text-xs border border-border"
                 >
                   {tech}
                 </span>
@@ -258,22 +258,22 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
           </div>
 
           {/* Local Path & Verification */}
-          <div className="p-3.5 rounded-xl bg-black/60 border border-white/10 font-mono text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <div className="flex items-center gap-2 text-slate-400">
-              <Terminal className="w-3.5 h-3.5 text-emerald-400" />
+          <div className="p-3.5 rounded-xl bg-surface-2 border border-border font-mono text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div className="flex items-center gap-2 text-muted">
+              <Terminal className="w-3.5 h-3.5 text-accent" />
               <span>Host Machine Path:</span>
-              <code className="text-emerald-300">{project.localPath}</code>
+              <code className="text-accent">{project.localPath}</code>
             </div>
-            <span className="text-xs text-slate-400">Verified Local Repository</span>
+            <span className="text-xs text-muted">Verified Local Repository</span>
           </div>
 
         </div>
 
         {/* Modal Bottom Actions */}
-        <div className="px-6 py-4 border-t border-white/10 bg-[#090d16] flex flex-wrap items-center justify-between gap-3">
+        <div className="px-6 py-4 border-t border-border bg-surface-2 flex flex-wrap items-center justify-between gap-3">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-medium transition-all cursor-pointer"
+            className="px-4 py-2 rounded-xl bg-surface hover:bg-surface text-muted text-xs font-medium transition-all cursor-pointer"
           >
             Close Overview
           </button>
@@ -284,7 +284,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
                 href={project.githubUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 text-xs font-mono transition-all flex items-center gap-2 cursor-pointer"
+                className="px-3.5 py-2 rounded-xl bg-surface hover:bg-surface text-muted hover:text-foreground border border-border text-xs font-mono transition-all flex items-center gap-2 cursor-pointer"
                 title="View Source on GitHub"
               >
                 <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">

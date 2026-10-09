@@ -3,6 +3,7 @@ import { motion, useScroll, useSpring, MotionConfig } from 'framer-motion';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ImpactMetrics } from './components/ImpactMetrics';
+import { ClientsMarquee } from './components/ClientsMarquee';
 import { ProjectsSection } from './components/ProjectsSection';
 import { ArchitectureLab } from './components/ArchitectureLab';
 import { ArchitecturalJourney } from './components/ArchitecturalJourney';
@@ -46,7 +47,7 @@ export function App() {
 
   return (
     <MotionConfig reducedMotion="user">
-    <div className="min-h-screen bg-[#090b10] text-[#e2e8f0] flex flex-col font-['Plus_Jakarta_Sans',sans-serif] selection:bg-emerald-500/30 selection:text-emerald-300 relative">
+    <div className="min-h-screen bg-background text-foreground flex flex-col font-['Plus_Jakarta_Sans',sans-serif] selection:bg-accent/30 selection:text-accent relative">
       
       {/* Scroll Progress Bar at very top of screen */}
       <motion.div
@@ -64,6 +65,9 @@ export function App() {
 
         {/* Impact Metrics Bar */}
         <ImpactMetrics />
+
+        {/* Trusted Partners & Client Logo Wall */}
+        <ClientsMarquee />
 
         {/* Production Systems & Projects Section */}
         <ProjectsSection onOpenSimulator={handleOpenSimulator} />

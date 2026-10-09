@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Cpu, ShieldCheck, Terminal, MapPin, Sparkles, Download, CheckCircle2, ChevronRight, Server, Database } from 'lucide-react';
+import { Terminal, Cpu, Sparkles, MapPin, ChevronRight, ArrowDown, ShieldCheck, Database, Server, CheckCircle2 } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { asset } from '../lib/asset';
 
@@ -16,103 +16,103 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
+
           {/* Left Column: Biography & Narrative */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="lg:col-span-7 flex flex-col items-start text-left"
           >
-            
+
             {/* Status Pill */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.5 }}
-              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-400 text-xs font-mono mb-6 backdrop-blur-md shadow-lg shadow-emerald-950/50"
+              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-surface border border-accent/30 text-accent text-xs font-mono mb-6 backdrop-blur-md shadow-[0_0_24px_-8px_var(--glow)]"
             >
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
               </span>
               <span className="font-semibold tracking-wide">ENGINEER • CREATIVE DIRECTOR • BUILDER</span>
-              <span className="text-white/20">|</span>
-              <span className="text-slate-300 flex items-center gap-1">
-                <MapPin className="w-3 h-3 text-emerald-400" />
+              <span className="text-foreground/20">|</span>
+              <span className="text-muted flex items-center gap-1">
+                <MapPin className="w-3 h-3 text-accent" />
                 Lilongwe, Malawi
               </span>
             </motion.div>
 
             {/* Name & Main Headline */}
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-4xl sm:text-5xl xl:text-6xl font-extrabold tracking-tight text-white leading-[1.1] mb-6"
+              className="text-4xl sm:text-5xl xl:text-6xl font-extrabold tracking-tight text-foreground leading-[1.1] mb-6 text-balance"
             >
-              Building systems that hold up in the <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300">real world.</span>
+              Building systems that hold up in the <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-600 dark:from-emerald-400 dark:via-teal-300 dark:to-amber-300">real world.</span>
             </motion.h1>
 
             {/* Sub-headline / Role */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.5 }}
-              className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-6 text-base sm:text-lg font-medium text-slate-300"
+              className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-6 text-base sm:text-lg font-medium text-muted"
             >
-              <span className="text-emerald-400 font-mono font-semibold">BSc Computer Engineering</span>
-              <span className="text-slate-600">•</span>
-              <span className="text-slate-200">Telecom & Cloud Veteran</span>
-              <span className="text-slate-600">•</span>
-              <span className="text-amber-400 font-mono">Managing Director, 7arts</span>
+              <span className="text-accent font-mono font-semibold">BSc Computer Engineering</span>
+              <span className="text-faint">•</span>
+              <span className="text-foreground">Telecom & Cloud Veteran</span>
+              <span className="text-faint">•</span>
+              <span className="text-warn font-mono">Managing Director, 7arts</span>
             </motion.div>
 
             {/* Bio paragraph */}
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="text-base sm:text-lg text-slate-300/90 leading-relaxed max-w-2xl mb-8"
+              className="text-muted text-base sm:text-lg leading-relaxed max-w-2xl mb-8"
             >
-              I’m Kondwani. Over the last decade, my work has lived where heavy infrastructure meets human stories—from the quiet hum of server racks inside <strong className="text-white font-semibold">Malawi Telecommunications Limited</strong>, to directing documentaries across rural communities for <strong className="text-white font-semibold">the UN, World Bank, and EU</strong>, to writing code for solar edge hardware and mobile payments. I care about building things that work with honesty and care.
+              I'm Kondwani. Over the last decade, my work has lived where heavy infrastructure meets human stories—from the quiet hum of server racks inside <strong className="text-foreground font-semibold">Malawi Telecommunications Limited</strong>, to directing documentaries across rural communities for <strong className="text-foreground font-semibold">the UN, World Bank, and EU</strong>, to writing code for solar edge hardware and mobile payments. I care about building things that work with honesty and care.
             </motion.p>
 
             {/* Key Engineering Pillars Chips */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
               className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 w-full max-w-xl mb-10 text-xs font-mono"
             >
-              <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-slate-300 hover:border-emerald-500/30 transition-colors">
-                <Server className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+              <div className="flex items-center gap-2 p-2.5 rounded-xl bg-surface border border-border text-muted hover:border-accent/50 transition-colors">
+                <Server className="w-3.5 h-3.5 text-accent flex-shrink-0" />
                 <span>Telecom Server Roots</span>
               </div>
-              <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-slate-300 hover:border-teal-500/30 transition-colors">
-                <ShieldCheck className="w-3.5 h-3.5 text-teal-400 flex-shrink-0" />
+              <div className="flex items-center gap-2 p-2.5 rounded-xl bg-surface border border-border text-muted hover:border-teal/50 transition-colors">
+                <ShieldCheck className="w-3.5 h-3.5 text-teal flex-shrink-0" />
                 <span>AWS Cloud Architecture</span>
               </div>
-              <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-slate-300 hover:border-amber-500/30 transition-colors">
-                <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
+              <div className="flex items-center gap-2 p-2.5 rounded-xl bg-surface border border-border text-muted hover:border-warn/50 transition-colors">
+                <CheckCircle2 className="w-3.5 h-3.5 text-warn flex-shrink-0" />
                 <span>84 Security Fixes Closed</span>
               </div>
-              <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-slate-300 hover:border-sky-500/30 transition-colors">
-                <Cpu className="w-3.5 h-3.5 text-sky-400 flex-shrink-0" />
+              <div className="flex items-center gap-2 p-2.5 rounded-xl bg-surface border border-border text-muted hover:border-info/50 transition-colors">
+                <Cpu className="w-3.5 h-3.5 text-info flex-shrink-0" />
                 <span>Solar Edge & Offline AI</span>
               </div>
-              <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-slate-300 hover:border-purple-500/30 transition-colors">
-                <Database className="w-3.5 h-3.5 text-purple-400 flex-shrink-0" />
+              <div className="flex items-center gap-2 p-2.5 rounded-xl bg-surface border border-border text-muted hover:border-violet/50 transition-colors">
+                <Database className="w-3.5 h-3.5 text-violet flex-shrink-0" />
                 <span>Mobile Money Reconciler</span>
               </div>
-              <div className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-slate-300 hover:border-rose-500/30 transition-colors">
-                <Sparkles className="w-3.5 h-3.5 text-rose-400 flex-shrink-0" />
+              <div className="flex items-center gap-2 p-2.5 rounded-xl bg-surface border border-border text-muted hover:border-rose-500/50 transition-colors">
+                <Sparkles className="w-3.5 h-3.5 text-rose-500 dark:text-rose-400 flex-shrink-0" />
                 <span>7arts Studio Leader</span>
               </div>
             </motion.div>
 
             {/* Action Buttons */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
@@ -128,9 +128,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
 
               <a
                 href="#architecture-lab"
-                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#0f141f] hover:bg-[#161d2b] border border-white/10 hover:border-amber-400/50 text-white font-medium text-sm transition-all flex items-center justify-center gap-2 group cursor-pointer"
+                className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-surface hover:bg-surface-2 border border-border hover:border-warn/50 text-foreground font-medium text-sm transition-all flex items-center justify-center gap-2 group cursor-pointer"
               >
-                <Cpu className="w-4 h-4 text-amber-400" />
+                <Cpu className="w-4 h-4 text-warn" />
                 <span>Try the Lab</span>
               </a>
 
@@ -138,7 +138,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
                 href={PERSONAL_INFO.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-[#0077b5]/20 hover:bg-[#0077b5]/30 border border-[#0077b5]/50 text-[#38bdf8] font-mono text-xs transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-[#0077b5]/10"
+                className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-[#0077b5]/20 hover:bg-[#0077b5]/30 border border-[#0077b5]/50 text-[#0a66c2] dark:text-[#38bdf8] font-mono text-xs transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-[#0077b5]/10"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                   <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
@@ -148,7 +148,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
 
               <button
                 onClick={onOpenTerminal}
-                className="px-4 py-3.5 rounded-xl bg-black/40 hover:bg-black/70 border border-emerald-500/30 text-emerald-400 font-mono text-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="px-4 py-3.5 rounded-xl bg-surface-2 hover:bg-accent/10 border border-accent/30 text-accent font-mono text-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
                 title="Open Kortfolio CLI (⌘K)"
               >
                 <Terminal className="w-4 h-4" />
@@ -159,49 +159,49 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
           </motion.div>
 
           {/* Right Column: Engineering Card with Authentic Headshot & Telemetry */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="lg:col-span-5 flex justify-center lg:justify-end"
           >
             <div className="relative w-full max-w-md">
-              {/* Main Card with crisp border and subtle elevation */}
-              <div className="relative rounded-2xl glass-panel p-4 overflow-hidden border border-white/10 bg-[#0c101a] shadow-2xl ring-1 ring-white/5">
-                
+              {/* Main Card */}
+              <div className="relative rounded-2xl glass-panel p-4 overflow-hidden shadow-[0_20px_50px_-20px_var(--shadow-strong)]">
+
                 {/* HUD Header Bar */}
-                <div className="flex items-center justify-between px-3 py-2 bg-black/60 rounded-xl border border-white/5 mb-3 text-xs font-mono text-slate-400">
+                <div className="flex items-center justify-between px-3 py-2 bg-surface-2 rounded-xl border border-border mb-3 text-xs font-mono text-muted">
                   <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-                    <span className="text-white font-bold">{PERSONAL_INFO.name}</span>
+                    <span className="w-2 h-2 rounded-full bg-accent"></span>
+                    <span className="text-foreground font-bold">{PERSONAL_INFO.name}</span>
                   </div>
-                  <span className="text-emerald-400/80">ID: KP-26-MW</span>
+                  <span className="text-accent/80">ID: KP-26-MW</span>
                 </div>
 
                 {/* Headshot Portrait with Optical Framing */}
-                <div className="relative rounded-xl overflow-hidden aspect-square bg-slate-900 border border-white/10 shadow-inner group">
+                <div className="relative rounded-xl overflow-hidden aspect-square bg-surface-2 border border-border shadow-inner group">
                   <img
                     src={asset('/assets/profile/kondwani.png')}
                     alt={PERSONAL_INFO.name}
                     className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   />
-                  
+
                   {/* Subtle Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#090b10] via-transparent to-transparent opacity-75" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-75" />
 
                   {/* Corner Target Marks */}
-                  <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-emerald-400/80" />
-                  <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-emerald-400/80" />
-                  <div className="absolute bottom-16 left-3 w-4 h-4 border-b-2 border-l-2 border-emerald-400/80" />
-                  <div className="absolute bottom-16 right-3 w-4 h-4 border-b-2 border-r-2 border-emerald-400/80" />
+                  <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-accent/80" />
+                  <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-accent/80" />
+                  <div className="absolute bottom-16 left-3 w-4 h-4 border-b-2 border-l-2 border-accent/80" />
+                  <div className="absolute bottom-16 right-3 w-4 h-4 border-b-2 border-r-2 border-accent/80" />
 
                   {/* Bottom Portrait Badge */}
-                  <div className="absolute bottom-3 left-3 right-3 p-3 rounded-lg bg-[#090b10]/90 backdrop-blur-md border border-white/10 text-xs">
+                  <div className="absolute bottom-3 left-3 right-3 p-3 rounded-lg bg-background/90 backdrop-blur-md border border-border text-xs">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="font-semibold text-white">BSc Computer Engineering</span>
-                      <span className="text-emerald-400 font-mono text-xs">Univ of Livingstonia</span>
+                      <span className="font-semibold text-foreground">BSc Computer Engineering</span>
+                      <span className="text-accent font-mono text-xs">Univ of Livingstonia</span>
                     </div>
-                    <p className="text-xs text-slate-400 line-clamp-1">
+                    <p className="text-xs text-muted line-clamp-1">
                       AWS Solutions Architect Candidate • 10+ Yrs Systems Leadership
                     </p>
                   </div>
@@ -209,18 +209,18 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
 
                 {/* Telemetry Strip below image */}
                 <div className="mt-3 grid grid-cols-2 gap-2 text-center text-xs font-mono">
-                  <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
-                    <div className="text-xs text-slate-400 uppercase">Focus</div>
-                    <div className="text-emerald-400 font-semibold truncate">Systems & Stories</div>
+                  <div className="p-2.5 rounded-lg bg-surface-2 border border-border">
+                    <div className="text-xs text-muted uppercase">Focus</div>
+                    <div className="text-accent font-semibold truncate">Systems & Stories</div>
                   </div>
-                  <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
-                    <div className="text-xs text-slate-400 uppercase">Home Base</div>
-                    <div className="text-amber-300 font-semibold truncate">Lilongwe, Malawi</div>
+                  <div className="p-2.5 rounded-lg bg-surface-2 border border-border">
+                    <div className="text-xs text-muted uppercase">Home Base</div>
+                    <div className="text-warn font-semibold truncate">Lilongwe, Malawi</div>
                   </div>
                 </div>
 
                 {/* Subtitle Quote */}
-                <div className="mt-2 p-2.5 text-center text-xs text-slate-300 italic font-mono border-t border-white/5">
+                <div className="mt-2 p-2.5 text-center text-xs text-muted italic font-mono border-t border-border">
                   "Good technology doesn't demand perfect conditions. It respects the environment and the people it lives with."
                 </div>
 
@@ -234,9 +234,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
 
       {/* Subtle Scroll Down Prompt */}
       <div className="max-w-7xl mx-auto px-4 mt-16 text-center">
-        <a 
-          href="#impact" 
-          className="inline-flex flex-col items-center text-slate-400 hover:text-emerald-400 transition-colors text-xs font-mono"
+        <a
+          href="#impact"
+          className="inline-flex flex-col items-center text-muted hover:text-accent transition-colors text-xs font-mono"
         >
           <span className="mb-1">SYSTEM TELEMETRY</span>
           <ArrowDown className="w-4 h-4 animate-bounce" />

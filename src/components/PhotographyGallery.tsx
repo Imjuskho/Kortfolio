@@ -52,20 +52,20 @@ export const PhotographyGallery: React.FC = () => {
   }, [selectedPhoto, currentIndex, filteredPhotos, handlePrev, handleNext]);
 
   return (
-    <section id="photography" className="scroll-mt-24 py-24 relative bg-[#07090e] border-t border-white/5 overflow-hidden">
+    <section id="photography" className="scroll-mt-24 py-24 relative bg-background border-t border-border overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-purple-950/70 border border-purple-500/30 text-purple-400 text-xs font-mono mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-violet/10 border border-violet/30 text-violet text-xs font-mono mb-3">
               <Camera className="w-3.5 h-3.5" />
               <span>THROUGH THE LENS</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight">
               Stories & Photographs from the Field
             </h2>
-            <p className="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
+            <p className="text-muted text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
               Before code and alongside it, I've spent years with a camera in hand. These are glimpses from documentary trips and field missions across Malawi—quiet moments, rural resilience, and everyday dignity captured for Phanga Studio, 7arts, and partner organizations.
             </p>
           </div>
@@ -78,8 +78,8 @@ export const PhotographyGallery: React.FC = () => {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer ${
                   activeCategory === cat
-                    ? 'bg-purple-500 text-white font-bold shadow-md shadow-purple-500/20'
-                    : 'bg-white/[0.03] hover:bg-white/[0.08] text-slate-400 border border-white/5'
+                    ? 'bg-violet-600 dark:bg-purple-500 text-white font-bold shadow-md shadow-violet-500/20'
+                    : 'bg-surface hover:bg-surface-2 text-muted border border-border'
                 }`}
               >
                 {cat}
@@ -100,7 +100,7 @@ export const PhotographyGallery: React.FC = () => {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3, delay: idx * 0.05 }}
                 onClick={() => setSelectedPhoto(photo)}
-                className="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-slate-900 border border-white/10 hover:border-purple-400/50 transition-all duration-300 shadow-xl cursor-pointer"
+                className="group relative rounded-2xl overflow-hidden aspect-[4/3] bg-surface-2 border border-border hover:border-violet-400/50 transition-all duration-300 shadow-xl cursor-pointer"
               >
                 <img
                   src={asset(photo.url)}

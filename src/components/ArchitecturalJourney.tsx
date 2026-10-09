@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Server, ShieldCheck, Cpu, HardDrive, Building, GraduationCap, Award, CheckCircle2, ChevronRight, Terminal, Globe2, Briefcase } from 'lucide-react';
+import { Server, ShieldCheck, Cpu, GraduationCap, CheckCircle2, Briefcase } from 'lucide-react';
 import { PERSONAL_INFO, CAREER_EXPERIENCES, EDUCATION_CREDENTIALS, ENGINEERING_THESES } from '../data/portfolioData';
 
 export const ArchitecturalJourney: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'experience' | 'education' | 'theses'>('experience');
 
+  const tabClass = (tab: typeof activeTab) =>
+    `px-3.5 py-1.5 rounded-xl transition-all cursor-pointer flex items-center gap-1.5 ${
+      activeTab === tab
+        ? 'bg-emerald-500 text-slate-950 font-bold shadow-md shadow-emerald-500/20'
+        : 'text-muted hover:text-foreground hover:bg-foreground/5'
+    }`;
+
   return (
-    <section id="journey" className="scroll-mt-24 py-24 relative bg-[#080b12] border-t border-white/5 overflow-hidden">
+    <section id="journey" className="scroll-mt-24 py-24 relative bg-background border-t border-border overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Section Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -19,50 +26,29 @@ export const ArchitecturalJourney: React.FC = () => {
           className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16"
         >
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-950/70 border border-emerald-500/30 text-emerald-400 text-xs font-mono mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-accent/10 border border-accent/30 text-accent text-xs font-mono mb-3">
               <Server className="w-3.5 h-3.5" />
               <span>MY STORY & PATH</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight">
               Where I've Been, What I've Learned
             </h2>
-            <p className="text-slate-300/90 text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
+            <p className="text-muted text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
               A decade spent working across national telecom server racks, documentary film trips, creative agency direction, and hands-on software development.
             </p>
           </div>
 
           {/* Interactive Switcher */}
-          <div className="inline-flex p-1.5 rounded-2xl bg-[#0f1422] border border-white/10 gap-1.5 self-start md:self-auto font-mono text-xs">
-            <button
-              onClick={() => setActiveTab('experience')}
-              className={`px-3.5 py-1.5 rounded-xl transition-all cursor-pointer flex items-center gap-1.5 ${
-                activeTab === 'experience'
-                  ? 'bg-emerald-500 text-slate-950 font-bold shadow-md shadow-emerald-500/20'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'
-              }`}
-            >
+          <div className="inline-flex p-1.5 rounded-2xl bg-surface border border-border gap-1.5 self-start md:self-auto font-mono text-xs">
+            <button onClick={() => setActiveTab('experience')} className={tabClass('experience')}>
               <Briefcase className="w-3.5 h-3.5" />
               <span>Where I've Worked</span>
             </button>
-            <button
-              onClick={() => setActiveTab('education')}
-              className={`px-3.5 py-1.5 rounded-xl transition-all cursor-pointer flex items-center gap-1.5 ${
-                activeTab === 'education'
-                  ? 'bg-emerald-500 text-slate-950 font-bold shadow-md shadow-emerald-500/20'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'
-              }`}
-            >
+            <button onClick={() => setActiveTab('education')} className={tabClass('education')}>
               <GraduationCap className="w-3.5 h-3.5" />
               <span>Education & Studies</span>
             </button>
-            <button
-              onClick={() => setActiveTab('theses')}
-              className={`px-3.5 py-1.5 rounded-xl transition-all cursor-pointer flex items-center gap-1.5 ${
-                activeTab === 'theses'
-                  ? 'bg-emerald-500 text-slate-950 font-bold shadow-md shadow-emerald-500/20'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'
-              }`}
-            >
+            <button onClick={() => setActiveTab('theses')} className={tabClass('theses')}>
               <Cpu className="w-3.5 h-3.5" />
               <span>Principles & Field Notes</span>
             </button>
@@ -70,33 +56,33 @@ export const ArchitecturalJourney: React.FC = () => {
         </motion.div>
 
         {/* Featured Philosophy Quote Card */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="relative rounded-2xl glass-panel bg-gradient-to-br from-[#0c1220] via-[#090e1a] to-[#070b14] border border-emerald-500/20 p-8 sm:p-10 mb-16 overflow-hidden shadow-2xl"
+          className="relative rounded-2xl glass-panel border border-accent/20 p-8 sm:p-10 mb-16 overflow-hidden shadow-[0_24px_60px_-24px_var(--shadow-strong)]"
         >
-          <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-500/5 rounded-bl-full pointer-events-none" />
-          
+          <div className="absolute top-0 right-0 w-80 h-80 bg-accent/5 rounded-bl-full pointer-events-none" />
+
           <div className="relative z-10 max-w-4xl">
-            <div className="text-xs font-mono uppercase tracking-widest text-emerald-400 mb-4 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <div className="text-xs font-mono uppercase tracking-widest text-accent mb-4 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
               <span>HOW I THINK ABOUT SYSTEMS</span>
             </div>
 
-            <blockquote className="text-lg sm:text-xl md:text-2xl font-medium text-slate-100 leading-relaxed tracking-tight mb-6">
+            <blockquote className="text-lg sm:text-xl md:text-2xl font-medium text-foreground leading-relaxed tracking-tight mb-6">
               "I started my career inside the cold server rooms of Malawi Telecommunications Limited. That early experience shaped everything I do: when power cuts hit and national lines stay alive because your failover works, you realize good engineering isn't about vanity metrics or trendy frameworks. It's about respecting the people on the other side of the screen and building things that last."
             </blockquote>
 
-            <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-slate-400 pt-4 border-t border-white/10">
-              <span className="text-white font-bold">{PERSONAL_INFO.name}</span>
+            <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-muted pt-4 border-t border-border">
+              <span className="text-foreground font-bold">{PERSONAL_INFO.name}</span>
               <span>•</span>
-              <span className="text-emerald-400 font-semibold">Lilongwe, Malawi</span>
+              <span className="text-accent font-semibold">Lilongwe, Malawi</span>
               <span>•</span>
               <span>BSc Computer Engineering (Univ. of Livingstonia)</span>
               <span>•</span>
-              <span className="text-amber-300">Managing Director, 7arts Agency</span>
+              <span className="text-warn">Managing Director, 7arts Agency</span>
             </div>
           </div>
         </motion.div>
@@ -117,35 +103,35 @@ export const ArchitecturalJourney: React.FC = () => {
                   <motion.div
                     key={idx}
                     whileHover={{ y: -4 }}
-                    className="p-6 sm:p-7 rounded-2xl glass-panel glass-panel-hover border border-white/5 hover:border-emerald-500/30 transition-all flex flex-col justify-between"
+                    className="p-6 sm:p-7 rounded-2xl glass-panel glass-panel-hover border border-border hover:border-accent/40 transition-all flex flex-col justify-between"
                   >
                     <div>
-                      <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
-                        <span className="text-emerald-400 font-semibold">{exp.company}</span>
+                      <div className="flex items-center justify-between text-xs font-mono text-muted mb-2">
+                        <span className="text-accent font-semibold">{exp.company}</span>
                         <span>{exp.period}</span>
                       </div>
 
-                      <h3 className="text-xl font-bold text-white mb-2 tracking-tight">
+                      <h3 className="text-xl font-bold text-foreground mb-2 tracking-tight">
                         {exp.role}
                       </h3>
 
-                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                      <p className="text-xs sm:text-sm text-muted leading-relaxed mb-4">
                         {exp.description}
                       </p>
 
                       <ul className="space-y-2 mb-5">
                         {exp.achievements.map((ach, aIdx) => (
-                          <li key={aIdx} className="flex items-start gap-2 text-xs text-slate-400 leading-relaxed">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0 mt-0.5" />
+                          <li key={aIdx} className="flex items-start gap-2 text-xs text-muted leading-relaxed">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-accent flex-shrink-0 mt-0.5" />
                             <span>{ach}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
 
-                    <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/5">
+                    <div className="flex flex-wrap gap-1.5 pt-4 border-t border-border">
                       {exp.skills.map((skill, sIdx) => (
-                        <span key={sIdx} className="text-xs font-mono px-2 py-0.5 rounded bg-white/[0.03] text-slate-300 border border-white/5">
+                        <span key={sIdx} className="text-xs font-mono px-2 py-0.5 rounded bg-surface-2 text-muted border border-border">
                           {skill}
                         </span>
                       ))}
@@ -170,30 +156,30 @@ export const ArchitecturalJourney: React.FC = () => {
                 <motion.div
                   key={idx}
                   whileHover={{ y: -4 }}
-                  className="p-6 sm:p-7 rounded-2xl glass-panel glass-panel-hover border border-white/5 hover:border-emerald-500/30 transition-all flex flex-col justify-between"
+                  className="p-6 sm:p-7 rounded-2xl glass-panel glass-panel-hover border border-border hover:border-accent/40 transition-all flex flex-col justify-between"
                 >
                   <div>
-                    <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
-                      <span className="text-emerald-400 font-semibold">{edu.location}</span>
+                    <div className="flex items-center justify-between text-xs font-mono text-muted mb-2">
+                      <span className="text-accent font-semibold">{edu.location}</span>
                       <span>{edu.period}</span>
                     </div>
 
-                    <h3 className="text-xl font-bold text-white mb-1 tracking-tight">
+                    <h3 className="text-xl font-bold text-foreground mb-1 tracking-tight">
                       {edu.degree}
                     </h3>
 
-                    <div className="text-sm font-semibold text-slate-300 mb-3">
+                    <div className="text-sm font-semibold text-muted mb-3">
                       {edu.institution}
                     </div>
 
-                    <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-mono">
+                    <p className="text-xs sm:text-sm text-muted leading-relaxed font-mono">
                       {edu.focus}
                     </p>
                   </div>
 
-                  <div className="pt-4 mt-6 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-400">
+                  <div className="pt-4 mt-6 border-t border-border flex items-center justify-between text-xs font-mono text-muted">
                     <span>Verified Academic Credential</span>
-                    <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                    <ShieldCheck className="w-4 h-4 text-accent" />
                   </div>
                 </motion.div>
               ))}
@@ -214,29 +200,29 @@ export const ArchitecturalJourney: React.FC = () => {
                 <motion.div
                   key={idx}
                   whileHover={{ y: -4 }}
-                  className="p-6 sm:p-7 rounded-2xl glass-panel glass-panel-hover border border-white/5 hover:border-emerald-500/30 transition-all flex flex-col justify-between"
+                  className="p-6 sm:p-7 rounded-2xl glass-panel glass-panel-hover border border-border hover:border-accent/40 transition-all flex flex-col justify-between"
                 >
                   <div>
-                    <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
-                      <span className="text-emerald-400 font-semibold">{thesis.domain}</span>
+                    <div className="flex items-center justify-between text-xs font-mono text-muted mb-2">
+                      <span className="text-accent font-semibold">{thesis.domain}</span>
                       <span>{thesis.period}</span>
                     </div>
 
-                    <h3 className="text-lg font-bold text-white mb-2 tracking-tight">
+                    <h3 className="text-lg font-bold text-foreground mb-2 tracking-tight">
                       {thesis.title}
                     </h3>
 
-                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                    <p className="text-xs sm:text-sm text-muted leading-relaxed mb-4">
                       {thesis.summary}
                     </p>
 
-                    <div className="p-3.5 rounded-xl bg-black/40 border border-white/5 font-mono text-xs space-y-1.5 mb-4">
-                      <div className="text-xs text-slate-400 uppercase">Architecture & Implementation:</div>
-                      <div className="text-slate-300 text-xs leading-relaxed">{thesis.architectureDetails}</div>
+                    <div className="p-3.5 rounded-xl bg-surface-2 border border-border font-mono text-xs space-y-1.5 mb-4">
+                      <div className="text-xs text-muted uppercase">Architecture & Implementation:</div>
+                      <div className="text-muted text-xs leading-relaxed">{thesis.architectureDetails}</div>
                     </div>
                   </div>
 
-                  <div className="pt-3 border-t border-white/5 font-mono text-xs text-emerald-400 flex items-center gap-1.5">
+                  <div className="pt-3 border-t border-border font-mono text-xs text-accent flex items-center gap-1.5">
                     <CheckCircle2 className="w-3.5 h-3.5" />
                     <span>Impact: {thesis.impact}</span>
                   </div>
@@ -245,23 +231,6 @@ export const ArchitecturalJourney: React.FC = () => {
             </motion.div>
           )}
         </AnimatePresence>
-
-        {/* Institutional Client Marquee */}
-        <div className="mt-16 pt-12 border-t border-white/5">
-          <div className="text-center text-xs font-mono text-slate-400 uppercase tracking-widest mb-6">
-            Institutional Organizations, Donors & Multilateral Partners Served
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 font-mono text-xs">
-            {PERSONAL_INFO.institutionalClients.map((client, idx) => (
-              <span 
-                key={idx}
-                className="px-3.5 py-1.5 rounded-xl bg-white/[0.03] text-slate-300 border border-white/5 hover:border-emerald-500/30 hover:text-white transition-all shadow-sm"
-              >
-                {client}
-              </span>
-            ))}
-          </div>
-        </div>
 
       </div>
     </section>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUpRight, Cpu, HardDrive, ShieldCheck, Terminal, Layers, CheckCircle } from 'lucide-react';
+import { ArrowUpRight, Cpu, Layers } from 'lucide-react';
 import { Project } from '../types';
 import { asset } from '../lib/asset';
 
@@ -12,45 +12,46 @@ interface ProjectCardProps {
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, onOpenSimulator }) => {
   return (
     <div className={`relative flex flex-col justify-between rounded-2xl glass-panel glass-panel-hover p-6 transition-all duration-300 group border ${
-      project.featured ? 'border-emerald-500/40 bg-[#0e1320] shadow-xl shadow-black/40 hover:border-emerald-400/60' : 'border-white/10 bg-[#0c101a] hover:border-white/20'
+      project.featured ? 'border-accent/40 shadow-xl shadow-[var(--shadow-strong)] hover:border-accent/60' : 'border-border hover:border-border-strong'
     }`}>
-      
+
       {/* Top Meta Bar */}
       <div>
         <div className="flex items-center justify-between gap-2 mb-3">
-          <span className="text-xs font-mono font-medium px-2.5 py-1 rounded-md bg-white/[0.04] text-slate-300 border border-white/10">
+          <span className="text-xs font-mono font-medium px-2.5 py-1 rounded-md bg-surface-2 text-muted border border-border">
             {project.category}
           </span>
-          <span className="text-xs font-mono text-slate-400">
+          <span className="text-xs font-mono text-faint">
             {project.period}
           </span>
         </div>
 
         {/* Project Title */}
-        <h3 className="text-xl font-bold text-white group-hover:text-emerald-300 transition-colors mb-2 tracking-tight flex items-start justify-between gap-2">
+        <h3 className="text-xl font-bold text-foreground group-hover:text-accent transition-colors mb-2 tracking-tight flex items-start justify-between gap-2">
           <span>{project.title}</span>
-          <button 
+          <button
             onClick={() => onSelect(project)}
-            className="p-1.5 rounded-lg bg-white/5 text-slate-400 group-hover:text-emerald-400 group-hover:bg-emerald-950/50 transition-all flex-shrink-0"
+            className="p-1.5 rounded-lg bg-surface-2 text-muted group-hover:text-accent group-hover:bg-accent/10 transition-all flex-shrink-0"
             title="Inspect project details"
+            aria-label={`Inspect ${project.title}`}
           >
             <ArrowUpRight className="w-4 h-4" />
           </button>
         </h3>
 
         {/* Tagline */}
-        <p className="text-xs sm:text-sm text-slate-400 leading-relaxed mb-4">
+        <p className="text-xs sm:text-sm text-muted leading-relaxed mb-4">
           {project.tagline}
         </p>
 
         {/* Preview image if available */}
         {project.previewImages && project.previewImages.length > 0 && (
-          <div 
+          <div
             onClick={() => onSelect(project)}
-            className="relative mb-4 rounded-xl overflow-hidden aspect-video bg-slate-900 border border-white/10 cursor-pointer group/img"
+            className="relative mb-4 rounded-xl overflow-hidden aspect-video bg-surface-2 border border-border cursor-pointer group/img"
           >
-            <img 
-              src={asset(project.previewImages[0])} 
+            <img
+              src={asset(project.previewImages[0])}
               alt={project.title}
               className="w-full h-full object-cover object-center group-hover/img:scale-105 transition-transform duration-500"
             />
@@ -64,9 +65,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, onO
         {/* Badges / Highlights */}
         <div className="flex flex-wrap gap-1.5 mb-4">
           {project.badges.slice(0, 3).map((badge, idx) => (
-            <span 
-              key={idx} 
-              className="text-xs font-mono px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-300/90 border border-emerald-800/40"
+            <span
+              key={idx}
+              className="text-xs font-mono px-2 py-0.5 rounded bg-accent/10 text-accent border border-accent/30"
             >
               {badge}
             </span>
@@ -74,11 +75,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, onO
         </div>
 
         {/* Impact Metrics Mini-Grid */}
-        <div className="grid grid-cols-2 gap-2 mb-5 p-3 rounded-xl bg-black/30 border border-white/5 text-xs font-mono">
+        <div className="grid grid-cols-2 gap-2 mb-5 p-3 rounded-xl bg-surface-2 border border-border text-xs font-mono">
           {project.impactMetrics.slice(0, 2).map((m, idx) => (
             <div key={idx} className="flex flex-col">
-              <span className="text-xs text-slate-400 uppercase">{m.label}</span>
-              <span className="text-white font-bold text-sm tracking-tight group-hover:text-emerald-300 transition-colors">
+              <span className="text-xs text-faint uppercase">{m.label}</span>
+              <span className="text-foreground font-bold text-sm tracking-tight group-hover:text-accent transition-colors">
                 {m.value}
               </span>
             </div>
@@ -91,34 +92,34 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, onO
         {/* Tech Stack Pills */}
         <div className="flex flex-wrap gap-1.5 mb-5">
           {project.techStack.slice(0, 5).map((tech, idx) => (
-            <span 
+            <span
               key={idx}
-              className="text-xs font-mono px-2 py-0.5 rounded-md bg-white/[0.03] text-slate-400 border border-white/5"
+              className="text-xs font-mono px-2 py-0.5 rounded-md bg-surface-2 text-muted border border-border"
             >
               {tech}
             </span>
           ))}
           {project.techStack.length > 5 && (
-            <span className="text-xs font-mono px-1.5 py-0.5 text-slate-400">
+            <span className="text-xs font-mono px-1.5 py-0.5 text-faint">
               +{project.techStack.length - 5}
             </span>
           )}
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center gap-2 pt-3 border-t border-white/5">
+        <div className="flex items-center gap-2 pt-3 border-t border-border">
           <button
             onClick={() => onSelect(project)}
-            className="flex-1 py-2 px-3 rounded-xl bg-white/[0.04] hover:bg-emerald-950/50 hover:text-emerald-300 hover:border-emerald-500/30 border border-white/10 text-xs font-medium text-slate-300 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+            className="flex-1 py-2 px-3 rounded-xl bg-surface-2 hover:bg-accent/10 hover:text-accent hover:border-accent/30 border border-border text-xs font-medium text-muted transition-all flex items-center justify-center gap-1.5 cursor-pointer"
           >
-            <Layers className="w-3.5 h-3.5 text-emerald-400" />
+            <Layers className="w-3.5 h-3.5 text-accent" />
             <span>How It Works</span>
           </button>
 
           {['amr-fintech', 'pocket-body', 'bawo', 'edge-vision'].includes(project.id) && onOpenSimulator && (
             <button
               onClick={() => onOpenSimulator(project.id)}
-              className="py-2 px-3 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-mono transition-all flex items-center gap-1.5 cursor-pointer"
+              className="py-2 px-3 rounded-xl bg-warn/10 hover:bg-warn/20 border border-warn/30 text-warn text-xs font-mono transition-all flex items-center gap-1.5 cursor-pointer"
               title="Test in Interactive Lab"
             >
               <Cpu className="w-3.5 h-3.5" />

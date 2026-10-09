@@ -1,8 +1,108 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------------------------------------------------------------
+   Semantic design tokens — light is the default ("Field Notes on
+   Paper"), dark is the original nocturnal theme, opt-in via .dark.
+---------------------------------------------------------------- */
+:root {
+  --background: #f7f6f2;
+  --foreground: #14171c;
+
+  --surface: #ffffff;
+  --surface-2: #f0eee8;
+
+  --muted: #5c626b;
+  --faint: #646973;
+
+  --border: rgba(19, 22, 27, 0.1);
+  --border-strong: rgba(19, 22, 27, 0.2);
+
+  --accent: #047857; /* emerald-700 */
+  --warn: #b45309; /* amber-700 */
+  --info: #0369a1; /* sky-700 */
+  --violet: #7c3aed; /* violet-600 */
+  --teal: #0f766e; /* teal-700 */
+
+  --glass: rgba(255, 255, 255, 0.72);
+  --glass-strong: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(19, 22, 27, 0.1);
+  --grid-line: rgba(19, 22, 27, 0.05);
+  --glow: rgba(4, 120, 87, 0.16);
+  --shadow-strong: rgba(19, 22, 27, 0.14);
+  --scrollbar-track: #efece5;
+  --scrollbar-thumb: #cbc6bb;
+  --scrollbar-thumb-hover: #b1aa9c;
+  color-scheme: light;
+}
+
+.dark {
+  --background: #090b10;
+  --foreground: #e2e8f0;
+
+  --surface: #0f141f;
+  --surface-2: #121929;
+
+  --muted: #94a3b8;
+  --faint: #64748b;
+
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.2);
+
+  --accent: #34d399; /* emerald-400 */
+  --warn: #fbbf24; /* amber-400 */
+  --info: #38bdf8; /* sky-400 */
+  --violet: #c084fc; /* violet-400 */
+  --teal: #2dd4bf; /* teal-400 */
+
+  --glass: rgba(14, 19, 31, 0.85);
+  --glass-strong: rgba(18, 25, 41, 0.95);
+  --glass-border: rgba(255, 255, 255, 0.09);
+  --grid-line: rgba(255, 255, 255, 0.03);
+  --glow: rgba(16, 185, 129, 0.12);
+  --shadow-strong: rgba(0, 0, 0, 0.5);
+  --scrollbar-track: #090b10;
+  --scrollbar-thumb: #1e293b;
+  --scrollbar-thumb-hover: #334155;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-warn: var(--warn);
+  --color-info: var(--info);
+  --color-violet: var(--violet);
+  --color-teal: var(--teal);
+}
+
 @layer base {
   * {
-    border-color: rgba(255, 255, 255, 0.08);
+    border-color: var(--border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    transition: background-color 300ms ease, color 300ms ease;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
   }
 }
 
@@ -12,39 +112,39 @@
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #090b10;
+  background: var(--scrollbar-track);
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: var(--scrollbar-thumb);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: var(--scrollbar-thumb-hover);
 }
 
 /* Engineering grid background */
 .bg-grid-pattern {
   background-size: 32px 32px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
 }
 
 .bg-radial-gradient {
-  background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.12) 0%, transparent 60%);
+  background: radial-gradient(circle at 50% 0%, var(--glow) 0%, transparent 60%);
 }
 
 .glass-panel {
-  background: rgba(14, 19, 31, 0.85);
+  background: var(--glass);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  border: 1px solid var(--glass-border);
 }
 
 .glass-panel-hover:hover {
-  background: rgba(18, 25, 41, 0.95);
-  border-color: rgba(255, 255, 255, 0.18);
-  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.5);
+  background: var(--glass-strong);
+  border-color: var(--border-strong);
+  box-shadow: 0 16px 40px -12px var(--shadow-strong);
 }
 
 @keyframes pulse-subtle {
@@ -54,6 +154,32 @@
 
 .animate-pulse-subtle {
   animation: pulse-subtle 4s ease-in-out infinite;
+}
+
+/* Client logo marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee var(--marquee-duration, 42s) linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee var(--marquee-duration, 52s) linear infinite reverse;
+}
+
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-marquee-reverse {
+    animation: none;
+  }
 }
 
 @layer utilities {

@@ -75,7 +75,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
   };
 
   return (
-    <section id="architecture-lab" className="scroll-mt-24 py-24 relative bg-[#07090e] border-t border-white/5 overflow-hidden">
+    <section id="architecture-lab" className="scroll-mt-24 py-24 relative bg-background border-t border-border overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Lab Header */}
@@ -86,27 +86,27 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-950/60 border border-amber-500/30 text-amber-400 text-xs font-mono mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-warn/10 border border-warn/30 text-warn text-xs font-mono mb-3">
             <Cpu className="w-3.5 h-3.5" />
             <span>HANDS-ON SIMULATORS</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight">
             The Interactive Lab
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base mt-2">
+          <p className="text-muted text-sm sm:text-base mt-2">
             Instead of just talking about system design, I like to let people play with it. Try out live simulations of mobile money reconciliation, solar edge camera filtering, body motion tracking, and our traditional Bawo board game.
           </p>
         </motion.div>
 
         {/* Simulator Switcher Tabs */}
         <div className="flex justify-center mb-8">
-          <div className="inline-flex p-1.5 rounded-2xl bg-[#0f1422] border border-white/10 gap-1.5 max-w-full overflow-x-auto shadow-xl">
+          <div className="inline-flex p-1.5 rounded-2xl bg-surface border border-border gap-1.5 max-w-full overflow-x-auto shadow-xl">
             <button
               onClick={() => setActiveTab('amr')}
               className={`px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap ${
                 activeTab === 'amr'
                   ? 'bg-emerald-500 text-slate-950 font-bold shadow-md shadow-emerald-500/20'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'
+                  : 'text-muted hover:text-foreground hover:bg-foreground/5'
               }`}
             >
               <DollarSign className="w-3.5 h-3.5" />
@@ -118,7 +118,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
               className={`px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap ${
                 activeTab === 'edge-vision'
                   ? 'bg-emerald-500 text-slate-950 font-bold shadow-md shadow-emerald-500/20'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'
+                  : 'text-muted hover:text-foreground hover:bg-foreground/5'
               }`}
             >
               <Sun className="w-3.5 h-3.5" />
@@ -130,7 +130,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
               className={`px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap ${
                 activeTab === 'pocket-body'
                   ? 'bg-emerald-500 text-slate-950 font-bold shadow-md shadow-emerald-500/20'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'
+                  : 'text-muted hover:text-foreground hover:bg-foreground/5'
               }`}
             >
               <Eye className="w-3.5 h-3.5" />
@@ -142,7 +142,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
               className={`px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap ${
                 activeTab === 'bawo'
                   ? 'bg-emerald-500 text-slate-950 font-bold shadow-md shadow-emerald-500/20'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'
+                  : 'text-muted hover:text-foreground hover:bg-foreground/5'
               }`}
             >
               <Database className="w-3.5 h-3.5" />
@@ -152,6 +152,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
         </div>
 
         {/* Tab 1: AMR FinTech Simulator */}
+        <div className="dark">
         <AnimatePresence mode="wait">
           {activeTab === 'amr' && (
             <motion.div
@@ -773,6 +774,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
             </motion.div>
           )}
         </AnimatePresence>
+        </div>
 
       </div>
     </section>

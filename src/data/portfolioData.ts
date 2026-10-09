@@ -30,6 +30,27 @@ export const PERSONAL_INFO = {
   ]
 };
 
+// Client & partner organizations. `mark` is the typographic seal rendered
+// when no `logo` image is available; drop a real asset in `logo` to swap it.
+export interface ClientPartner {
+  name: string;
+  mark: string;
+  sector: string;
+  logo?: string;
+}
+
+export const CLIENT_PARTNERS: ClientPartner[] = [
+  { name: "The World Bank", mark: "WB", sector: "Development Finance" },
+  { name: "UNDP", mark: "UNDP", sector: "United Nations" },
+  { name: "UNICEF", sector: "United Nations", mark: "UNICEF" },
+  { name: "European Union (EU)", mark: "EU", sector: "Multilateral" },
+  { name: "US Embassy", mark: "US", sector: "Diplomatic Mission" },
+  { name: "British High Commission", mark: "UK", sector: "Diplomatic Mission" },
+  { name: "National Bank of Malawi", mark: "NBM", sector: "Banking & Finance" },
+  { name: "Welthungerhilfe", mark: "WHH", sector: "Humanitarian NGO" },
+  { name: "Malawi Telecommunications Ltd", mark: "MTL", sector: "Telecommunications" },
+];
+
 export const CAREER_EXPERIENCES: CareerExperience[] = [
   {
     role: "Managing Director & Studio Manager",
