@@ -45,6 +45,9 @@ export default defineConfig({
         ],
       },
       workbox: {
+        cleanupOutdatedCaches: true,
+        skipWaiting: true,
+        clientsClaim: true,
         // Precache only the app shell; large imagery is runtime-cached on demand.
         globPatterns: ['**/*.{js,css,html,svg,woff2,webmanifest}'],
         globIgnores: [
@@ -55,6 +58,17 @@ export default defineConfig({
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
         navigateFallback: '/kortfolio/index.html',
         runtimeCaching: [
+          {
+            // Network-first navigations: never serve a stale HTML shell that
+            // points at hashed chunks we no longer ship. Falls back to the
+            // cached shell when offline.
+            urlPattern: ({ request }) => request.mode === 'navigate',
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'kortfolio-pages',
+              networkTimeoutSeconds: 4,
+            },
+          },
           {
             urlPattern: ({ request }) => request.destination === 'image',
             handler: 'CacheFirst',

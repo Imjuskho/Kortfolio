@@ -17,6 +17,7 @@ export const PERSONAL_INFO = {
   linkedin: "https://www.linkedin.com/in/kondwani-austin-phanga/",
   github: "https://github.com/imjuskho",
   instagram: "https://www.instagram.com/_phanga",
+  cv: "/kondwani-phanga-cv.pdf",
   affiliation: "BSc Computer Engineering (Univ. of Livingstonia) • Managing Director, 7arts • AWS Candidate",
   quote: "Good technology doesn't demand perfect conditions. It respects the environment and the people it lives with.",
   institutionalClients: [

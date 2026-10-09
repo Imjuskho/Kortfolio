@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Send, Mail, MapPin, Globe, MessageSquare, CheckCircle2, Check } from 'lucide-react';
+import { Send, Mail, MapPin, Globe, MessageSquare, CheckCircle2, Check, Download } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
+import { asset } from '../lib/asset';
 
 export const ContactSection: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -41,9 +42,18 @@ export const ContactSection: React.FC = () => {
               Let's Build Something Together.
             </h2>
 
-            <p className="text-muted text-sm sm:text-base leading-relaxed mb-8">
+            <p className="text-muted text-sm sm:text-base leading-relaxed mb-6">
               Whether you have a technical challenge, a cloud architecture to untangle, an edge project, or just want to connect—I'd love to hear from you.
             </p>
+
+            <a
+              href={asset(PERSONAL_INFO.cv)}
+              download="Kondwani-Phanga-CV.pdf"
+              className="inline-flex items-center gap-2 px-4 py-2.5 mb-8 rounded-xl bg-surface hover:bg-surface-2 border border-border hover:border-accent/50 text-foreground text-sm font-medium transition-all cursor-pointer"
+            >
+              <Download className="w-4 h-4 text-accent" />
+              Download my CV (PDF)
+            </a>
 
             {/* Contact Channels */}
             <div className="space-y-3">
