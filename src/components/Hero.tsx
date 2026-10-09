@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Terminal, Cpu, Sparkles, MapPin, ChevronRight, ArrowDown, ShieldCheck, Database, Server, CheckCircle2 } from 'lucide-react';
+import { Terminal, Cpu, MapPin, ChevronRight, ArrowDown } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { asset } from '../lib/asset';
 
@@ -77,39 +77,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
             >
               I'm Kondwani. Over the last decade, my work has lived where heavy infrastructure meets human stories—from the quiet hum of server racks inside <strong className="text-foreground font-semibold">Malawi Telecommunications Limited</strong>, to directing documentaries across rural communities for <strong className="text-foreground font-semibold">the UN, World Bank, and EU</strong>, to writing code for solar edge hardware and mobile payments. I care about building things that work with honesty and care.
             </motion.p>
-
-            {/* Key Engineering Pillars Chips */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 w-full max-w-xl mb-10 text-xs font-mono"
-            >
-              <div className="flex items-center gap-2 p-2.5 rounded-xl bg-surface border border-border text-muted hover:border-accent/50 transition-colors">
-                <Server className="w-3.5 h-3.5 text-accent flex-shrink-0" />
-                <span>Telecom Server Roots</span>
-              </div>
-              <div className="flex items-center gap-2 p-2.5 rounded-xl bg-surface border border-border text-muted hover:border-teal/50 transition-colors">
-                <ShieldCheck className="w-3.5 h-3.5 text-teal flex-shrink-0" />
-                <span>AWS Cloud Architecture</span>
-              </div>
-              <div className="flex items-center gap-2 p-2.5 rounded-xl bg-surface border border-border text-muted hover:border-warn/50 transition-colors">
-                <CheckCircle2 className="w-3.5 h-3.5 text-warn flex-shrink-0" />
-                <span>84 Security Fixes Closed</span>
-              </div>
-              <div className="flex items-center gap-2 p-2.5 rounded-xl bg-surface border border-border text-muted hover:border-info/50 transition-colors">
-                <Cpu className="w-3.5 h-3.5 text-info flex-shrink-0" />
-                <span>Solar Edge & Offline AI</span>
-              </div>
-              <div className="flex items-center gap-2 p-2.5 rounded-xl bg-surface border border-border text-muted hover:border-violet/50 transition-colors">
-                <Database className="w-3.5 h-3.5 text-violet flex-shrink-0" />
-                <span>Mobile Money Reconciler</span>
-              </div>
-              <div className="flex items-center gap-2 p-2.5 rounded-xl bg-surface border border-border text-muted hover:border-rose-500/50 transition-colors">
-                <Sparkles className="w-3.5 h-3.5 text-rose-500 dark:text-rose-400 flex-shrink-0" />
-                <span>7arts Studio Leader</span>
-              </div>
-            </motion.div>
 
             {/* Action Buttons */}
             <motion.div
