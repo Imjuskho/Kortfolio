@@ -1,0 +1,28 @@
+# --- MIME types (PWA correctness) ---
+<IfModule mod_mime.c>
+  AddType application/manifest+json .webmanifest
+  AddType text/javascript .js
+  AddType image/svg+xml .svg
+</IfModule>
+
+# --- SPA fallback ---
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /kortfolio/
+
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# --- Headers ---
+<IfModule mod_headers.c>
+  Header set Access-Control-Allow-Origin "*"
+
+  # The service worker must never be cached, so updates are picked up promptly.
+  <FilesMatch "sw\.js$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </FilesMatch>
+</IfModule>

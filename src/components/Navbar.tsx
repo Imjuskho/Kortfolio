@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, Cpu, Sparkles, BookOpen, Camera, Layers, Mail, Menu, X, Globe2, Server, Sun, Moon } from 'lucide-react';
+import { Terminal, Cpu, Sparkles, Camera, Layers, Mail, Menu, X, Globe2, Server, Sun, Moon } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { asset } from '../lib/asset';
 import { useTheme } from '../hooks/useTheme';
@@ -180,6 +180,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
             {themeToggle}
             <button
               onClick={onOpenTerminal}
+              aria-label="Open Kortfolio CLI"
               className="p-2 rounded-lg bg-accent/10 text-accent border border-accent/30 text-xs font-mono"
             >
               <Terminal className="w-4 h-4" />

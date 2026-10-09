@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { X, Layers, Cpu, ShieldAlert, CheckCircle2, HardDrive, Terminal, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project } from '../types';
 import { useDialogA11y } from '../hooks/useDialogA11y';
@@ -14,9 +14,11 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const dialogRef = useDialogA11y(!!project, onClose);
 
-  useEffect(() => {
+  const [lastProjectId, setLastProjectId] = useState(project?.id);
+  if (project?.id !== lastProjectId) {
+    setLastProjectId(project?.id);
     setActiveImageIndex(0);
-  }, [project?.id]);
+  }
 
   if (!project) return null;
 

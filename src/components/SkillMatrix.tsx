@@ -44,7 +44,7 @@ export const SkillMatrix: React.FC = () => {
   }, []);
 
   return (
-    <section id="skills" className="scroll-mt-24 py-24 relative bg-background border-t border-border overflow-hidden">
+    <section className="py-24 relative bg-background border-t border-border overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Section Header */}

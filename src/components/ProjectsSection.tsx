@@ -1,10 +1,13 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Layers, Search, Filter, Sparkles } from 'lucide-react';
+import { Layers, Search, Filter } from 'lucide-react';
 import { PROJECTS } from '../data/portfolioData';
 import { Project, ProjectCategory } from '../types';
 import { ProjectCard } from './ProjectCard';
-import { ProjectModal } from './ProjectModal';
+
+const ProjectModal = React.lazy(() =>
+  import('./ProjectModal').then((m) => ({ default: m.ProjectModal })),
+);
 
 interface ProjectsSectionProps {
   onOpenSimulator: (projectId: string) => void;
@@ -140,12 +143,16 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenSimulato
 
       </div>
 
-      {/* Modal for detailed inspection */}
-      <ProjectModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-        onOpenSimulator={onOpenSimulator}
-      />
+      {/* Modal for detailed inspection (code-split, loaded on first open) */}
+      {selectedProject && (
+        <Suspense fallback={null}>
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+            onOpenSimulator={onOpenSimulator}
+          />
+        </Suspense>
+      )}
 
     </section>
   );

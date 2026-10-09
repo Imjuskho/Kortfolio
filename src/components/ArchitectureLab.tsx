@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Cpu, Activity, Play, RefreshCw, CheckCircle2, ShieldCheck, Wifi, WifiOff, Sun, Battery, Eye, Sliders, Database, ArrowRight, DollarSign, Lock } from 'lucide-react';
+import { Cpu, Play, RefreshCw, CheckCircle2, ShieldCheck, Wifi, WifiOff, Sun, Battery, Eye, Sliders, Database, DollarSign, Lock } from 'lucide-react';
 
 interface ArchitectureLabProps {
   initialSimulator?: string;
@@ -19,11 +19,11 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
     getMappedTab(initialSimulator)
   );
 
-  useEffect(() => {
-    if (initialSimulator) {
-      setActiveTab(getMappedTab(initialSimulator));
-    }
-  }, [initialSimulator]);
+  const [lastInitialSimulator, setLastInitialSimulator] = useState(initialSimulator);
+  if (initialSimulator !== lastInitialSimulator) {
+    setLastInitialSimulator(initialSimulator);
+    setActiveTab(getMappedTab(initialSimulator));
+  }
 
   // AMR FinTech State
   const [amrProcessing, setAmrProcessing] = useState(false);
@@ -75,7 +75,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
   };
 
   return (
-    <section id="architecture-lab" className="scroll-mt-24 py-24 relative bg-background border-t border-border overflow-hidden">
+    <section className="py-24 relative bg-background border-t border-border overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Lab Header */}
@@ -94,14 +94,16 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
             The Interactive Lab
           </h2>
           <p className="text-muted text-sm sm:text-base mt-2">
-            Instead of just talking about system design, I like to let people play with it. Try out live simulations of mobile money reconciliation, solar edge camera filtering, body motion tracking, and our traditional Bawo board game.
+            I would rather let people play with system design than just describe it. Four live simulations: mobile-money reconciliation, solar edge vision, on-device motion tracking, and a traditional Bawo board game.
           </p>
         </motion.div>
 
         {/* Simulator Switcher Tabs */}
         <div className="flex justify-center mb-8">
-          <div className="inline-flex p-1.5 rounded-2xl bg-surface border border-border gap-1.5 max-w-full overflow-x-auto shadow-xl">
+          <div role="tablist" aria-label="Engineering simulator selection" className="inline-flex p-1.5 rounded-2xl bg-surface border border-border gap-1.5 max-w-full overflow-x-auto shadow-xl">
             <button
+              role="tab"
+              aria-selected={activeTab === 'amr'}
               onClick={() => setActiveTab('amr')}
               className={`px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap ${
                 activeTab === 'amr'
@@ -114,6 +116,8 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
             </button>
 
             <button
+              role="tab"
+              aria-selected={activeTab === 'edge-vision'}
               onClick={() => setActiveTab('edge-vision')}
               className={`px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap ${
                 activeTab === 'edge-vision'
@@ -126,6 +130,8 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
             </button>
 
             <button
+              role="tab"
+              aria-selected={activeTab === 'pocket-body'}
               onClick={() => setActiveTab('pocket-body')}
               className={`px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap ${
                 activeTab === 'pocket-body'
@@ -138,6 +144,8 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
             </button>
 
             <button
+              role="tab"
+              aria-selected={activeTab === 'bawo'}
               onClick={() => setActiveTab('bawo')}
               className={`px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap ${
                 activeTab === 'bawo'
@@ -149,6 +157,11 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
               <span>Bawo Traditional Game</span>
             </button>
           </div>
+        </div>
+
+        <div className="flex items-center justify-center gap-2 mb-4 text-[11px] font-mono uppercase tracking-[0.18em] text-faint">
+          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+          Live console · interactive simulation
         </div>
 
         {/* Tab 1: AMR FinTech Simulator */}
@@ -182,6 +195,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                   <div className="flex items-center gap-1.5 p-1 rounded-xl bg-black/40 border border-white/10 text-xs font-mono">
                     <button
                       onClick={() => { setAmrOperator('airtel'); setAmrStep(0); }}
+                      aria-pressed={amrOperator === 'airtel'}
                       className={`px-3 py-1.5 rounded-lg transition-all ${
                         amrOperator === 'airtel' ? 'bg-rose-500/20 text-rose-300 font-bold' : 'text-slate-400 hover:text-white'
                       }`}
@@ -190,6 +204,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                     </button>
                     <button
                       onClick={() => { setAmrOperator('tnm'); setAmrStep(0); }}
+                      aria-pressed={amrOperator === 'tnm'}
                       className={`px-3 py-1.5 rounded-lg transition-all ${
                         amrOperator === 'tnm' ? 'bg-emerald-500/20 text-emerald-300 font-bold' : 'text-slate-400 hover:text-white'
                       }`}
@@ -198,6 +213,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                     </button>
                     <button
                       onClick={() => { setAmrOperator('mpesa'); setAmrStep(0); }}
+                      aria-pressed={amrOperator === 'mpesa'}
                       className={`px-3 py-1.5 rounded-lg transition-all ${
                         amrOperator === 'mpesa' ? 'bg-red-500/20 text-red-300 font-bold' : 'text-slate-400 hover:text-white'
                       }`}
@@ -360,6 +376,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setNetworkStatus('offline')}
+                      aria-pressed={networkStatus === 'offline'}
                     className={`px-3 py-1.5 rounded-xl text-xs font-mono border transition-all ${
                       networkStatus === 'offline' ? 'bg-rose-500/20 text-rose-300 border-rose-500/40 font-bold' : 'text-slate-400 border-white/10'
                     }`}
@@ -369,6 +386,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                   </button>
                   <button
                     onClick={() => setNetworkStatus('2g_burst')}
+                      aria-pressed={networkStatus === '2g_burst'}
                     className={`px-3 py-1.5 rounded-xl text-xs font-mono border transition-all ${
                       networkStatus === '2g_burst' ? 'bg-amber-500/20 text-amber-300 border-amber-500/40 font-bold' : 'text-slate-400 border-white/10'
                     }`}
@@ -494,6 +512,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                       <button
                         key={mode}
                         onClick={() => setTrackingMode(mode)}
+                      aria-pressed={trackingMode === mode}
                         className={`px-3 py-1.5 rounded-lg uppercase transition-all ${
                           trackingMode === mode ? 'bg-emerald-500/20 text-emerald-300 font-bold' : 'text-slate-400 hover:text-white'
                         }`}
@@ -505,6 +524,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
 
                   <button
                     onClick={() => setMetricDepth(!metricDepth)}
+                      aria-pressed={metricDepth}
                     className={`px-3 py-2 rounded-xl text-xs font-mono border transition-all ${
                       metricDepth ? 'bg-amber-500/20 text-amber-300 border-amber-500/40' : 'bg-black/40 text-slate-400 border-white/10'
                     }`}
@@ -645,6 +665,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setBawoRuleSet('malawi')}
+                      aria-pressed={bawoRuleSet === 'malawi'}
                     className={`px-3 py-1.5 rounded-xl text-xs font-mono border transition-all ${
                       bawoRuleSet === 'malawi' ? 'bg-amber-500/20 text-amber-300 border-amber-500/40 font-bold' : 'text-slate-400 border-white/10'
                     }`}
@@ -653,6 +674,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                   </button>
                   <button
                     onClick={() => setBawoRuleSet('kiswahili')}
+                      aria-pressed={bawoRuleSet === 'kiswahili'}
                     className={`px-3 py-1.5 rounded-xl text-xs font-mono border transition-all ${
                       bawoRuleSet === 'kiswahili' ? 'bg-amber-500/20 text-amber-300 border-amber-500/40 font-bold' : 'text-slate-400 border-white/10'
                     }`}

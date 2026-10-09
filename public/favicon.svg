@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Kortfolio">
+  <defs>
+    <linearGradient id="kp" x1="0" y1="0" x2="96" y2="96" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#34d399"/>
+      <stop offset=".5" stop-color="#2dd4bf"/>
+      <stop offset="1" stop-color="#fbbf24"/>
+    </linearGradient>
+  </defs>
+  <rect width="96" height="96" rx="22" fill="url(#kp)"/>
+  <text x="48" y="64" text-anchor="middle" font-family="'Plus Jakarta Sans',system-ui,sans-serif" font-size="46" font-weight="800" letter-spacing="-1" fill="#0b0e14">KP</text>
+</svg>

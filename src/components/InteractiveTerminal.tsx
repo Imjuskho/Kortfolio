@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Terminal as TerminalIcon, X, Maximize2, Minimize2, CornerDownLeft, Sparkles, ArrowRight } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Terminal as TerminalIcon, X, CornerDownLeft } from 'lucide-react';
 import { PERSONAL_INFO, PROJECTS, SKILL_CATEGORIES } from '../data/portfolioData';
 import { useDialogA11y } from '../hooks/useDialogA11y';
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Camera, MapPin, Eye, X, ChevronLeft, ChevronRight, Sliders, Sparkles } from 'lucide-react';
+import { Camera, MapPin, Eye, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PHOTOGRAPHY_GALLERY } from '../data/portfolioData';
 import { PhotoAsset } from '../types';
@@ -52,7 +52,7 @@ export const PhotographyGallery: React.FC = () => {
   }, [selectedPhoto, currentIndex, filteredPhotos, handlePrev, handleNext]);
 
   return (
-    <section id="photography" className="scroll-mt-24 py-24 relative bg-background border-t border-border overflow-hidden">
+    <section className="py-24 relative bg-background border-t border-border overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}

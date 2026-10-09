@@ -31,7 +31,7 @@ export const ImpactMetrics: React.FC = () => {
               <span>OPERATING RECORD</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight text-balance">
-              A decade of building things that hold up.
+              Ten years, measured in what shipped.
             </h2>
           </div>
           <p className="md:col-span-5 text-sm text-muted leading-relaxed md:pb-1">

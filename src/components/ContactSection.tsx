@@ -25,7 +25,7 @@ export const ContactSection: React.FC = () => {
   const inputClass = "w-full px-4 py-2.5 rounded-xl bg-surface border border-border text-foreground text-xs font-mono focus:outline-none focus:border-accent transition-colors";
 
   return (
-    <section id="contact" className="scroll-mt-24 py-24 relative bg-surface/40 border-t border-border">
+    <section className="py-24 relative bg-surface/40 border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">

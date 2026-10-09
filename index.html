@@ -2,27 +2,117 @@
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kondwani Austin Phanga — Computer Engineer & Creative Director</title>
-    <meta name="description" content="Portfolio of Kondwani Austin Phanga: Computer Engineer, Systems Builder & Creative Director based in Lilongwe, Malawi." />
+
+    <title>Kondwani Austin Phanga — Computer Engineer &amp; Creative Director</title>
+    <meta
+      name="description"
+      content="Portfolio of Kondwani Austin Phanga — Computer Engineer, Systems Builder and Creative Director based in Lilongwe, Malawi. A decade of production systems for donors, fintech, and edge AI."
+    />
+    <meta name="author" content="Kondwani Austin Phanga" />
+    <meta
+      name="keywords"
+      content="Kondwani Austin Phanga, computer engineer Malawi, systems architect, creative director, edge AI, fintech, software engineer Lilongwe"
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://bambamdev.com/kortfolio/" />
+
+    <meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#090b10" media="(prefers-color-scheme: dark)" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="/kortfolio/favicon.svg" />
+    <link rel="alternate icon" type="image/png" href="/kortfolio/pwa-192x192.png" />
+    <link rel="apple-touch-icon" href="/kortfolio/apple-touch-icon.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Kortfolio — Kondwani Austin Phanga" />
+    <meta property="og:title" content="Kondwani Austin Phanga — Computer Engineer &amp; Creative Director" />
+    <meta
+      property="og:description"
+      content="A decade of building things that hold up — production systems for donors, fintech, and edge AI, from Lilongwe, Malawi."
+    />
+    <meta property="og:url" content="https://bambamdev.com/kortfolio/" />
+    <meta property="og:image" content="https://bambamdev.com/kortfolio/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Kondwani Austin Phanga — Computer Engineer & Creative Director" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Kondwani Austin Phanga — Computer Engineer &amp; Creative Director" />
+    <meta
+      name="twitter:description"
+      content="A decade of building things that hold up — production systems for donors, fintech, and edge AI, from Lilongwe, Malawi."
+    />
+    <meta name="twitter:image" content="https://bambamdev.com/kortfolio/og-image.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Kondwani Austin Phanga",
+        "jobTitle": "Computer Engineer & Creative Director",
+        "url": "https://bambamdev.com/kortfolio/",
+        "image": "https://bambamdev.com/kortfolio/og-image.png",
+        "email": "mailto:hello@bambamdev.com",
+        "worksFor": { "@type": "Organization", "name": "7 Arts" },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Lilongwe",
+          "addressCountry": "MW"
+        },
+        "knowsAbout": [
+          "Software Engineering",
+          "Systems Architecture",
+          "Embedded Systems",
+          "Edge AI",
+          "FinTech",
+          "Mobile Money Integration"
+        ],
+        "sameAs": ["https://github.com/imjuskho"]
+      }
+    </script>
+
     <script>
       (function () {
         try {
           var stored = localStorage.getItem('kortfolio-theme');
-          if (stored === 'dark') {
-            document.documentElement.classList.add('dark');
-          }
+          if (stored === 'dark') document.documentElement.classList.add('dark');
         } catch (e) {}
       })();
     </script>
+
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body class="bg-background text-foreground font-['Plus_Jakarta_Sans',sans-serif] antialiased selection:bg-accent/30 selection:text-accent min-h-screen">
     <div id="root"></div>
+    <noscript>
+      <div style="max-width: 42rem; margin: 4rem auto; padding: 0 1.5rem; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #14171c; line-height: 1.6;">
+        <h1 style="font-size: 1.75rem; margin-bottom: 0.5rem;">Kondwani Austin Phanga</h1>
+        <p style="font-weight: 600; margin-bottom: 1rem; color: #047857;">Computer Engineer &amp; Creative Director · Lilongwe, Malawi</p>
+        <p style="margin-bottom: 1rem;">
+          A decade of building production systems that hold up — donor reporting platforms, mobile-money
+          fintech, on-device edge AI, and documentary work. This portfolio is an interactive experience and
+          needs JavaScript enabled. The core information is summarised here.
+        </p>
+        <ul style="margin: 0 0 1rem 1.25rem; padding: 0;">
+          <li>Production systems &amp; projects across fintech, agriculture, and public health</li>
+          <li>Interactive architecture lab for AMR, edge vision, and games</li>
+          <li>Career, education, and engineering theses</li>
+          <li>Photography &amp; documentary archive</li>
+        </ul>
+        <p>Contact: <a href="mailto:hello@bambamdev.com" style="color: #047857;">hello@bambamdev.com</a></p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
