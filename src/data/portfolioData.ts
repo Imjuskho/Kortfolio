@@ -16,6 +16,7 @@ export const PERSONAL_INFO = {
   email: "kayphanga@gmail.com",
   linkedin: "https://www.linkedin.com/in/kondwani-austin-phanga/",
   github: "https://github.com/imjuskho",
+  instagram: "https://www.instagram.com/_phanga",
   affiliation: "BSc Computer Engineering (Univ. of Livingstonia) • Managing Director, 7arts • AWS Candidate",
   quote: "Good technology doesn't demand perfect conditions. It respects the environment and the people it lives with.",
   institutionalClients: [
@@ -559,6 +560,106 @@ export const PHOTOGRAPHY_GALLERY: PhotoAsset[] = [
     url: "/assets/photos/photo_aerial.jpg",
     description: "Drone survey mapping agricultural field boundaries and seasonal drainage corridors for the EdgeVision platform.",
     cameraInfo: "DJI Mavic Aerial Platform"
+  },
+  // Recent frames from the road — pulled from @_phanga on Instagram.
+  {
+    id: "p_ig_01",
+    title: "Ms. Joyce",
+    location: "Malawi",
+    category: "Portraits",
+    url: "/assets/photos/ig_01.jpg",
+    description: "A clean-water portrait made on assignment — quiet dignity, framed close, from a series documenting access to safe water in rural communities.",
+    cameraInfo: "Nikon"
+  },
+  {
+    id: "p_ig_02",
+    title: "Studio Session: @king_satori",
+    location: "Malawi",
+    category: "Portraits",
+    url: "/assets/photos/ig_02.jpg",
+    description: "Controlled-light portrait work — shaping mood and character for a collaborative studio session.",
+    cameraInfo: "Nikon"
+  },
+  {
+    id: "p_ig_03",
+    title: "Mrs. Cynthia Zonde Zulu Trindade",
+    location: "Malawi",
+    category: "Portraits",
+    url: "/assets/photos/ig_03.jpg",
+    description: "A commission portrait — poise, presence, and the quiet authority of the subject in front of the lens.",
+    cameraInfo: "Nikon"
+  },
+  {
+    id: "p_ig_04",
+    title: "Blantyre",
+    location: "Blantyre, Malawi",
+    category: "Landscape",
+    url: "/assets/photos/ig_04.jpg",
+    description: "Framing the country's commercial capital — its density, its light, and the everyday rhythms of the city.",
+    cameraInfo: "Nikon"
+  },
+  {
+    id: "p_ig_05",
+    title: "La Vista",
+    location: "Malawi",
+    category: "Infrastructure",
+    url: "/assets/photos/ig_05.jpg",
+    description: "Hospitality and built-space documentation — capturing place and atmosphere for a new venue.",
+    cameraInfo: "Nikon"
+  },
+  {
+    id: "p_ig_06",
+    title: "Uncle",
+    location: "Malawi",
+    category: "Portraits",
+    url: "/assets/photos/ig_06.jpg",
+    description: "A warm, candid frame of family — the kind of portrait that holds a whole story in a single glance.",
+    cameraInfo: "Nikon"
+  },
+  {
+    id: "p_ig_07",
+    title: "The Start of Leadership",
+    location: "Malawi",
+    category: "Documentary",
+    url: "/assets/photos/ig_07.jpg",
+    description: "Documenting the people and moments behind leadership and institution-building across the country.",
+    cameraInfo: "Nikon"
+  },
+  {
+    id: "p_ig_08",
+    title: "BBM",
+    location: "Malawi",
+    category: "Portraits",
+    url: "/assets/photos/ig_08.jpg",
+    description: "Striking portrait work — a study in expression and composure.",
+    cameraInfo: "Nikon"
+  },
+  {
+    id: "p_ig_09",
+    title: "On Set with 7arts Studios",
+    location: "Malawi",
+    category: "Documentary",
+    url: "/assets/photos/ig_09.jpg",
+    description: "Behind the scenes on a 7arts Studios production — the craft and collaboration that goes into the frame.",
+    cameraInfo: "Nikon"
+  },
+  {
+    id: "p_ig_10",
+    title: "Kutipula",
+    location: "Malawi",
+    category: "Documentary",
+    url: "/assets/photos/ig_10.jpg",
+    description: "\"Kutipula\" — the harvest. Recording agricultural life and the labour that sustains rural communities.",
+    cameraInfo: "Nikon"
+  },
+  {
+    id: "p_ig_11",
+    title: "Open for a Limited Time",
+    location: "Malawi",
+    category: "Documentary",
+    url: "/assets/photos/ig_11.jpg",
+    description: "A recent commercial frame — light, texture, and story used to open a window onto a space.",
+    cameraInfo: "Nikon"
   }
 ];
 

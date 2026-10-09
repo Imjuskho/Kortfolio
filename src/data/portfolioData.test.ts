@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { CLIENT_PARTNERS, PERSONAL_INFO, PROJECTS } from './portfolioData';
+import { CLIENT_PARTNERS, PERSONAL_INFO, PROJECTS, PHOTOGRAPHY_GALLERY } from './portfolioData';
 
 const publicDir = resolve(process.cwd(), 'public');
 
@@ -30,6 +30,15 @@ describe('portfolio data integrity', () => {
     for (const project of PROJECTS) {
       expect(project.title).toBeTruthy();
       expect(project.category).toBeTruthy();
+    }
+  });
+
+  it('every gallery photo points at a file that exists in public/', () => {
+    const ids = PHOTOGRAPHY_GALLERY.map((p) => p.id);
+    expect(new Set(ids).size).toBe(ids.length);
+    for (const photo of PHOTOGRAPHY_GALLERY) {
+      const file = resolve(publicDir, photo.url.replace(/^\/+/, ''));
+      expect(existsSync(file), `missing photo ${photo.id}: ${photo.url}`).toBe(true);
     }
   });
 });
