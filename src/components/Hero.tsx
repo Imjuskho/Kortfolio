@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Terminal, Cpu, MapPin, ChevronRight, ArrowDown, Download } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { asset } from '../lib/asset';
@@ -18,19 +17,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
 
           {/* Left Column: Biography & Narrative */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="lg:col-span-7 flex flex-col items-start text-left"
-          >
+          <div className="lg:col-span-7 flex flex-col items-start text-left animate-rise-x">
 
             {/* Status Pill */}
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.5 }}
-              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-surface border border-accent/30 text-accent text-xs font-mono mb-6 backdrop-blur-md shadow-[0_0_24px_-8px_var(--glow)]"
+            <div
+              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-surface border border-accent/30 text-accent text-xs font-mono mb-6 backdrop-blur-md shadow-[0_0_24px_-8px_var(--glow)] animate-rise-up"
+              style={{ animationDelay: '0.1s' }}
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
@@ -38,50 +30,42 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
               </span>
               <span className="font-semibold tracking-wide">ENGINEER • CREATIVE DIRECTOR • BUILDER</span>
               <span className="text-foreground/20">|</span>
-              <span className="text-muted flex items-center gap-1">
+<span className="text-muted flex items-center gap-1">
                 <MapPin className="w-3 h-3 text-accent" />
                 Lilongwe, Malawi
               </span>
-            </motion.div>
+            </div>
 
             {/* Name & Main Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-4xl sm:text-5xl xl:text-6xl font-extrabold tracking-tight text-foreground leading-[1.1] mb-6 text-balance"
+            <h1
+              className="text-4xl sm:text-5xl xl:text-6xl font-extrabold tracking-tight text-foreground leading-[1.1] mb-6 text-balance animate-rise"
+              style={{ animationDelay: '0.2s' }}
             >
               Building systems that hold up in the <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-amber-600 dark:from-emerald-400 dark:via-teal-300 dark:to-amber-300">real world.</span>
-            </motion.h1>
+            </h1>
 
             {/* Sub-headline / Role */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-6 text-base sm:text-lg font-medium text-muted"
+            <div
+              className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-6 text-base sm:text-lg font-medium text-muted animate-rise"
+              style={{ animationDelay: '0.3s' }}
             >
               <span className="text-accent font-mono font-semibold">BSc Computer Engineering</span>
               <span className="text-faint">•</span>
               <span className="text-foreground">Telecom & Cloud Veteran</span>
-            </motion.div>
+            </div>
 
             {/* Bio paragraph */}
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="text-muted text-base sm:text-lg leading-relaxed max-w-2xl mb-8"
+            <p
+              className="text-muted text-base sm:text-lg leading-relaxed max-w-2xl mb-8 animate-rise"
+              style={{ animationDelay: '0.4s' }}
             >
               I'm Kondwani. Over the last decade, my work has lived where heavy infrastructure meets human stories—from the quiet hum of server racks inside <strong className="text-foreground font-semibold">Malawi Telecommunications Limited</strong>, to directing documentaries across rural communities for <strong className="text-foreground font-semibold">the UN, World Bank, and EU</strong>, to writing code for solar edge hardware and mobile payments. I care about building things that work with honesty and care.
-            </motion.p>
+            </p>
 
             {/* Action Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="flex flex-wrap items-center gap-4 w-full sm:w-auto"
+            <div
+              className="flex flex-wrap items-center gap-4 w-full sm:w-auto animate-rise"
+              style={{ animationDelay: '0.6s' }}
             >
               <a
                 href="#projects"
@@ -128,16 +112,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
                 <Terminal className="w-4 h-4" />
                 <span className="hidden sm:inline">kortfolio&gt;_</span>
               </button>
-            </motion.div>
+            </div>
 
-          </motion.div>
+          </div>
 
           {/* Right Column: Engineering Card with Authentic Headshot & Telemetry */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-5 flex justify-center lg:justify-end"
+          <div
+            className="lg:col-span-5 flex justify-center lg:justify-end animate-rise-zoom"
+            style={{ animationDelay: '0.2s' }}
           >
             <div className="relative w-full max-w-md">
               {/* Main Card */}
@@ -203,7 +185,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
               </div>
 
             </div>
-          </motion.div>
+          </div>
 
         </div>
       </div>

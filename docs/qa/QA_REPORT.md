@@ -39,7 +39,7 @@ LCP 3.04 s · FCP 3.0 s · TBT 0 ms · CLS 0.000. (See Performance report.)
 | CLS on clean load (light) | `PerformanceObserver layout-shift, buffered` | 0 shifts |
 | No horizontal overflow 390 px | `agent-browser set viewport 390 844` + `scrollWidth − clientWidth` | 0 |
 | No horizontal overflow 1280 px | same | 0 |
-| Reduced-motion | `MotionConfig reducedMotion="user"` + CSS media query | present |
+| Reduced-motion | CSS media query (eager) + local `MotionConfig` in lazy sections | present |
 
 ## Lab performance (local `vite preview`, warm cache — Lab only)
 

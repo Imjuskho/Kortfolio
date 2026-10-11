@@ -124,9 +124,10 @@ the animation entirely.
 - **Focus-visible** styling relies on the global `:focus-visible` outline in
   `index.css`; verify on the new preview `<button>` and on high-contrast OS
   themes.
-- **`prefers-reduced-motion`** — **already handled**: `MotionConfig
-  reducedMotion="user"` in `App.tsx` plus the CSS `@media
-  (prefers-reduced-motion: reduce)` block in `index.css`.
+- **`prefers-reduced-motion`** — **handled**: the eager entrance animations are
+  CSS keyframes/transitions neutralised by the `@media (prefers-reduced-motion:
+  reduce)` block in `index.css`, and the below-fold Framer-Motion sections each
+  wrap themselves in a local `MotionConfig reducedMotion="user"`.
 - **Mobile 390 px** — **verified**: `agent-browser set viewport 390 844` then
   axe → 0 violations, and `scrollWidth − clientWidth = 0` (no horizontal
   overflow).

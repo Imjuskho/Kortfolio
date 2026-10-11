@@ -1,9 +1,9 @@
 import React, { useState, useMemo, Suspense } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Layers, Search, Filter } from 'lucide-react';
 import { PROJECTS } from '../data/portfolioData';
 import { Project, ProjectCategory } from '../types';
 import { ProjectCard } from './ProjectCard';
+import { Reveal } from './Reveal';
 
 const ProjectModal = React.lazy(() =>
   import('./ProjectModal').then((m) => ({ default: m.ProjectModal })),
@@ -48,13 +48,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenSimulato
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
-        >
+        <Reveal className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-accent/10 border border-accent/30 text-accent text-xs font-mono mb-3">
               <Layers className="w-3.5 h-3.5" />
@@ -80,7 +74,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenSimulato
               className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-surface border border-border text-xs font-mono text-foreground placeholder:text-faint focus:outline-none focus:border-accent transition-colors shadow-inner"
             />
           </div>
-        </motion.div>
+        </Reveal>
 
         {/* Category Filter Tabs */}
         <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
@@ -104,27 +98,18 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenSimulato
           ))}
         </div>
 
-        {/* Projects Grid with Framer Motion AnimatePresence */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AnimatePresence>
-            {filteredProjects.map((project) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3 }}
-              >
-                <ProjectCard
-                  project={project}
-                  onSelect={setSelectedProject}
-                  onOpenSimulator={onOpenSimulator}
-                />
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredProjects.map((project) => (
+            <div key={project.id} className="animate-card-in">
+              <ProjectCard
+                project={project}
+                onSelect={setSelectedProject}
+                onOpenSimulator={onOpenSimulator}
+              />
+            </div>
+          ))}
+        </div>
 
         {/* Empty state if nothing matches */}
         {filteredProjects.length === 0 && (

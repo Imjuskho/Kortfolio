@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Camera,
   Check,
@@ -69,18 +68,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
   const { theme, toggleTheme } = useTheme();
   const activeSection = useActiveSection(SPY_IDS);
 
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
+  const [progress, setProgress] = useState(0);
+  const [pill, setPill] = useState<{ left: number; width: number } | null>(null);
+  const navRef = useRef<HTMLElement | null>(null);
 
   const activeItem = NAV_ITEMS.find((i) => i.id === activeSection);
   const activeLabel = activeSection === 'contact' ? 'Contact' : activeItem?.label ?? null;
 
-  // Condense the bar once the page has scrolled away from the top.
+  // Condense the bar + update the reading-progress rail once the page scrolled.
   useEffect(() => {
     let frame = 0;
     const onScroll = () => {
       if (frame) return;
       frame = requestAnimationFrame(() => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        setProgress(max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0);
         setScrolled(window.scrollY > 20);
         frame = 0;
       });
@@ -92,6 +94,31 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
       if (frame) cancelAnimationFrame(frame);
     };
   }, []);
+
+  // Position the sliding active pill under the current nav link.
+  useEffect(() => {
+    const measure = () => {
+      const nav = navRef.current;
+      const id = activeItem?.id;
+      if (!nav || !id) {
+        setPill(null);
+        return;
+      }
+      const el = nav.querySelector<HTMLElement>(`a[href="#${id}"]`);
+      if (!el) {
+        setPill(null);
+        return;
+      }
+      setPill({ left: el.offsetLeft, width: el.offsetWidth });
+    };
+    measure();
+    const t = setTimeout(measure, 200);
+    window.addEventListener('resize', measure);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener('resize', measure);
+    };
+  }, [activeItem?.id]);
 
   // Live Lilongwe clock + how far it is from the visitor's own time.
   useEffect(() => {
@@ -171,18 +198,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
       title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
       className={iconButton}
     >
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.span
-          key={theme}
-          initial={{ rotate: -90, scale: 0.5, opacity: 0 }}
-          animate={{ rotate: 0, scale: 1, opacity: 1 }}
-          exit={{ rotate: 90, scale: 0.5, opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          className="flex"
-        >
-          {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-        </motion.span>
-      </AnimatePresence>
+      <span key={theme} className="flex animate-icon-spin">
+        {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+      </span>
     </button>
   );
 
@@ -223,15 +241,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
                 </span>
               </div>
               <div className="h-4 overflow-hidden">
-                <AnimatePresence mode="wait" initial={false}>
-                  <motion.p
-                    key={activeLabel ?? 'tagline'}
-                    initial={{ y: 10, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -10, opacity: 0 }}
-                    transition={{ duration: 0.18 }}
-                    className="text-xs text-muted font-mono tracking-tight flex items-center gap-1.5 whitespace-nowrap"
-                  >
+                <p
+                  key={activeLabel ?? 'tagline'}
+                  className="text-xs text-muted font-mono tracking-tight flex items-center gap-1.5 whitespace-nowrap animate-fade-in"
+                >
                     <span
                       className={`w-1.5 h-1.5 rounded-full bg-accent shrink-0 ${
                         activeLabel ? '' : 'animate-pulse'
@@ -242,17 +255,24 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
                     ) : (
                       <span>Systems Builder &amp; Storyteller</span>
                     )}
-                  </motion.p>
-                </AnimatePresence>
+                  </p>
               </div>
             </div>
           </a>
 
           {/* Center navigation with sliding active indicator */}
           <nav
+            ref={navRef}
             aria-label="Primary"
             className="relative hidden lg:flex items-center gap-0.5 p-1 rounded-full bg-surface/70 border border-border backdrop-blur-sm"
           >
+            {pill && (
+              <span
+                aria-hidden="true"
+                className="absolute inset-0 rounded-full bg-foreground/[0.06] border border-accent/25 transition-[left,width] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                style={{ left: pill.left, width: pill.width }}
+              />
+            )}
             {NAV_ITEMS.map((item) => {
               const active = activeSection === item.id;
               return (
@@ -265,13 +285,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
                     active ? 'text-foreground' : 'text-muted hover:text-foreground'
                   }`}
                 >
-                  {active && (
-                    <motion.span
-                      layoutId="nav-active-pill"
-                      className="absolute inset-0 rounded-full bg-foreground/[0.06] border border-accent/25"
-                      transition={{ type: 'spring', stiffness: 400, damping: 32 }}
-                    />
-                  )}
                   <item.icon className={`relative w-3.5 h-3.5 ${item.accent}`} />
                   <span className="relative">{item.short}</span>
                 </a>
@@ -379,16 +392,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
         )}
 
         {/* Mobile sheet */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.nav
-              id="mobile-nav"
-              aria-label="Mobile"
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2 }}
-              className="lg:hidden mt-3 rounded-2xl border border-border bg-surface/95 backdrop-blur-md p-3 shadow-2xl"
+        {mobileMenuOpen && (
+          <nav
+            id="mobile-nav"
+            aria-label="Mobile"
+            className="lg:hidden mt-3 rounded-2xl border border-border bg-surface/95 backdrop-blur-md p-3 shadow-2xl animate-sheet-in"
             >
               <div className="flex items-center justify-between px-2 pb-2 mb-2 border-b border-border">
                 <span className="text-xs font-mono uppercase tracking-widest text-faint">
@@ -464,16 +472,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
                 <Mail className="w-4 h-4" />
                 Say Hello
               </a>
-            </motion.nav>
-          )}
-        </AnimatePresence>
+          </nav>
+        )}
       </div>
 
       {/* Reading progress rail with section ticks */}
       <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-border/50 overflow-hidden">
-        <motion.div
-          style={{ scaleX }}
-          className="h-full origin-left bg-gradient-to-r from-emerald-400 via-teal-400 to-amber-400"
+        <div
+          className="h-full origin-left bg-gradient-to-r from-emerald-400 via-teal-400 to-amber-400 transition-transform duration-150 ease-linear will-change-transform"
+          style={{ transform: `scaleX(${progress})` }}
         />
         {ticks.map((f, i) => (
           <span

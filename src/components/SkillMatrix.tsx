@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, MotionConfig } from 'framer-motion';
 import { Wrench, Search, Code, Cpu, Server, Layers, Briefcase } from 'lucide-react';
 import { SKILL_CATEGORIES } from '../data/portfolioData';
 
@@ -44,6 +44,7 @@ export const SkillMatrix: React.FC = () => {
   }, []);
 
   return (
+    <MotionConfig reducedMotion="user">
     <section className="py-24 relative bg-background border-t border-border overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
@@ -163,6 +164,7 @@ export const SkillMatrix: React.FC = () => {
 
       </div>
     </section>
+    </MotionConfig>
   );
 };
 

@@ -1,8 +1,8 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Building2, Globe2, Landmark } from 'lucide-react';
 import { CLIENT_PARTNERS } from '../data/portfolioData';
 import { asset } from '../lib/asset';
+import { Reveal } from './Reveal';
 
 interface MarqueeRowProps {
   items: typeof CLIENT_PARTNERS;
@@ -75,13 +75,7 @@ export const ClientsMarquee: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-10"
-        >
+        <Reveal className="text-center max-w-3xl mx-auto mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-accent/10 border border-accent/30 text-accent text-xs font-mono mb-4">
             <Globe2 className="w-3.5 h-3.5" />
             <span>TRUSTED PARTNERS & CLIENTS</span>
@@ -92,23 +86,20 @@ export const ClientsMarquee: React.FC = () => {
           <p className="text-muted text-sm sm:text-base mt-3 leading-relaxed">
             Multilateral donors, diplomatic missions, national banks, and telcos — partners served across a decade of engineering, production, and field delivery in Malawi.
           </p>
-        </motion.div>
+        </Reveal>
 
         {/* Stat strip */}
         <div className="grid grid-cols-3 gap-3 max-w-2xl mx-auto mb-12">
           {stats.map((stat, idx) => (
-            <motion.div
+            <Reveal
               key={stat.label}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.08, duration: 0.4 }}
+              delay={idx * 80}
               className="flex flex-col items-center text-center px-3 py-4 rounded-2xl bg-surface border border-border"
             >
               <stat.icon className="w-4 h-4 text-accent mb-1.5" />
               <span className="text-2xl font-extrabold text-foreground font-mono tracking-tight">{stat.value}</span>
               <span className="text-xs text-muted leading-tight mt-0.5">{stat.label}</span>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
 

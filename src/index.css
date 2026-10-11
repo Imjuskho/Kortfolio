@@ -196,6 +196,63 @@
   }
 }
 
+/* ---------------------------------------------------------------
+   CSS-native entrance animations — replacements for the eager
+   framer-motion reveals so the animation engine stays out of the
+   main JS bundle. `.animate-*` fire on mount; `.reveal*` are
+   triggered by the Reveal component's IntersectionObserver.
+--------------------------------------------------------------- */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes rise-up {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes rise-x {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes rise-zoom {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes card-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes icon-spin {
+  from { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+  to { opacity: 1; transform: rotate(0deg) scale(1); }
+}
+@keyframes sheet-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-rise { animation: rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-rise-up { animation: rise-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-rise-x { animation: rise-x 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-rise-zoom { animation: rise-zoom 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-card-in { animation: card-in 0.3s ease-out both; }
+.animate-icon-spin { animation: icon-spin 0.2s ease-out both; }
+.animate-sheet-in { animation: sheet-in 0.2s ease-out both; }
+
+/* Scroll-triggered reveal — the Reveal component toggles .reveal-visible */
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-y { transform: translateY(20px); }
+.reveal-x { transform: translateX(-24px); }
+.reveal-zoom { transform: scale(0.96); }
+.reveal-scale-x { transform: scaleX(0); transform-origin: left; }
+.reveal-visible { opacity: 1; transform: none; }
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

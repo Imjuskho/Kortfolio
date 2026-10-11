@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Suspense } from 'react';
-import { MotionConfig } from 'framer-motion';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ImpactMetrics } from './components/ImpactMetrics';
@@ -56,8 +55,7 @@ export function App() {
   };
 
   return (
-    <MotionConfig reducedMotion="user">
-      <div className="min-h-screen bg-background text-foreground flex flex-col font-['Plus_Jakarta_Sans',sans-serif] selection:bg-accent/30 selection:text-accent relative">
+    <div className="min-h-screen bg-background text-foreground flex flex-col font-['Plus_Jakarta_Sans',sans-serif] selection:bg-accent/30 selection:text-accent relative">
 
         <Navbar onOpenTerminal={openTerminal} />
 
@@ -125,7 +123,6 @@ export function App() {
           </Suspense>
         )}
       </div>
-    </MotionConfig>
   );
 }
 

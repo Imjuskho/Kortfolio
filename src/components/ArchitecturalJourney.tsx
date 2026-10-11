@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, MotionConfig } from 'framer-motion';
 import { Server, ShieldCheck, Cpu, GraduationCap, CheckCircle2, Briefcase } from 'lucide-react';
 import { PERSONAL_INFO, CAREER_EXPERIENCES, EDUCATION_CREDENTIALS, ENGINEERING_THESES } from '../data/portfolioData';
 
@@ -14,6 +14,7 @@ export const ArchitecturalJourney: React.FC = () => {
     }`;
 
   return (
+    <MotionConfig reducedMotion="user">
     <section className="py-24 relative bg-background border-t border-border overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
@@ -234,5 +235,6 @@ export const ArchitecturalJourney: React.FC = () => {
 
       </div>
     </section>
+    </MotionConfig>
   );
 };

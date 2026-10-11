@@ -59,6 +59,31 @@ Branch: `improve/kortfolio-production-audit` (off `main` @ `de0b3ea`).
 - Trialled `LazyMotion`+`m` bundle reduction — **measured no gain**, reverted
   (documented in the Performance report).
 
+## Third pass — animation engine out of the main bundle
+
+- **Removed Framer Motion from every eager component** so the main chunk dropped
+  148 → 103 KB gz (unused JS 60 KiB → 0; Speed Index ~5.9 → 3.67 s; Lighthouse
+  mobile Perf 86 → 88, median of 3; CLS still 0, axe still 0 in light & dark).
+- `src/index.css` — added CSS entrance keyframes (`animate-rise*`,
+  `card-in`, `icon-spin`, `sheet-in`) and `.reveal*` transition utilities, all
+  neutralised by the existing `prefers-reduced-motion` block.
+- `src/components/Reveal.tsx` — **new**, tiny IntersectionObserver reveal
+  (toggles `.reveal-visible`; no framer-motion dependency).
+- `Hero.tsx` — mount-time entrance → CSS keyframes with the original delays.
+- `ImpactMetrics.tsx` / `ClientsMarquee.tsx` / `ProjectsSection.tsx` — section
+  headers and cards → `Reveal`; `whileHover` lift → `hover:-translate-y-1`;
+  the metric divider line → `reveal-scale-x`.
+- `ProjectsSection.tsx` — removed `layout`/`AnimatePresence` grid; cards are
+  plain keyed `div`s with `animate-card-in` (instant reorder on filter).
+- `Navbar.tsx` — `useScroll`/`useSpring` rail → scroll listener + rAF driving
+  `scaleX` with a CSS transition; `layoutId` active pill → one measured span
+  (`offsetLeft`/`offsetWidth` + `transition:[left,width]`); tagline swap,
+  theme-icon spin and mobile sheet → small CSS animations.
+- `App.tsx` — removed the global `MotionConfig`; `ArchitectureLab.tsx`,
+  `ArchitecturalJourney.tsx`, `SkillMatrix.tsx` now wrap themselves in a local
+  `MotionConfig reducedMotion="user"` so reduced-motion is still honoured in the
+  lazy (still-Framer) sections.
+
 ## Verification (all executed)
 
 | Check | Command | Result |
@@ -71,7 +96,7 @@ Branch: `improve/kortfolio-production-audit` (off `main` @ `de0b3ea`).
 | axe dark 1280 | `agent-browser a11y` | **0** violations |
 | axe light 390 | `agent-browser set viewport 390 844` + `a11y` | **0** violations |
 | axe — lab tabs (×3 non-default) | click tab + `a11y` | **0** violations |
-| Lighthouse median (×3) | `npx lighthouse` | Perf 86 / A11y 100 / BP 100 / SEO 100 |
+| Lighthouse median (×3) | `npx lighthouse` | Perf 88 / A11y 100 / BP 100 / SEO 100 |
 | Overflow 390 / 1280 | `scrollWidth − clientWidth` | 0 / 0 |
 
 ## Rollback
