@@ -97,7 +97,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenSimulato
               }`}
             >
               {cat}
-              <span className="ml-1.5 opacity-60 text-xs">
+              <span className="ml-1.5 text-xs">
                 ({cat === 'All' ? PROJECTS.length : PROJECTS.filter((p) => p.category === cat).length})
               </span>
             </button>

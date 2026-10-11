@@ -106,6 +106,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
                 <img
                   src={asset(project.previewImages[activeImageIndex])}
                   alt={`${project.title} screenshot`}
+                  decoding="async"
                   className="w-full h-full object-contain"
                 />
 
@@ -142,7 +143,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose, on
                         activeImageIndex === idx ? 'border-accent scale-105' : 'border-border opacity-60 hover:opacity-100'
                       }`}
                     >
-                      <img src={asset(img)} alt="" className="w-full h-full object-cover" />
+                      <img src={asset(img)} alt="" loading="lazy" decoding="async" className="w-full h-full object-cover" />
                     </button>
                   ))}
                 </div>

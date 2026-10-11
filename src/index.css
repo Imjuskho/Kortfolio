@@ -19,11 +19,15 @@
   --border: rgba(19, 22, 27, 0.1);
   --border-strong: rgba(19, 22, 27, 0.2);
 
-  --accent: #047857; /* emerald-700 */
-  --warn: #b45309; /* amber-700 */
-  --info: #0369a1; /* sky-700 */
-  --violet: #7c3aed; /* violet-600 */
-  --teal: #0f766e; /* teal-700 */
+  /* Secondary accent tokens are tuned so that `bg-<token>/10 text-<token>` chips
+     clear WCAG AA (4.5:1) at 12px on every light surface, including their /20
+     hover tint. The previous emerald-700/sky-700/violet-600/teal-700 values
+     measured 4.13–4.42:1 on --surface-2. */
+  --accent: #046345;
+  --warn: #92400e; /* amber-800 — amber-700 (#b45309) failed 4.5:1 as 12px text on --surface-2 */
+  --info: #075985; /* sky-800 */
+  --violet: #6a24cf;
+  --teal: #115e59; /* teal-800 */
 
   --glass: rgba(255, 255, 255, 0.72);
   --glass-strong: rgba(255, 255, 255, 0.9);
@@ -45,7 +49,7 @@
   --surface-2: #121929;
 
   --muted: #94a3b8;
-  --faint: #64748b;
+  --faint: #7d8fa6; /* lifted from slate-500 (#64748b → 3.87:1) to clear AA at 10–12px */
 
   --border: rgba(255, 255, 255, 0.1);
   --border-strong: rgba(255, 255, 255, 0.2);

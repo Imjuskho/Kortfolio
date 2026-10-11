@@ -103,7 +103,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
                 href={PERSONAL_INFO.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-[#0077b5]/20 hover:bg-[#0077b5]/30 border border-[#0077b5]/50 text-[#0a66c2] dark:text-[#38bdf8] font-mono text-xs transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-[#0077b5]/10"
+                className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-[#0077b5]/20 hover:bg-[#0077b5]/30 border border-[#0077b5]/50 text-[#0a5aa8] dark:text-[#38bdf8] font-mono text-xs transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-[#0077b5]/10"
               >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                   <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
@@ -149,14 +149,16 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal }) => {
                     <span className="w-2 h-2 rounded-full bg-accent"></span>
                     <span className="text-foreground font-bold">{PERSONAL_INFO.name}</span>
                   </div>
-                  <span className="text-accent/80">ID: KP-26-MW</span>
+                  <span className="text-accent">ID: KP-26-MW</span>
                 </div>
 
                 {/* Headshot Portrait with Optical Framing */}
                 <div className="relative rounded-xl overflow-hidden aspect-square bg-surface-2 border border-border shadow-inner group">
                   <img
-                    src={asset('/assets/profile/kondwani.png')}
+                    src={asset('/assets/profile/kondwani.webp')}
                     alt={PERSONAL_INFO.name}
+                    fetchPriority="high"
+                    decoding="async"
                     className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   />
 

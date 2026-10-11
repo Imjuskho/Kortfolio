@@ -40,7 +40,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTerminal }) => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-border">
           {/* Left: Brand Identity */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-accent/10 border border-accent/30 flex items-center justify-center text-accent font-bold">
+            <div className="w-8 h-8 rounded-lg bg-surface border border-accent/30 flex items-center justify-center text-accent font-bold">
               KP
             </div>
             <div>

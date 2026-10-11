@@ -57,7 +57,7 @@ export const ImpactMetrics: React.FC = () => {
                 <div className="p-2.5 rounded-xl bg-surface-2 border border-border group-hover:border-accent/40 group-hover:scale-105 transition-all">
                   {metricIcons[idx % metricIcons.length]}
                 </div>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-accent/80 px-2 py-1 rounded-full bg-accent/5 border border-accent/20">
+                <span className="text-xs font-mono uppercase tracking-widest text-accent px-2 py-1 rounded-full bg-accent/5 border border-accent/20">
                   {stat.tag}
                 </span>
               </div>

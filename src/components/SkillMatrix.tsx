@@ -73,7 +73,7 @@ export const SkillMatrix: React.FC = () => {
                 aria-pressed={selectedCategory === cat}
                 className={`px-3.5 py-1.5 rounded-xl text-xs font-mono whitespace-nowrap transition-all cursor-pointer ${
                   selectedCategory === cat
-                    ? 'bg-teal text-slate-950 font-bold shadow-md shadow-teal/20'
+                    ? 'bg-teal text-background font-bold shadow-md shadow-teal/20'
                     : 'bg-surface hover:bg-surface-2 text-muted border border-border'
                 }`}
               >
@@ -148,7 +148,7 @@ export const SkillMatrix: React.FC = () => {
             </p>
             <button
               onClick={() => { setSelectedCategory('All'); setSearchQuery(''); }}
-              className="mt-4 px-4 py-2 rounded-xl bg-teal text-slate-950 text-xs font-bold cursor-pointer"
+              className="mt-4 px-4 py-2 rounded-xl bg-teal text-background text-xs font-bold cursor-pointer"
             >
               Reset Filters
             </button>

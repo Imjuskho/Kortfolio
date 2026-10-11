@@ -262,7 +262,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({ isOpen
           <div className="flex items-center gap-2 text-slate-300">
             <TerminalIcon className="w-4 h-4 text-emerald-400" />
             <span className="text-emerald-400 font-bold">kortfolio-cli</span>
-            <span className="text-slate-600">@</span>
+            <span className="text-slate-400">@</span>
             <span className="text-slate-400">macbook-air-mw:~</span>
           </div>
 

@@ -206,8 +206,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
           >
             <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-accent/20 to-teal/10 border border-accent/30 flex items-center justify-center overflow-hidden transition-all group-hover:border-accent group-hover:shadow-[0_0_15px_var(--glow)]">
               <img
-                src={asset('/assets/profile/kondwani.png')}
+                src={asset('/assets/profile/kondwani.webp')}
                 alt=""
+                decoding="async"
                 className="w-full h-full object-cover object-top"
               />
               <div className="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -306,7 +307,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
                 rel="noreferrer"
                 aria-label="LinkedIn profile"
                 title="LinkedIn"
-                className="flex items-center justify-center w-8 h-8 rounded-lg bg-[#0077b5]/10 hover:bg-[#0077b5]/20 text-[#0a66c2] dark:text-[#38bdf8] border border-[#0077b5]/40 transition-all cursor-pointer"
+                className="flex items-center justify-center w-8 h-8 rounded-lg bg-[#0077b5]/10 hover:bg-[#0077b5]/20 text-[#0a5aa8] dark:text-[#38bdf8] border border-[#0077b5]/40 transition-all cursor-pointer"
               >
                 <LinkedinIcon className="w-4 h-4" />
               </a>
@@ -390,10 +391,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
               className="lg:hidden mt-3 rounded-2xl border border-border bg-surface/95 backdrop-blur-md p-3 shadow-2xl"
             >
               <div className="flex items-center justify-between px-2 pb-2 mb-2 border-b border-border">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-faint">
+                <span className="text-xs font-mono uppercase tracking-widest text-faint">
                   Navigate
                 </span>
-                <span className="text-[10px] font-mono text-faint tabular-nums">
+                <span className="text-xs font-mono text-faint tabular-nums">
                   Lilongwe {time.slice(0, 5)} · {delta}
                 </span>
               </div>

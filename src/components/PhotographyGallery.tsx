@@ -95,7 +95,7 @@ export const PhotographyGallery: React.FC = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent opacity-80 group-hover:opacity-70 transition-opacity" />
                 <div className="absolute bottom-0 left-0 right-0 p-3 text-left">
-                  <div className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider text-emerald-300/90">
+                  <div className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-emerald-300/90">
                     <Camera className="w-3 h-3" />
                     <span>{photo.category}</span>
                   </div>
@@ -107,7 +107,7 @@ export const PhotographyGallery: React.FC = () => {
             ))}
           </div>
 
-          <div className="flex items-center justify-between mt-1 font-mono text-[11px] text-faint">
+          <div className="flex items-center justify-between mt-1 font-mono text-xs text-faint">
             <span>Scroll sideways for the roll →</span>
             <span>{photos.length} frames</span>
           </div>
@@ -133,9 +133,9 @@ export const PhotographyGallery: React.FC = () => {
               <div className="font-mono text-xs text-emerald-300 flex items-center gap-2">
                 <Camera className="w-3.5 h-3.5" />
                 <span>{photos[activeIndex].location}</span>
-                <span className="text-slate-600">|</span>
+                <span className="text-slate-500">|</span>
                 <span className="text-slate-400">{photos[activeIndex].cameraInfo}</span>
-                <span className="text-slate-600">|</span>
+                <span className="text-slate-500">|</span>
                 <span className="text-slate-400">{activeIndex + 1} of {photos.length}</span>
               </div>
               <div className="flex items-center gap-2">

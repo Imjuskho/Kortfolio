@@ -17,11 +17,13 @@ const LogoCard: React.FC<{ client: (typeof CLIENT_PARTNERS)[number] }> = ({ clie
         <img
           src={asset(client.logo)}
           alt=""
+          loading="lazy"
+          decoding="async"
           className="max-h-10 max-w-[80px] w-auto object-contain opacity-85 group-hover/tile:opacity-100 transition-opacity"
         />
       </div>
     ) : (
-      <div className="w-11 h-11 shrink-0 rounded-xl bg-surface-2 border border-border flex items-center justify-center font-mono text-[11px] font-bold tracking-tight text-muted group-hover/tile:text-accent group-hover/tile:border-accent/40 transition-colors overflow-hidden">
+      <div className="w-11 h-11 shrink-0 rounded-xl bg-surface-2 border border-border flex items-center justify-center font-mono text-xs font-bold tracking-tight text-muted group-hover/tile:text-accent group-hover/tile:border-accent/40 transition-colors overflow-hidden">
         {client.mark}
       </div>
     )}
@@ -29,7 +31,7 @@ const LogoCard: React.FC<{ client: (typeof CLIENT_PARTNERS)[number] }> = ({ clie
       <span className="text-sm font-semibold text-foreground group-hover/tile:text-accent transition-colors whitespace-nowrap">
         {client.name}
       </span>
-      <span className="text-[10px] font-mono uppercase tracking-wider text-faint">
+      <span className="text-xs font-mono uppercase tracking-wider text-faint">
         {client.sector}
       </span>
     </div>
@@ -105,7 +107,7 @@ export const ClientsMarquee: React.FC = () => {
             >
               <stat.icon className="w-4 h-4 text-accent mb-1.5" />
               <span className="text-2xl font-extrabold text-foreground font-mono tracking-tight">{stat.value}</span>
-              <span className="text-[11px] text-muted leading-tight mt-0.5">{stat.label}</span>
+              <span className="text-xs text-muted leading-tight mt-0.5">{stat.label}</span>
             </motion.div>
           ))}
         </div>

@@ -330,12 +330,12 @@ export const PROJECTS: Project[] = [
     localPath: "/Users/mac/Bao",
     badges: ["103 Engine Unit Tests", "Malawian & Zanzibari Rules", "SwiftUI Native", "Minimax Alpha-Beta AI"],
     previewImages: [
-      "/assets/projects/bawo_glass.png",
-      "/assets/projects/ipad-malawi.png",
-      "/assets/projects/iphone-malawi.png",
-      "/assets/projects/ipad-home.png",
-      "/assets/projects/iphone-kiswahili.png",
-      "/assets/projects/iphone-kujifunza.png"
+      "/assets/projects/bawo_glass.webp",
+      "/assets/projects/ipad-malawi.webp",
+      "/assets/projects/iphone-malawi.webp",
+      "/assets/projects/ipad-home.webp",
+      "/assets/projects/iphone-kiswahili.webp",
+      "/assets/projects/iphone-kujifunza.webp"
     ],
     impactMetrics: [
       { label: "Passing Tests", value: "103 Rules", detail: "+ 6 Architecture fitness functions" },

@@ -46,20 +46,24 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect, onO
 
         {/* Preview image if available */}
         {project.previewImages && project.previewImages.length > 0 && (
-          <div
+          <button
+            type="button"
             onClick={() => onSelect(project)}
-            className="relative mb-4 rounded-xl overflow-hidden aspect-video bg-surface-2 border border-border cursor-pointer group/img"
+            aria-label={`Open ${project.title} screenshots`}
+            className="relative block w-full mb-4 rounded-xl overflow-hidden aspect-video bg-surface-2 border border-border cursor-pointer group/img"
           >
             <img
               src={asset(project.previewImages[0])}
-              alt={project.title}
+              alt=""
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover object-center group-hover/img:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover/img:opacity-40 transition-opacity" />
             <div className="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-xs font-mono text-emerald-300 border border-white/10">
               {project.previewImages.length} Screenshots
             </div>
-          </div>
+          </button>
         )}
 
         {/* Badges / Highlights */}
