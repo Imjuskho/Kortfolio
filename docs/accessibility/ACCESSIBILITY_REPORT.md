@@ -9,7 +9,9 @@ a11y`, both themes, on the settled page (all deferred sections mounted).
 | --- | --- | --- |
 | Live baseline (pre-change) | 14 violations | 64 violations |
 | Local baseline (pre-change) | 25 (all sections mounted) | 16 |
-| **After fixes (`/kortfolio/` local build)** | **0 violations** | **0 violations** |
+| **After fixes — desktop 1280** | **0 violations** | **0 violations** |
+| **After fixes — mobile 390** | **0 violations** | — |
+| **After fixes — ArchitectureLab tabs** (AMR / SolarEdge / PocketBody / Bawo) | **0** each | **0** each |
 
 `counts` after fix: `{ violations: 0, passes: 45, incomplete: 1 (52 nodes),
 inapplicable: 44 }`.
@@ -93,18 +95,38 @@ Raised all `text-[10px]` / `text-[11px]` to `text-xs` (12 px) in
 | `#0a5aa8` | `#d5e6ed` | 5.38:1 |
 | white `.text-white` | `#115e59` | ≈ 10:1 |
 
+### 6. Non-default lab tabs (found by tab-by-tab audit)
+Because ArchitectureLab renders only the active simulator's DOM, a normal page
+audit misses the other three tabs. Clicking through them surfaced:
+
+- **Solar Edge Vision** — the two `<input type="range">` sliders had **no
+  accessible name**. Added `aria-label="Solar battery charge level"` and
+  `aria-label="CLIP similarity purge threshold"`.
+- **Bawo Traditional Game** — 22 × `text-amber-700` (#bb4d00) pit-index numbers
+  on the near-black board (#0b0806) = **3.96:1**. Changed to `text-amber-400`.
+- **Pocket Body Motion** — clean.
+
+All four tabs now report 0 violations.
+
+### Transient mid-animation false positive (documented, not a real defect)
+A one-off dark-theme reading flagged the Navbar scroll-spy label
+(`text-accent/90`) at 1.59:1. That sample was taken mid-flight during the
+`AnimatePresence` fade-in (text transitions `opacity 0 → 1` over 180 ms), so axe
+measured the label at ~10 % opacity. A settled re-audit of the same element
+reports **0**, and an independent computed-style check confirms the rendered
+colour is light emerald (`.oklab(0.77 -0.15 0.04 / 0.9)`) on `#090b10` — high
+contrast. Real users never see a failing state; it only appears if an automated
+audit samples during the entrance animation. `prefers-reduced-motion` removes
+the animation entirely.
+
 ## Remaining / recommended
 
-- **Manual keyboard pass** through the ArchitectureLab simulators' non-default
-  tabs (only the active tab's DOM is rendered, so axe cannot see the others).
-  The class patterns that were fixed recur there, so risk is low, but it is not
-  machine-verified.
 - **Focus-visible** styling relies on the global `:focus-visible` outline in
   `index.css`; verify on the new preview `<button>` and on high-contrast OS
   themes.
-- **`prefers-reduced-motion`** — Framer Motion entrance animations should honour
-  it. Recommend a global `MotionConfig reducedMotion="user"` (or media-query
-  guard). Not implemented in this pass.
-- **Viewport resize could not be forced** through the CLI (`agent-browser
-  viewport` did not change `window.innerWidth`), so a 390 px overlap pass is
-  carried from the prior design review rather than re-run here.
+- **`prefers-reduced-motion`** — **already handled**: `MotionConfig
+  reducedMotion="user"` in `App.tsx` plus the CSS `@media
+  (prefers-reduced-motion: reduce)` block in `index.css`.
+- **Mobile 390 px** — **verified**: `agent-browser set viewport 390 844` then
+  axe → 0 violations, and `scrollWidth − clientWidth = 0` (no horizontal
+  overflow).

@@ -1,9 +1,18 @@
 # SEO Report — Kortfolio
 
-## Status: strong
+## Status: strong (Lighthouse SEO 100)
 
-`index.html` already carries a complete, well-formed head. No changes were
-required for the core tags.
+`index.html` already carried a complete, well-formed head. Lighthouse SEO
+scores **100**. One consistency fix was applied: the schema/noscript contact
+email was reconciled to the address the UI actually surfaces.
+
+### Fix applied
+- JSON-LD `Person.email` and the `<noscript>` contact link were
+  `hello@bambamdev.com` while the UI copies `kayphanga@gmail.com`. Both were
+  changed to `kayphanga@gmail.com` so schema matches the visitor-facing contact.
+  (If `hello@bambamdev.com` is the preferred address, flip all three to it —
+  the key point is that they match.)
+- Added the LinkedIn profile to JSON-LD `sameAs`.
 
 ### Present and correct
 

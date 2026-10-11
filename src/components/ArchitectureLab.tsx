@@ -416,6 +416,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                       max="100"
                       value={batteryLevel}
                       onChange={(e) => setBatteryLevel(Number(e.target.value))}
+                      aria-label="Solar battery charge level"
                       className="w-full accent-emerald-400 cursor-pointer"
                     />
                     <div className="text-xs text-slate-400">
@@ -438,6 +439,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                       step="0.01"
                       value={clipThreshold}
                       onChange={(e) => setClipThreshold(Number(e.target.value))}
+                      aria-label="CLIP similarity purge threshold"
                       className="w-full accent-amber-400 cursor-pointer"
                     />
                     <div className="text-xs text-slate-400">
@@ -701,7 +703,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                           selectedPit === idx ? 'border-amber-400 bg-amber-950/80 scale-105' : 'border-amber-950/80 bg-black/60 hover:border-amber-700/60'
                         }`}
                       >
-                        <span className="text-xs font-mono text-amber-700">{idx}</span>
+                        <span className="text-xs font-mono text-amber-400">{idx}</span>
                         <span className="text-lg font-bold font-mono text-amber-200">{seeds}</span>
                       </button>
                     ))}
@@ -717,7 +719,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                           selectedPit === idx + 8 ? 'border-amber-400 bg-amber-950/80 scale-105' : 'border-amber-950/80 bg-black/60 hover:border-amber-700/60'
                         }`}
                       >
-                        <span className="text-xs font-mono text-amber-700">{idx + 8}</span>
+                        <span className="text-xs font-mono text-amber-400">{idx + 8}</span>
                         <span className="text-lg font-bold font-mono text-amber-200">{seeds}</span>
                       </button>
                     ))}
@@ -737,7 +739,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                             isNyumba ? 'border-amber-500/60 bg-amber-950/40' : 'border-amber-950/80 bg-black/60 hover:border-emerald-700/60'
                           }`}
                         >
-                          <span className="text-xs font-mono text-amber-700">
+                          <span className="text-xs font-mono text-amber-400">
                             {pitIndex} {isNyumba && '★'}
                           </span>
                           <span className="text-lg font-bold font-mono text-white">{seeds}</span>
@@ -759,7 +761,7 @@ export const ArchitectureLab: React.FC<ArchitectureLabProps> = ({ initialSimulat
                           selectedPit === idx + 24 ? 'border-emerald-400 bg-emerald-950/80 scale-105' : 'border-amber-950/80 bg-black/60 hover:border-emerald-700/60'
                         }`}
                       >
-                        <span className="text-xs font-mono text-amber-700">{idx + 24}</span>
+                        <span className="text-xs font-mono text-amber-400">{idx + 24}</span>
                         <span className="text-lg font-bold font-mono text-amber-200">{seeds}</span>
                       </button>
                     ))}

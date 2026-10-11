@@ -32,6 +32,20 @@ attack surface is therefore small.
 | Permissions-Policy | **absent** | Add a restrictive policy. |
 | X-Frame-Options / `frame-ancestors` | **absent** | Add `frame-ancestors 'none'`. |
 
+### Applied in-repo (`public/.htaccess`, this pass)
+
+Low-risk headers added to the repo's `.htaccess` (subject to the host honouring
+them — hcdn overrides are the known issue):
+
+- `X-Content-Type-Options: nosniff`
+- `Referrer-Policy: strict-origin-when-cross-origin`
+- Immutable caching for content-hashed assets (`max-age=31536000, immutable`)
+- `sw.js` explicitly `no-cache, no-store, must-revalidate` + `Pragma: no-cache`
+  (rule is last so it wins over the immutable `.js` rule).
+
+**Not** applied (require testing on the real host to avoid breaking the app):
+CSP, HSTS, Permissions-Policy, removing the global ACAO.
+
 ### Caching anomaly (integrity-adjacent)
 
 Live `sw.js` is served with `cache-control: public, max-age=604800`, **despite**

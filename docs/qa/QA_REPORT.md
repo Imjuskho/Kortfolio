@@ -14,10 +14,19 @@ passing on intent alone.
 
 ## Accessibility (axe-core 4.12.1, settled page, all sections mounted)
 
-| Theme | Violations | Passes | Incomplete |
+| Surface | Violations | Passes | Incomplete |
 | --- | --- | --- | --- |
-| Light | **0** | 45 | 1 (52 gradient-bg nodes) |
-| Dark | **0** | 45 | 1 |
+| Desktop 1280 — light | **0** | 45 | 1 (52 gradient-bg nodes) |
+| Desktop 1280 — dark | **0** | 45 | 1 |
+| Mobile 390 — light | **0** | 45 | 1 |
+| Lab tab — Solar Edge Vision | **0** | 45 | 1 |
+| Lab tab — Pocket Body Motion | **0** | 45 | 1 |
+| Lab tab — Bawo Traditional Game | **0** | 45 | 1 |
+
+## Lighthouse (mobile, median of 3)
+
+Performance **86** · Accessibility **100** · Best Practices **100** · SEO **100**.
+LCP 3.04 s · FCP 3.0 s · TBT 0 ms · CLS 0.000. (See Performance report.)
 
 ## Behavioural checks
 
@@ -28,30 +37,33 @@ passing on intent alone.
 | No stale asset refs | `rg` for removed `.png`/`.jpg` names | clean |
 | WebP outputs valid | `cwebp` output inspection | valid, opaque |
 | CLS on clean load (light) | `PerformanceObserver layout-shift, buffered` | 0 shifts |
-| No horizontal overflow | `scrollWidth − clientWidth` | 0 at the tested width |
+| No horizontal overflow 390 px | `agent-browser set viewport 390 844` + `scrollWidth − clientWidth` | 0 |
+| No horizontal overflow 1280 px | same | 0 |
+| Reduced-motion | `MotionConfig reducedMotion="user"` + CSS media query | present |
 
 ## Lab performance (local `vite preview`, warm cache — Lab only)
 
 FCP ≈ 60 ms · LCP ≈ 1072 ms · CLS 0.00.
 
-## Coverage gaps (documented, not hidden)
+## Coverage — now closed since first draft
 
-1. **Mobile viewport** — the CLI `viewport` command did not change
-   `window.innerWidth`, so a live 390 px overlap re-test could not be run;
-   carried from the prior design review. The one "wide" element found
-   (ClientsMarquee `w-max animate-marquee`) is inside an `overflow-hidden`
-   clip by design.
-2. **ArchitectureLab non-default tabs** — only the active tab's DOM is
-   rendered; axe cannot see the other simulators. Patterns were fixed
-   globally, but a manual keyboard pass is recommended.
-3. **Lighthouse** not installed → the ≥3-run median protocol and CWV field
-   data were not collected. Report is Lab-only.
-4. **Screen-reader spot check** — axe + DOM semantics only; no NVDA/VoiceOver
+- ✅ Mobile 390 px viewport (axe + overflow) — **done**.
+- ✅ ArchitectureLab non-default tabs (all three audited) — **done**.
+- ✅ Lighthouse ≥3-run median — **done** (86/100/100/100).
+
+## Coverage gaps (remaining, documented)
+
+1. **Field / CrUX CWV** — only Lab data (Lighthouse + localhost). Real-user
+   metrics require the deployed site + analytics.
+2. **Screen-reader spot check** — axe + DOM semantics only; no NVDA/VoiceOver
    pass was run.
-5. **Cross-browser** — Chromium (agent-browser) only; no Safari/Firefox run.
+3. **Cross-browser** — Chromium (agent-browser + Lighthouse) only; no
+   Safari/Firefox run.
+4. **Deeper keyboard walkthrough** — project preview buttons verified
+   focusable/reachable; a full tab-order walkthrough of every simulator control
+   was not scripted.
 
 ## Recommendation
 
 Ship with these limitations documented (see `docs/FINAL_RELEASE_REPORT.md`).
-Before public launch, run: real-device 390/768/1280 passes, one Lighthouse
-median, and a short VoiceOver/NVDA sweep.
+Before public launch, run: a VoiceOver/NVDA sweep and a Safari/Firefox pass.

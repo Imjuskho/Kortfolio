@@ -20,9 +20,20 @@
 # --- Headers ---
 <IfModule mod_headers.c>
   Header set Access-Control-Allow-Origin "*"
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Content-hashed build assets are safe to cache immutably. (sw.js is matched
+  # here too, but the more specific rule below is last, so it wins for sw.js.)
+  <FilesMatch "\.(js|css|woff2?|webp|png|jpe?g|svg|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
 
   # The service worker must never be cached, so updates are picked up promptly.
+  # NOTE: Hostinger's hcdn currently overrides this at the edge (served
+  # `max-age=604800`); the effective fix must be applied in the host/edge config.
   <FilesMatch "sw\.js$">
-    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header always set Cache-Control "no-cache, no-store, must-revalidate"
+    Header always set Pragma "no-cache"
   </FilesMatch>
 </IfModule>

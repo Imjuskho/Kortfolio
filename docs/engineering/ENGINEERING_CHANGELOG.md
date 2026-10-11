@@ -44,6 +44,21 @@ Branch: `improve/kortfolio-production-audit` (off `main` @ `de0b3ea`).
 - Dead assets `ipad-kiswahili.png`, `iphone-home.png`, `kondwani.png`,
   `kondwani.jpg`.
 
+## Second pass — gap closure
+
+- `index.html` — added desktop-scoped hero-image preload
+  (`media="(min-width: 1024px)"`); reconciled JSON-LD/noscript contact email to
+  `kayphanga@gmail.com`; added LinkedIn to JSON-LD `sameAs`.
+- `public/.htaccess` — added `X-Content-Type-Options`, `Referrer-Policy`,
+  immutable caching for hashed assets, and an explicit `sw.js` no-cache rule
+  (last, so it wins).
+- `public/assets/profile/kondwani.webp` — re-encoded 1000²/122 KB → 900²/53 KB.
+- `src/components/ArchitectureLab.tsx` — added `aria-label` to the two Solar
+  Edge range sliders; Bawo pit-index numbers `text-amber-700` → `text-amber-400`
+  (3.96:1 → AA).
+- Trialled `LazyMotion`+`m` bundle reduction — **measured no gain**, reverted
+  (documented in the Performance report).
+
 ## Verification (all executed)
 
 | Check | Command | Result |
@@ -52,8 +67,12 @@ Branch: `improve/kortfolio-production-audit` (off `main` @ `de0b3ea`).
 | Lint | `npm run lint` | pass |
 | Tests | `npm test` | 14/14 pass |
 | Build | `npm run build` | pass |
-| axe light | `agent-browser a11y` | **0** violations |
-| axe dark | `agent-browser a11y` | **0** violations |
+| axe light 1280 | `agent-browser a11y` | **0** violations |
+| axe dark 1280 | `agent-browser a11y` | **0** violations |
+| axe light 390 | `agent-browser set viewport 390 844` + `a11y` | **0** violations |
+| axe — lab tabs (×3 non-default) | click tab + `a11y` | **0** violations |
+| Lighthouse median (×3) | `npx lighthouse` | Perf 86 / A11y 100 / BP 100 / SEO 100 |
+| Overflow 390 / 1280 | `scrollWidth − clientWidth` | 0 / 0 |
 
 ## Rollback
 
