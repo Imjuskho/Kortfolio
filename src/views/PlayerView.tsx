@@ -2,16 +2,22 @@ import React, { useMemo, useState } from 'react';
 import {
   ArrowRight,
   Briefcase,
+  Clapperboard,
+  Compass,
   Download,
+  Globe,
   GraduationCap,
   MapPin,
   Search,
   ShieldCheck,
   Sparkles,
+  Terminal,
   Wrench,
 } from 'lucide-react';
 import { PageHeader, SectionLabel } from '../components/GameUI';
 import {
+  BRAND_DIMENSIONS,
+  BRAND_DIMENSIONS_INTRO,
   CAREER_EXPERIENCES,
   CLIENT_PARTNERS,
   EDUCATION_CREDENTIALS,
@@ -23,6 +29,32 @@ import {
 import { Link } from '../lib/router';
 import { asset } from '../lib/asset';
 import { track } from '../lib/analytics';
+
+const DIMENSION_ICONS = {
+  compass: Compass,
+  terminal: Terminal,
+  clapperboard: Clapperboard,
+  globe: Globe,
+};
+
+const TONE_STYLES = {
+  amber: {
+    icon: 'text-amber',
+    line: 'bg-amber',
+  },
+  mint: {
+    icon: 'text-mint',
+    line: 'bg-mint',
+  },
+  violet: {
+    icon: 'text-violet',
+    line: 'bg-violet',
+  },
+  cyan: {
+    icon: 'text-cyan-400',
+    line: 'bg-cyan-400',
+  },
+};
 
 const SOCIALS = [
   { label: 'GitHub', href: PERSONAL_INFO.github },
@@ -122,15 +154,61 @@ export const PlayerView: React.FC = () => {
             </footer>
           </blockquote>
 
-          <div className="mt-7 grid grid-cols-2 gap-3 xl:grid-cols-4">
-            {PERSONAL_INFO.stats.map((stat) => (
-              <div key={stat.tag} className="panel-quiet p-3.5">
-                <p className="meta-label text-mint">{stat.tag}</p>
-                <p className="mt-1 font-display text-xl font-semibold text-ink sm:text-2xl">{stat.value}</p>
-                <p className="mt-1 text-xs leading-snug text-muted">{stat.label}</p>
+          {/* Four-Dimensional Personal Brand Section */}
+          <section aria-labelledby="brand-dimensions-title" className="mt-8 border-t border-line/60 pt-6">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="h-px w-5 bg-mint" aria-hidden="true" />
+                <span className="hud-label text-mint">{BRAND_DIMENSIONS_INTRO.eyebrow}</span>
               </div>
-            ))}
-          </div>
+              <h3 id="brand-dimensions-title" className="mt-2 font-display text-xl font-semibold tracking-tight text-ink sm:text-2xl">
+                {BRAND_DIMENSIONS_INTRO.heading}
+              </h3>
+              <p className="body-copy mt-1.5 max-w-2xl text-xs sm:text-sm">
+                {BRAND_DIMENSIONS_INTRO.supportingCopy}
+              </p>
+            </div>
+
+            <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
+              {BRAND_DIMENSIONS.map((dim) => {
+                const IconComponent = DIMENSION_ICONS[dim.icon];
+                const toneStyle = TONE_STYLES[dim.tone];
+                return (
+                  <article
+                    key={dim.id}
+                    className="panel-quiet flex flex-col justify-between p-3.5 sm:p-4 transition-colors duration-200 hover:border-line-strong"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="font-mono text-[10px] font-medium uppercase tracking-[0.06em] text-muted">
+                          {dim.label}
+                        </span>
+                        <IconComponent className={`h-4 w-4 flex-shrink-0 ${toneStyle.icon}`} aria-hidden="true" />
+                      </div>
+                      <h4 className="mt-2.5 font-display text-base font-semibold text-ink">
+                        {dim.heading}
+                      </h4>
+                      <p className="mt-1.5 text-xs leading-relaxed text-muted">
+                        {dim.body}
+                      </p>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+
+            <aside
+              aria-label="Underlying philosophy"
+              className="mt-4 border-l-2 border-line-mint bg-void-deep/60 px-4 py-3"
+            >
+              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-faint">
+                {BRAND_DIMENSIONS_INTRO.philosophyLabel}
+              </p>
+              <p className="mt-1 font-display text-xs italic leading-relaxed text-ink sm:text-sm">
+                “{BRAND_DIMENSIONS_INTRO.philosophyStatement}”
+              </p>
+            </aside>
+          </section>
         </div>
       </section>
 

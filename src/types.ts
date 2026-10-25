@@ -22,6 +22,15 @@ export interface ImpactStat {
   unit?: string;
 }
 
+export interface BrandDimension {
+  id: string;
+  label: string;
+  heading: string;
+  body: string;
+  icon: 'compass' | 'terminal' | 'clapperboard' | 'globe';
+  tone: 'amber' | 'mint' | 'violet' | 'cyan';
+}
+
 export interface ArchitectureLayer {
   name: string;
   components: string[];

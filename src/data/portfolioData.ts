@@ -1,4 +1,4 @@
-import { Project, PhotoAsset, EngineeringThesis, CareerExperience, EducationEntry, ImpactStat, OriginStage } from '../types';
+import { Project, PhotoAsset, EngineeringThesis, CareerExperience, EducationEntry, ImpactStat, OriginStage, BrandDimension } from '../types';
 
 export const PERSONAL_INFO = {
   name: "Kondwani Austin Phanga",
@@ -30,6 +30,49 @@ export const PERSONAL_INFO = {
     { tag: "SECURITY", value: "84 Fixes", number: "84", unit: "Fixes", label: "Audit findings closed", detail: "Drove every open item to 100% automated-test compliance." },
     { tag: "EDGE AI", value: "553 Points", number: "553", unit: "Points", label: "On-device movement AI", detail: "Pose and hand tracking that runs locally — no cloud, no signal." },
   ] as ImpactStat[]
+};
+
+export const BRAND_DIMENSIONS: BrandDimension[] = [
+  {
+    id: "person",
+    label: "01 / THE PERSON",
+    heading: "Curiosity First",
+    body: "A lifelong fascination with technology, experimentation, and what could exist beyond the obvious.",
+    icon: "compass",
+    tone: "amber",
+  },
+  {
+    id: "builder",
+    label: "02 / THE BUILDER",
+    heading: "Ideas Into Systems",
+    body: "Turning complex problems into practical products, intelligent tools, and working solutions.",
+    icon: "terminal",
+    tone: "mint",
+  },
+  {
+    id: "creative",
+    label: "03 / THE CREATIVE",
+    heading: "Think Differently",
+    body: "Bringing technology, storytelling, design, and experimentation together to create something distinctive.",
+    icon: "clapperboard",
+    tone: "violet",
+  },
+  {
+    id: "entrepreneur",
+    label: "04 / THE ENTREPRENEUR",
+    heading: "Build Beyond Borders",
+    body: "Creating ventures and digital products from Malawi with the ambition to solve problems globally.",
+    icon: "globe",
+    tone: "cyan",
+  },
+];
+
+export const BRAND_DIMENSIONS_INTRO = {
+  eyebrow: "BEYOND THE PORTFOLIO",
+  heading: "Four sides of how I build.",
+  supportingCopy: "Curiosity drives the ideas. Engineering makes them real. Creativity makes them meaningful. Entrepreneurship gives them direction.",
+  philosophyLabel: "THE UNDERLYING PHILOSOPHY",
+  philosophyStatement: "I’m interested in what happens when curiosity meets execution—and an idea becomes something people can actually use.",
 };
 
 // Client & partner organizations. `mark` is the typographic seal rendered

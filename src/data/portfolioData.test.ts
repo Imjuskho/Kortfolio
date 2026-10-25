@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { CLIENT_PARTNERS, PERSONAL_INFO, PROJECTS, PHOTOGRAPHY_GALLERY } from './portfolioData';
+import { CLIENT_PARTNERS, PERSONAL_INFO, PROJECTS, PHOTOGRAPHY_GALLERY, BRAND_DIMENSIONS, BRAND_DIMENSIONS_INTRO } from './portfolioData';
 
 const publicDir = resolve(process.cwd(), 'public');
 
@@ -12,6 +12,26 @@ describe('portfolio data integrity', () => {
       const file = resolve(publicDir, partner.logo.replace(/^\/+/, ''));
       expect(existsSync(file), `missing logo for ${partner.name}: ${partner.logo}`).toBe(true);
     }
+  });
+
+  it('brand dimensions provide complete four-dimensional identity data', () => {
+    expect(BRAND_DIMENSIONS).toHaveLength(4);
+    const expectedIds = ['person', 'builder', 'creative', 'entrepreneur'];
+    expect(BRAND_DIMENSIONS.map((d) => d.id)).toEqual(expectedIds);
+
+    for (const dim of BRAND_DIMENSIONS) {
+      expect(dim.id).toBeTruthy();
+      expect(dim.label).toMatch(/^0[1-4] \//);
+      expect(dim.heading).toBeTruthy();
+      expect(dim.body).toBeTruthy();
+      expect(['compass', 'terminal', 'clapperboard', 'globe']).toContain(dim.icon);
+    }
+
+    expect(BRAND_DIMENSIONS_INTRO.eyebrow).toBe('BEYOND THE PORTFOLIO');
+    expect(BRAND_DIMENSIONS_INTRO.heading).toBe('Four sides of how I build.');
+    expect(BRAND_DIMENSIONS_INTRO.supportingCopy).toContain('Curiosity drives the ideas');
+    expect(BRAND_DIMENSIONS_INTRO.philosophyLabel).toBe('THE UNDERLYING PHILOSOPHY');
+    expect(BRAND_DIMENSIONS_INTRO.philosophyStatement).toContain('curiosity meets execution');
   });
 
   it('every impact stat exposes the fields the UI depends on', () => {
