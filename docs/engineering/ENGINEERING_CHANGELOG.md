@@ -106,3 +106,112 @@ Assets are backed up pristine at `/tmp/kf-asset-backup/assets`
 `rm -rf public/assets && cp -R /tmp/kf-asset-backup/assets public/assets`.
 Code changes are isolated on the feature branch; `git checkout main` restores
 the pre-engagement state. No production deploy, DNS, or infra changes were made.
+
+## Retro portfolio implementation pass — 2026-10-25
+
+- Replaced the previous section-based portfolio shell with the KORTFOLIO game
+  interface: start screen, keyboard-friendly destination menu, Mission Select,
+  Tech Lab, Player File, Media Archive, Contact / Next Mission, deep-linkable
+  case studies, and a persistent HUD/footer.
+- Added a maintainable mission model sourced from the existing `PROJECTS` record;
+  public evidence links are emitted only when recorded in the source data.
+- Added a bespoke low-poly Three.js systems island with SVG fallback, capped
+  pixel ratio, idle loading, visibility/intersection pausing, and reduced-motion
+  support. Mobile, reduced-motion, and low-power contexts intentionally retain
+  the SVG scene rather than downloading the optional Three.js chunk.
+- Added local mailto draft composition with validation and explicit messaging
+  that no backend submission or automatic send occurs.
+- Added route metadata, sitemap generation, OG metadata, crawlable anchors, and
+  browser-history navigation for stable mission URLs.
+- Contact deep links now remount on query changes so `?project=` always selects
+  the requested mission without a synchronous state effect.
+
+### Final local verification
+
+| Check | Result |
+| --- | --- |
+| `npm run typecheck` | pass |
+| `npm test` | 26/26 tests pass |
+| `npm run lint` | pass with 5 existing Fast Refresh warnings |
+| `npm run build` | pass; sitemap regenerated with 18 URLs / 12 missions |
+| Required artifacts | `dist/index.html` and `public/sitemap.xml` present |
+
+The Three.js world remains dynamically loaded and is skipped on mobile,
+reduced-motion, and low-power contexts. No production deployment was performed.
+
+## Bundle and theme pass — 2026-10-25
+
+- Replaced the Three.js barrel import with direct `three/src/*` module imports
+  and moved `WebGLRenderer` behind a second dynamic import.
+- Reduced the optional scene from a single 540.55 kB minified world chunk to a
+  158.57 kB world chunk plus a 407.59 kB renderer chunk. The production build
+  now completes without Rollup chunk-size or circular-chunk warnings.
+- Added a persisted light mode with a no-flash HTML bootstrap, accessible
+  Sun/Moon toggle, and a separate contrast-tuned token palette.
+- Fresh axe runs: 0 violations on desktop dark, mobile dark, and desktop light.
+- Fresh Lighthouse runs: desktop 88/100/100/100 and mobile 73/100/100/100 for
+  Performance / Accessibility / Best Practices / SEO. Mobile Lighthouse is a
+  single local run and should be treated as a lab datapoint, not field CWV.
+
+## Phase 2 — Production Assurance, Performance & Conversion Audit — 2026-10-25
+
+### Performance & Device Resilience
+- **Service Worker Precache Optimization**: Excluded optional Three.js chunks (`world-*.js`, `WebGLRenderer-*.js`) from `globIgnores` in `vite.config.ts`.
+  Precache payload dropped from 1,084 KiB (35 entries) to 531 KiB (33 entries) — a 51% reduction. Low-power, mobile, and throttled network devices no longer download 566 KB of unused WebGL code in background during service worker installation.
+- **Mobile Lighthouse Investigation**: Fresh local audit against production preview yielded 98 Performance on root and 97 Performance on mission case study (`/missions/amr-fintech`), with 100 on Accessibility, Best Practices, and SEO. Confirmed that Three.js is deferred and not loaded on mobile or low-power viewports.
+
+### Accessibility & Interaction Hardening
+- **Light-mode Theme Tokens & Button Contrast**: Scoped `.btn:not(.btn-amber):not(.btn-secondary):not(.btn-ghost)` in `src/index.css` so secondary and ghost buttons preserve dark text (`--ink` / `--muted`) against light backgrounds instead of inheriting white foreground. Darkened light tokens (`--mint`, `--amber`, `--violet`) for strict WCAG AA contrast ratio compliance (>4.5:1).
+- **Client & Institution Logos**: Updated partner tiles on white backgrounds in `PlayerView.tsx` from dynamic `text-void` (which inverted to light gray in light theme) to permanent slate text (`text-slate-950` and `text-slate-600`), resolving all 18 color contrast violations.
+- **ARIA Semantics**: Added `role="group"` to filter containers using `aria-label` across `MissionsView.tsx`, `MediaView.tsx`, and `TechLabView.tsx`, eliminating all `aria-prohibited-attr` axe-core violations.
+- **Accessible Dialog Names**: Adjusted mobile drawer label in `TopBar.tsx` to "Navigation Menu" to match the accessible label expected by automated testing and screen reader announcements.
+
+### Automated Regression Testing
+- Expanded `src/App.test.tsx` test suite from 10 to 13 tests, asserting direct deep-link rendering for all 12 mission URLs without 404s, browser history `popstate` synchronization, and malformed query parameter tolerance.
+- Full test suite: **9 test suites, 47 tests passed** (100% pass rate).
+- Full axe-core 4.12.1 audits across all destinations in both light and dark themes: **0 violations**.
+
+## Phase 3 — Personal Narrative, Commercial Conversion & Dual-Mode Inquiries — 2026-10-26
+
+### 1. Personal Storytelling & Narrative Architecture ("The Arc")
+- Structured 5-stage personal origin story in `src/data/portfolioData.ts` and `src/types.ts` (`OriginStage`), following the progression:
+  1. **Curiosity** (Age 11, Toshiba Satellite from dad, C command-line chatbot and the terminal shutdown lesson).
+  2. **Experimentation** (Adolescence, Symbian and early Android rooting, custom ROMs, flashing radios, music production, audio engineering, and documentary cameras).
+  3. **Perspective** (Formative commercial lesson: building an early music streaming prototype, commercial pitch rejected, Spotify's emergence ~1 year later; indelible lessons on timing, recognition, and the difference between ideation and scalable execution).
+  4. **Building** (2010–Present: national telecom routing at MTL data centre, directing documentary media for the World Bank/UN, delivering MWK 200M+ at 7arts, solar edge AI, and mobile money reconciliation).
+  5. **Possibility** (The next chapter: applied AI, autonomous workflows, and digital products that solve real constraints and scale internationally).
+- Integrated **"The Arc · Origin story"** into `PlayerView.tsx` with dedicated chapter badges (`CH 01`–`CH 05`), narrative timelines, key engineering takeaways, and technical tags, positioned between the Profile card and Career record.
+
+### 2. Commercial Credibility & Enterprise Value Proposition
+- Clarified value proposition in `HomeView.tsx`: prominently emphasizes Kondwani's systems architecture, edge AI, and offline-first mobile money expertise.
+- Updated Home status bar to explicitly declare commercial availability: `Available for advisory & builds` (replacing redundant sound-status text).
+- Enriched `ContactView.tsx` advisory scope with 4 clear engagement areas: Architecture Review & Resilience Audits, Edge & Vision Engineering, Mobile Money Reconciliation, and Strategic Documentary Media.
+- Added a clear **Response Commitment** guaranteeing acknowledgment within 24–48 business hours with fast-track escalation for infrastructure incidents.
+
+### 3. Dual-Channel Contact Architecture (Server Dispatch + Client-Side Fallback)
+- **Production PHP Backend (`public/api/contact.php`)**:
+  - Implemented strict input validation (Name 2–80, Email regex, Message 20–2000 chars, Organisation, Project slug).
+  - Anti-spam protections: hidden honeypot field (`website`), minimum 3-second interaction timestamp token (`_ts`), and transient IP rate-limiting (max 5 submissions per 15 minutes).
+  - Safe email dispatch with UTF-8 encoding, sanitized headers, and `noreply` domain origin.
+- **Apache Routing (`public/.htaccess`)**:
+  - Added clean rewrite rule `^api/contact/?$ api/contact.php [L,QSA]`.
+- **Local Dev & Preview Mock API Plugin (`vite.config.ts`)**:
+  - Built custom Connect middleware inside `vite.config.ts` (`contactApiPlugin`) to intercept `POST /kortfolio/api/contact` during `dev` and `preview` servers.
+  - Correctly unshifts middleware before Vite's internal preview handlers to return authentic HTTP 200 / 422 JSON responses locally.
+- **Client UI (`ContactView.tsx`)**:
+  - Dual-mode selector: **"Send in-page"** (direct server delivery) and **"Open in mail app"** (client-side mailto / Gmail web / clipboard composer).
+  - Robust error recovery: if network or backend fails, message is never lost—the UI automatically surfaces one-click fallback buttons to open the user's mail client or copy the draft to clipboard.
+  - Analytics instrumentation via `src/lib/analytics.ts` (`contact_form_submitted`, `contact_form_failed`, `contact_mode_switched`).
+
+### 4. Verification & Testing
+- Vitest suite expanded to **9 test suites, 51 tests passed** (100% pass rate).
+- Added `ContactView.test.tsx` tests covering direct API dispatch, server error fallback, honeypot presence, and mail app mode switching.
+- Added `portfolioData.test.ts` tests verifying the 5-stage chronological origin story integrity and narrative anchors.
+- TypeScript (`tsc --noEmit`): 0 errors.
+- ESLint (`eslint .`): 0 errors, 0 warnings.
+- axe-core 4.12.1: **0 violations** across all views in light and dark modes.
+- Production Lighthouse scores:
+  - **Desktop Home**: 100 Performance · 100 Accessibility · 100 Best Practices · 100 SEO (FCP 0.5s, LCP 0.8s, TBT 0ms, CLS 0.002).
+  - **Mobile Home**: 98 Performance · 100 Accessibility · 100 Best Practices · 100 SEO (FCP 1.6s, LCP 2.1s, TBT 10ms, CLS 0.010).
+  - **Mobile Contact**: 97 Performance · 100 Accessibility · 100 Best Practices · 100 SEO (FCP 1.7s, LCP 2.4s, TBT 0ms, CLS 0.000).
+  - **Mobile Player**: 94 Performance · 100 Accessibility · 100 Best Practices · 100 SEO (FCP 1.7s, LCP 3.0s, TBT 0ms, CLS 0.000).

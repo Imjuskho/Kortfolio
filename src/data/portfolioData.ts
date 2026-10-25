@@ -1,4 +1,4 @@
-import { Project, PhotoAsset, EngineeringThesis, CareerExperience, EducationEntry, ImpactStat } from '../types';
+import { Project, PhotoAsset, EngineeringThesis, CareerExperience, EducationEntry, ImpactStat, OriginStage } from '../types';
 
 export const PERSONAL_INFO = {
   name: "Kondwani Austin Phanga",
@@ -39,6 +39,8 @@ export interface ClientPartner {
   mark: string;
   sector: string;
   logo?: string;
+  /** The source mark is white-on-transparent and needs a dark rendering on light cards. */
+  logoNeedsContrast?: boolean;
 }
 
 export const CLIENT_PARTNERS: ClientPartner[] = [
@@ -48,7 +50,7 @@ export const CLIENT_PARTNERS: ClientPartner[] = [
   { name: "European Union (EU)", mark: "EU", sector: "Multilateral", logo: "/assets/logos/eu.svg" },
   { name: "US Embassy", mark: "US", sector: "Diplomatic Mission", logo: "/assets/logos/us-embassy.png" },
   { name: "British High Commission", mark: "UK", sector: "Diplomatic Mission", logo: "/assets/logos/british-high-commission.png" },
-  { name: "National Bank of Malawi", mark: "NBM", sector: "Banking & Finance", logo: "/assets/logos/nbm.png" },
+  { name: "National Bank of Malawi", mark: "NBM", sector: "Banking & Finance", logo: "/assets/logos/nbm.png", logoNeedsContrast: true },
   { name: "Welthungerhilfe", mark: "WHH", sector: "Humanitarian NGO", logo: "/assets/logos/welthungerhilfe.svg" },
   { name: "Malawi Telecommunications Ltd", mark: "MTL", sector: "Telecommunications", logo: "/assets/logos/mtl.png" },
 ];
@@ -135,6 +137,54 @@ export const EDUCATION_CREDENTIALS: EducationEntry[] = [
     location: "Zomba, Malawi",
     period: "2003 – 2006",
     focus: "Physical Sciences, Mathematics & Computer Fundamentals"
+  }
+];
+
+export const ORIGIN_STAGES: OriginStage[] = [
+  {
+    id: 'stage-curiosity',
+    stage: 'Curiosity',
+    period: 'Age 11',
+    title: 'The Toshiba Satellite & The Angry Chatbot',
+    narrative: 'At age 11, my dad gave me a Toshiba Satellite laptop. I quickly became fascinated by computers, games, and a command-line chatbot written in C. It was more than a novelty—the program could interact in real time, and if I pushed it too far or made it angry enough, it issued a hard shutdown command directly to the PC. Seeing lines of logic enforce physical consequences on the machine hooked me for good.',
+    takeaway: 'Code is never just text; software exerts direct consequence on hardware.',
+    tags: ['Toshiba Satellite', 'C Chatbot', 'Terminal', 'First Machine']
+  },
+  {
+    id: 'stage-experimentation',
+    stage: 'Experimentation',
+    period: 'Adolescence & Early Years',
+    title: 'Mobile Customization, Rooting & Creative Rigs',
+    narrative: 'My curiosity expanded through Symbian and Android customization, rooting phones, and building early mobile tools. In parallel, I immersed myself in music production, audio engineering, photography, and videography. Technology was never separate from sound, imagery, and human feeling.',
+    takeaway: 'Practical intuition grew by exploring open systems and connecting software with creative production.',
+    tags: ['Symbian', 'Android Customization', 'Phone Rooting', 'Music Production', 'Videography']
+  },
+  {
+    id: 'stage-perspective',
+    stage: 'Perspective',
+    period: 'Formative Commercial Lesson',
+    title: 'The Music-Streaming App & The Spotify Lesson',
+    narrative: 'Driven by audio and code, I built an early music-streaming application and pitched it to a commercial company. The pitch was rejected. Roughly a year later, Spotify emerged on the global stage. That experience taught me foundational business lessons: the uncertainty of recognition, the unforgiving truth of market timing, and the immense gulf between conceiving an idea and having the infrastructure, capital, and execution to scale it.',
+    takeaway: 'Ideas are cheap; timing, distribution, and relentless execution decide survival.',
+    tags: ['Music Streaming', 'Market Timing', 'Execution Over Ideation', 'Resilience']
+  },
+  {
+    id: 'stage-building',
+    stage: 'Building',
+    period: '2010 – Present',
+    title: 'Server Racks, Multilateral Missions & Edge Systems',
+    narrative: 'Over the last ten years, my work grounded itself in production reality. Inside the server rooms of Malawi Telecommunications Limited (MTL), I supported core infrastructure and disaster recovery runbooks. As Managing Director at 7arts, I delivered contracts with multilateral partners including the World Bank, UNDP, and UNICEF. In parallel, I engineered solar edge cameras, on-device movement AI, and audit-compliant mobile money reconciliation platforms.',
+    takeaway: 'Production software must respect erratic power, low bandwidth, and real human lives.',
+    tags: ['MTL Data Centre', '7arts MD', 'UN & World Bank', 'Edge AI', 'MWK 200M+']
+  },
+  {
+    id: 'stage-possibility',
+    stage: 'Possibility',
+    period: 'The Next Chapter',
+    title: 'Applied AI, Automation & International Scale',
+    narrative: 'The next chapter focuses on the intersection of deep engineering, creative direction, and business strategy: building autonomous workflows, on-device AI tools, and resilient software architectures that solve practical problems and scale internationally.',
+    takeaway: 'The future belongs to builders who connect hardware reality, intelligent software, and human clarity.',
+    tags: ['Applied AI', 'Automation', 'Enterprise Scale', 'Cross-Border Products']
   }
 ];
 
@@ -620,21 +670,21 @@ export const PHOTOGRAPHY_GALLERY: PhotoAsset[] = [
   },
   {
     id: "p3",
-    title: "Rural Infrastructure & Settlement Geographies",
-    location: "Lilongwe Rural Outposts",
-    category: "Infrastructure",
+    title: "Studio Portrait — Blue Peplum",
+    location: "Malawi",
+    category: "Portraits",
     url: "/assets/photos/photo_3.jpg",
-    description: "Documenting the physical environments where solar micro-grids and offline-first mobile systems operate daily.",
-    cameraInfo: "Nikon D-series • Wide-Angle"
+    description: "A studio portrait from the archive. The subject and commission details are not recorded.",
+    cameraInfo: "Studio portrait"
   },
   {
     id: "p4",
-    title: "Texture of Everyday Life",
-    location: "Lake Malawi Shoreline",
-    category: "Landscape",
+    title: "Studio Portrait — Crimson Cap",
+    location: "Malawi",
+    category: "Portraits",
     url: "/assets/photos/photo_4.jpg",
-    description: "Visual documentation of water networks, trade passages, and informal market gathering spots.",
-    cameraInfo: "Nikon D-series"
+    description: "A studio portrait from the archive. The subject and commission details are not recorded.",
+    cameraInfo: "Studio portrait"
   },
   {
     id: "p_aerial",

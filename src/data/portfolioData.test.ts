@@ -41,4 +41,36 @@ describe('portfolio data integrity', () => {
       expect(existsSync(file), `missing photo ${photo.id}: ${photo.url}`).toBe(true);
     }
   });
+
+  it('origin narrative has 5 chronological stages with complete storytelling data', async () => {
+    const { ORIGIN_STAGES } = await import('./portfolioData');
+    expect(ORIGIN_STAGES).toHaveLength(5);
+
+    const stages = ORIGIN_STAGES.map((s) => s.stage);
+    expect(stages).toEqual([
+      'Curiosity',
+      'Experimentation',
+      'Perspective',
+      'Building',
+      'Possibility',
+    ]);
+
+    for (const stage of ORIGIN_STAGES) {
+      expect(stage.id).toBeTruthy();
+      expect(stage.period).toBeTruthy();
+      expect(stage.title).toBeTruthy();
+      expect(stage.narrative.length).toBeGreaterThan(60);
+      expect(stage.takeaway.length).toBeGreaterThan(20);
+      expect(stage.tags.length).toBeGreaterThan(0);
+    }
+
+    // Specific verifiable narrative anchors
+    const curiosity = ORIGIN_STAGES.find((s) => s.stage === 'Curiosity')!;
+    expect(curiosity.narrative).toMatch(/Toshiba Satellite/i);
+    expect(curiosity.narrative).toMatch(/chatbot written in C/i);
+
+    const perspective = ORIGIN_STAGES.find((s) => s.stage === 'Perspective')!;
+    expect(perspective.narrative).toMatch(/Spotify/i);
+    expect(perspective.narrative).toMatch(/rejected/i);
+  });
 });

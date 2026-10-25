@@ -1,8 +1,73 @@
 /// <reference types="vitest/config" />
-import { defineConfig } from 'vite';
+import { defineConfig, type Plugin } from 'vite';
+import type { IncomingMessage, ServerResponse } from 'node:http';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
+
+function contactApiPlugin(): Plugin {
+  const handler = (req: IncomingMessage, res: ServerResponse, next: () => void) => {
+    const url = req.url?.split('?')[0];
+    if (
+      url &&
+      (url === '/kortfolio/api/contact' ||
+        url === '/api/contact' ||
+        url.endsWith('/api/contact') ||
+        url.endsWith('/api/contact.php')) &&
+      req.method === 'POST'
+    ) {
+      let body = '';
+      req.on('data', (chunk: Buffer) => {
+        body += chunk.toString();
+      });
+      req.on('end', () => {
+        try {
+          const data = JSON.parse(body || '{}');
+          if (data.website) {
+            // Honeypot caught
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ ok: true, message: 'Inquiry received. Thank you.' }));
+            return;
+          }
+          if (
+            !data.name ||
+            data.name.trim().length < 2 ||
+            !data.email ||
+            !data.message ||
+            data.message.trim().length < 20
+          ) {
+            res.writeHead(422, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ ok: false, error: 'Validation failed.' }));
+            return;
+          }
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(
+            JSON.stringify({
+              ok: true,
+              message:
+                'Your message was sent successfully! Kondwani will review your inquiry and respond shortly.',
+            }),
+          );
+        } catch {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ ok: false, error: 'Invalid JSON payload.' }));
+        }
+      });
+      return;
+    }
+    next();
+  };
+
+  return {
+    name: 'contact-api-mock',
+    configureServer(server) {
+      server.middlewares.use(handler);
+    },
+    configurePreviewServer(server) {
+      server.middlewares.stack.unshift({ route: '', handle: handler });
+    },
+  };
+}
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -10,6 +75,7 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
+    contactApiPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: null,
@@ -23,14 +89,17 @@ export default defineConfig({
         'sitemap.xml',
       ],
       manifest: {
-        name: 'Kondwani Austin Phanga — Computer Engineer & Creative Director',
-        short_name: 'Kortfolio',
+        id: '/kortfolio/',
+        name: 'KORTFOLIO — Kondwani Austin Phanga',
+        short_name: 'KORTFOLIO',
         description:
-          'Portfolio of Kondwani Austin Phanga: Computer Engineer, Systems Builder & Creative Director based in Lilongwe, Malawi.',
+          'A retro-futurist portfolio and systems lab: production software across fintech, public health, edge AI, and documentary media. Built in Malawi.',
         lang: 'en',
-        theme_color: '#047857',
-        background_color: '#f7f6f2',
+        theme_color: '#090d18',
+        background_color: '#05070d',
         display: 'standalone',
+        orientation: 'any',
+        categories: ['portfolio', 'productivity', 'developer'],
         start_url: '/kortfolio/',
         scope: '/kortfolio/',
         icons: [
@@ -54,6 +123,8 @@ export default defineConfig({
           '**/assets/photos/**',
           '**/assets/projects/**',
           '**/assets/profile/**',
+          '**/assets/world-*.js',
+          '**/assets/WebGLRenderer-*.js',
         ],
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
         navigateFallback: '/kortfolio/index.html',

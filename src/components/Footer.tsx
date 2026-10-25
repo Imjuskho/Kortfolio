@@ -1,100 +1,135 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowUp, Terminal, Globe2 } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { ArrowUp, Briefcase, Camera, Code2, Download, Mail } from 'lucide-react';
+import { Link } from '../lib/router';
 import { PERSONAL_INFO } from '../data/portfolioData';
+import { formatZoneClock } from '../lib/time';
+import { asset } from '../lib/asset';
+import { track } from '../lib/analytics';
 
-interface FooterProps {
-  onOpenTerminal: () => void;
-}
+const FOOTER_LINKS = [
+  { to: '/missions', label: 'Missions' },
+  { to: '/lab', label: 'Tech Lab' },
+  { to: '/player', label: 'Player File' },
+  { to: '/media', label: 'Media Archive' },
+  { to: '/contact', label: 'Contact' },
+];
 
-export const Footer: React.FC<FooterProps> = ({ onOpenTerminal }) => {
-  const [localTime, setLocalTime] = useState('');
+export const Footer: React.FC = () => {
+  const [clock, setClock] = useState(() => formatZoneClock(new Date()));
 
   useEffect(() => {
-    const updateTime = () => {
-      try {
-        const timeStr = new Intl.DateTimeFormat('en-GB', {
-          timeZone: 'Africa/Blantyre',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: false
-        }).format(new Date());
-        setLocalTime(timeStr);
-      } catch {
-        setLocalTime('14:00:00');
-      }
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
+    const interval = window.setInterval(() => setClock(formatZoneClock(new Date())), 1000);
+    return () => window.clearInterval(interval);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
-    <footer className="py-12 bg-surface-2 border-t border-border font-mono text-xs text-muted">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-border">
-          {/* Left: Brand Identity */}
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-surface border border-accent/30 flex items-center justify-center text-accent font-bold">
-              KP
-            </div>
-            <div>
-              <span className="text-foreground font-bold tracking-tight text-sm">
-                {PERSONAL_INFO.name}
+    <footer className="relative mt-16 border-t border-line bg-void-deep">
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <div className="grid gap-10 border-b border-line pb-10 md:grid-cols-[1.4fr_1fr_1fr]">
+          <div>
+            <Link to="/" className="inline-flex items-center gap-3" aria-label="KORTFOLIO — return home">
+              <span className="flex h-9 w-9 items-center justify-center border border-line-mint bg-mint/10 font-pixel text-xs text-mint">
+                K
               </span>
-              <p className="text-xs text-muted">
-                {PERSONAL_INFO.title}
-              </p>
+              <span className="font-pixel text-xs tracking-[0.14em] text-ink">KORTFOLIO</span>
+            </Link>
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
+              The working portfolio and systems lab of {PERSONAL_INFO.name}. Production software, field
+              engineering, and documentary craft — built in Malawi.
+            </p>
+            <div className="mt-5 flex flex-wrap items-center gap-2">
+              <a href={`mailto:${PERSONAL_INFO.email}`} className="icon-btn" aria-label={`Email ${PERSONAL_INFO.email}`}>
+                <Mail className="h-4 w-4" aria-hidden="true" />
+              </a>
+              <a
+                href={PERSONAL_INFO.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="icon-btn"
+                aria-label="GitHub profile (opens in a new tab)"
+              >
+                <Code2 className="h-4 w-4" aria-hidden="true" />
+              </a>
+              <a
+                href={PERSONAL_INFO.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="icon-btn"
+                aria-label="LinkedIn profile (opens in a new tab)"
+              >
+                <Briefcase className="h-4 w-4" aria-hidden="true" />
+              </a>
+              <a
+                href={PERSONAL_INFO.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="icon-btn"
+                aria-label="Instagram photography (opens in a new tab)"
+              >
+                <Camera className="h-4 w-4" aria-hidden="true" />
+              </a>
             </div>
           </div>
 
-          {/* Center: System Status & Lilongwe Clock */}
-          <div className="flex flex-wrap items-center justify-center gap-4 text-xs">
-            <div className="flex items-center gap-1.5 text-accent">
-              <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-              <span>Host Node: MW-LLW-01 (Online)</span>
-            </div>
-            <span>•</span>
-            <div className="flex items-center gap-1.5 text-muted">
-              <Globe2 className="w-3.5 h-3.5 text-faint" />
-              <span>{localTime} CAT (Lilongwe)</span>
-            </div>
-            <span>•</span>
-            <button
-              onClick={onOpenTerminal}
-              className="text-warn hover:underline flex items-center gap-1 cursor-pointer"
+          <nav aria-label="Footer">
+            <h2 className="hud-label text-faint">Navigate</h2>
+            <ul className="mt-3 space-y-1">
+              {FOOTER_LINKS.map((link) => (
+                <li key={link.to}>
+                  <Link
+                    to={link.to}
+                    className="inline-flex min-h-9 items-center text-sm text-muted transition-colors hover:text-mint"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div>
+            <h2 className="hud-label text-faint">Direct</h2>
+            <a
+              href={`mailto:${PERSONAL_INFO.email}`}
+              className="mt-3 block break-all text-sm text-mint underline-offset-4 hover:underline"
             >
-              <Terminal className="w-3 h-3" />
-              <span>kortfolio-cli</span>
+              {PERSONAL_INFO.email}
+            </a>
+            <p className="mt-2 text-sm text-muted">{PERSONAL_INFO.location}</p>
+            <a
+              href={asset(PERSONAL_INFO.cv)}
+              download="Kondwani-Phanga-CV.pdf"
+              className="mt-4 inline-flex min-h-10 items-center gap-2 border border-line px-3 font-mono text-xs uppercase tracking-wider text-muted transition-colors hover:border-line-mint hover:text-mint"
+              onClick={() => track('cv_downloaded', { surface: 'footer' })}
+            >
+              <Download className="h-4 w-4" aria-hidden="true" />
+              Download CV
+            </a>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 pt-6 font-mono text-[11px] uppercase tracking-[0.12em] text-faint sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <span>© {new Date().getFullYear()} {PERSONAL_INFO.name}</span>
+            <span className="hidden sm:inline" aria-hidden="true">/</span>
+            <span className="flex items-center gap-1.5">
+              <span className="status-dot" aria-hidden="true" />
+              Lilongwe {clock} CAT
+            </span>
+            <span className="hidden sm:inline" aria-hidden="true">/</span>
+            <span>Sound off by default</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <span>No trackers bundled</span>
+            <button
+              type="button"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="inline-flex min-h-9 items-center gap-1.5 border border-line px-2.5 text-muted transition-colors hover:border-line-mint hover:text-mint"
+            >
+              Top <ArrowUp className="h-3 w-3" aria-hidden="true" />
             </button>
           </div>
-
-          {/* Right: Scroll to top */}
-          <button
-            onClick={scrollToTop}
-            className="p-2.5 rounded-xl bg-surface hover:bg-surface border border-border text-muted hover:text-foreground transition-all flex items-center gap-2 cursor-pointer"
-            title="Return to top"
-          >
-            <span>Top</span>
-            <ArrowUp className="w-3.5 h-3.5" />
-          </button>
         </div>
-
-        {/* Bottom copyright & attribution */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted">
-          <div>
-            © {new Date().getFullYear()} Kondwani Austin Phanga. Handcrafted with care in Lilongwe, Malawi.
-          </div>
-          <div className="flex items-center gap-1 text-muted">
-            <span>Built with React 19, TypeScript, Tailwind CSS, and a deep respect for real-world constraints.</span>
-          </div>
-        </div>
-
       </div>
     </footer>
   );

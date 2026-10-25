@@ -87,3 +87,13 @@ export interface EducationEntry {
   focus: string;
   location: string;
 }
+
+export interface OriginStage {
+  id: string;
+  stage: 'Curiosity' | 'Experimentation' | 'Perspective' | 'Building' | 'Possibility';
+  period: string;
+  title: string;
+  narrative: string;
+  takeaway: string;
+  tags: string[];
+}
