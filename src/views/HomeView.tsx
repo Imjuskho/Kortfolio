@@ -168,14 +168,14 @@ export const HomeView: React.FC = () => {
               </span>
             </h1>
 
-            <div className="mt-7 max-w-2xl border-l border-line-mint pl-5">
+            <div className="mt-7 max-w-2xl rounded-r-sm border-y border-r border-line/40 border-l-2 border-line-mint bg-void/85 p-5 shadow-2xl backdrop-blur-md dark:bg-void/80 sm:p-6">
               <p className="font-display text-2xl font-semibold leading-tight tracking-tight text-ink sm:text-3xl">
                 {PERSONAL_INFO.name}
               </p>
               <p className="mt-1 font-mono text-xs uppercase tracking-[0.16em] text-mint">
                 Computer Engineer · Creative Director
               </p>
-              <p className="body-copy mt-4 max-w-xl text-base">
+              <p className="body-copy mt-4 max-w-xl text-base font-medium text-ink/90 dark:text-ink/85">
                 “Building systems. Engineering ideas. Creating experiences.”
               </p>
               <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted">
@@ -216,14 +216,12 @@ export const HomeView: React.FC = () => {
             </div>
 
             <div
-              className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[11px] uppercase tracking-[0.12em] text-faint"
+              className="mt-8 flex flex-wrap items-center gap-2"
               style={introDone ? undefined : { animation: 'intro-in 700ms cubic-bezier(0.16,1,0.3,1) 440ms both' }}
             >
-              <span>{MISSIONS.length} mission records</span>
-              <span aria-hidden="true">/</span>
-              <span>10+ years in production</span>
-              <span aria-hidden="true">/</span>
-              <span>Available for advisory & builds</span>
+              <span className="tag font-mono text-[11px]">{MISSIONS.length} mission records</span>
+              <span className="tag font-mono text-[11px]">10+ years in production</span>
+              <span className="tag tag-mint font-mono text-[11px]">Available for advisory & builds</span>
             </div>
           </section>
 
@@ -260,29 +258,41 @@ export const HomeView: React.FC = () => {
                       }}
                       className={`group flex min-h-14 items-center gap-3 border px-3 py-2.5 transition-all ${
                         activeIndex === index
-                          ? 'border-line-mint bg-mint/10 text-ink'
-                          : 'border-line bg-white/[0.015] text-muted hover:border-line-strong'
+                          ? 'border-line-mint bg-mint/10 text-ink shadow-sm'
+                          : 'border-line bg-panel/50 text-muted hover:border-line-strong hover:bg-panel/80 hover:text-ink'
                       }`}
                     >
                       <span
-                        className={`flex h-8 w-8 flex-shrink-0 items-center justify-center border ${
-                          activeIndex === index ? 'border-mint/40 text-mint' : 'border-line text-faint'
+                        className={`flex h-8 w-8 flex-shrink-0 items-center justify-center border transition-colors ${
+                          activeIndex === index ? 'border-mint/40 text-mint' : 'border-line text-faint group-hover:text-muted'
                         }`}
                       >
                         <Icon className="h-4 w-4" aria-hidden="true" />
                       </span>
                       <span className="min-w-0 flex-1">
                         <span className="flex items-baseline gap-2">
-                          <span className="font-mono text-[10px] text-faint">{item.code}</span>
+                          <span
+                            className={`font-mono text-[10px] transition-colors ${
+                              activeIndex === index ? 'text-mint' : 'text-faint group-hover:text-muted'
+                            }`}
+                          >
+                            {item.code}
+                          </span>
                           <span className="font-display text-sm font-bold uppercase tracking-[0.06em]">
                             {item.label}
                           </span>
                         </span>
-                        <span className="mt-0.5 block truncate text-xs text-faint">{item.hint}</span>
+                        <span
+                          className={`mt-0.5 block truncate text-xs transition-colors ${
+                            activeIndex === index ? 'text-ink/80' : 'text-muted group-hover:text-ink'
+                          }`}
+                        >
+                          {item.hint}
+                        </span>
                       </span>
                       <ArrowRight
                         className={`h-4 w-4 flex-shrink-0 transition-transform ${
-                          activeIndex === index ? 'translate-x-0.5 text-mint' : 'text-faint'
+                          activeIndex === index ? 'translate-x-0.5 text-mint' : 'text-faint group-hover:text-muted'
                         }`}
                         aria-hidden="true"
                       />

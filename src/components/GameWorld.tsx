@@ -182,8 +182,15 @@ export const GameWorld: React.FC = () => {
       </div>
       <div ref={hostRef} className="absolute inset-0" />
       <div className="scanlines absolute inset-0 opacity-40" />
-      <div className="absolute inset-0 bg-gradient-to-r from-void via-void/55 to-transparent" />
-      <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-void/50" />
+      {/* 
+        Full protective background for the hero typography area:
+        On desktop: 100% solid var(--void) across the entire left column (up to 54%),
+        then softly blending into the 3D scene around the main menu on the right.
+        On mobile: 100% solid var(--void) for the top 60% of the screen.
+      */}
+      <div className="absolute inset-0 hidden bg-gradient-to-r from-void via-void via-54% to-transparent lg:block" />
+      <div className="absolute inset-0 bg-gradient-to-b from-void via-void via-60% to-transparent lg:hidden" />
+      <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-void/70" />
     </div>
   );
 };

@@ -72,8 +72,19 @@ export async function createWorld(container: HTMLElement, options: WorldOptions)
   renderer.toneMappingExposure = 1.05;
   container.appendChild(canvas);
 
+  const getTheme = () => (typeof document !== 'undefined' && document.documentElement.dataset.theme === 'light' ? 'light' : 'dark');
+  const fogColor = () => (getTheme() === 'light' ? 0xf2f7f4 : 0x090d18);
+
   const scene = new Scene();
-  scene.fog = new FogExp2(0x090d18, 0.024);
+  scene.fog = new FogExp2(fogColor(), getTheme() === 'light' ? 0.016 : 0.024);
+
+  const themeObserver = new MutationObserver(() => {
+    if (scene.fog) {
+      (scene.fog as FogExp2).color.setHex(fogColor());
+      (scene.fog as FogExp2).density = getTheme() === 'light' ? 0.016 : 0.024;
+    }
+  });
+  themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
   const camera = new PerspectiveCamera(42, 1, 0.1, 160);
   const cameraTarget = new Vector3(0, 1.1, 0);
@@ -513,6 +524,7 @@ export async function createWorld(container: HTMLElement, options: WorldOptions)
     cancelAnimationFrame(frame);
     resizeObserver.disconnect();
     intersectionObserver.disconnect();
+    themeObserver.disconnect();
     document.removeEventListener('visibilitychange', onVisibility);
     window.removeEventListener('pointermove', onPointerMove);
     scene.traverse((object) => {
