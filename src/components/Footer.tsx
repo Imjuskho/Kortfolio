@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowUp, Briefcase, Camera, Code2, Download, Mail } from 'lucide-react';
+import { ArrowUp, Briefcase, Camera, Code2, Download, Mail, Music } from 'lucide-react';
 import { Link } from '../lib/router';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { formatZoneClock } from '../lib/time';
@@ -67,6 +67,15 @@ export const Footer: React.FC = () => {
                 aria-label="Instagram photography (opens in a new tab)"
               >
                 <Camera className="h-4 w-4" aria-hidden="true" />
+              </a>
+              <a
+                href={PERSONAL_INFO.soundcloud}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="icon-btn"
+                aria-label="SoundCloud music profile (opens in a new tab)"
+              >
+                <Music className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
           </div>

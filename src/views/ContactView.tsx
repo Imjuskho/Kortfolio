@@ -9,6 +9,7 @@ import {
   Loader2,
   Mail,
   MapPin,
+  Music,
   Send,
   Sparkles,
 } from 'lucide-react';
@@ -678,6 +679,15 @@ export const ContactView: React.FC = () => {
                 className="tag transition-colors hover:border-line-mint hover:text-mint"
               >
                 <Briefcase className="h-3.5 w-3.5" aria-hidden="true" /> LinkedIn
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+              <a
+                href={PERSONAL_INFO.soundcloud}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="tag transition-colors hover:border-line-mint hover:text-mint"
+              >
+                <Music className="h-3.5 w-3.5" aria-hidden="true" /> SoundCloud
                 <span className="sr-only"> (opens in a new tab)</span>
               </a>
             </div>

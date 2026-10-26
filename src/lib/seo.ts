@@ -61,7 +61,7 @@ export function getRouteMeta(route: Route): RouteMeta {
     image: `${SITE}/assets/profile/kondwani.webp`,
     email: `mailto:${PERSONAL_INFO.email}`,
     address: { '@type': 'PostalAddress', addressLocality: 'Lilongwe', addressCountry: 'MW' },
-    sameAs: [PERSONAL_INFO.github, PERSONAL_INFO.linkedin, PERSONAL_INFO.instagram],
+    sameAs: [PERSONAL_INFO.github, PERSONAL_INFO.linkedin, PERSONAL_INFO.instagram, PERSONAL_INFO.soundcloud],
     knowsAbout: ['Systems Architecture', 'Cloud Engineering', 'Edge AI', 'FinTech', 'Creative Direction'],
   };
 

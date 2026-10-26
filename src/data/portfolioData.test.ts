@@ -44,6 +44,13 @@ describe('portfolio data integrity', () => {
     }
   });
 
+  it('personal info includes active social and creative channels', () => {
+    expect(PERSONAL_INFO.github).toContain('github.com');
+    expect(PERSONAL_INFO.linkedin).toContain('linkedin.com');
+    expect(PERSONAL_INFO.instagram).toContain('instagram.com');
+    expect(PERSONAL_INFO.soundcloud).toBe('https://soundcloud.com/kay-phanga');
+  });
+
   it('projects have unique ids and preview imagery', () => {
     const ids = PROJECTS.map((p) => p.id);
     expect(new Set(ids).size).toBe(ids.length);

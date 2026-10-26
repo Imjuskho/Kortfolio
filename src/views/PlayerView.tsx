@@ -60,6 +60,7 @@ const SOCIALS = [
   { label: 'GitHub', href: PERSONAL_INFO.github },
   { label: 'LinkedIn', href: PERSONAL_INFO.linkedin },
   { label: 'Instagram', href: PERSONAL_INFO.instagram },
+  { label: 'SoundCloud', href: PERSONAL_INFO.soundcloud },
 ];
 
 export const PlayerView: React.FC = () => {
