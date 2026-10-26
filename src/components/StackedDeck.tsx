@@ -96,13 +96,19 @@ export const StackedDeck: React.FC<StackedDeckProps> = ({
 
       if (!hasLayout) return;
 
-      setActiveIndex((prev) => (prev !== current ? current : prev));
+      setActiveIndex((prev) => {
+        if (prev !== current) {
+          play('swipe');
+          return current;
+        }
+        return prev;
+      });
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [items.length]);
+  }, [items.length, play]);
 
   const scrollToCard = useCallback(
     (index: number) => {
@@ -111,7 +117,7 @@ export const StackedDeck: React.FC<StackedDeckProps> = ({
       const card = cardRefs.current[index];
       if (!card) return;
 
-      play('select');
+      play('swipe');
 
       const prefersReduced =
         typeof window !== 'undefined' &&

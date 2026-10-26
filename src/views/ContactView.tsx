@@ -18,6 +18,7 @@ import { MISSIONS, getMission } from '../data/missions';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { useRouter } from '../lib/routerCore';
 import { track } from '../lib/analytics';
+import { useSound } from '../lib/sfxCore';
 
 interface FormState {
   name: string;
@@ -66,6 +67,7 @@ function buildDraft(form: FormState): { subject: string; body: string } {
 
 export const ContactView: React.FC = () => {
   const { search } = useRouter();
+  const { play } = useSound();
 
   const requestedProject = useMemo(() => {
     const value = new URLSearchParams(search).get('project') ?? 'general';
@@ -121,6 +123,7 @@ export const ContactView: React.FC = () => {
   };
 
   const handleModeChange = (newMode: 'direct' | 'client') => {
+    play('click');
     setMode(newMode);
     setStatus('idle');
     setServerError(null);
@@ -153,6 +156,7 @@ export const ContactView: React.FC = () => {
 
       if (response.ok && data?.ok) {
         setStatus('sent');
+        play('success');
         track('contact_form_submitted', { method: 'api', surface: 'contact' });
       } else {
         const errorMsg =
@@ -178,6 +182,7 @@ export const ContactView: React.FC = () => {
     )}&body=${encodeURIComponent(draft.body)}`;
 
     setStatus('drafted');
+    play('select');
     track('contact_email_drafted', { method: 'mailto', surface: 'contact' });
     window.location.href = href;
   };
@@ -216,6 +221,7 @@ export const ContactView: React.FC = () => {
     const text = `To: ${PERSONAL_INFO.email}\r\nSubject: ${draft.subject}\r\n\r\n${draft.body}`;
     try {
       await navigator.clipboard.writeText(text);
+      play('success');
       setCopyDraftState('copied');
       setStatus('copied');
       track('email_draft_copied', { surface: 'contact' });
@@ -229,6 +235,7 @@ export const ContactView: React.FC = () => {
   const copyEmail = async () => {
     try {
       await navigator.clipboard.writeText(PERSONAL_INFO.email);
+      play('success');
       setCopyEmailState('copied');
       track('email_address_copied', { surface: 'contact' });
       window.setTimeout(() => setCopyEmailState('idle'), 3200);

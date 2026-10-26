@@ -22,7 +22,7 @@ function isActive(pathname: string, to: string): boolean {
 
 export const TopBar: React.FC<{ onOpenCommand: () => void }> = ({ onOpenCommand }) => {
   const { path } = useRouter();
-  const { enabled, toggle, play } = useSound();
+  const { enabled, toggle, play, trackTitle, trackArtist } = useSound();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [lightMode, setLightMode] = useState(() =>
     typeof document !== 'undefined' && document.documentElement.dataset.theme === 'light',
@@ -40,11 +40,13 @@ export const TopBar: React.FC<{ onOpenCommand: () => void }> = ({ onOpenCommand 
   }, [mobileOpen]);
 
   const handleSound = () => {
+    play('toggle');
     toggle();
     if (!enabled) track('sound_enabled', { enabled: true });
   };
 
   const handleTheme = () => {
+    play('toggle');
     const next = !lightMode;
     setLightMode(next);
     document.documentElement.dataset.theme = next ? 'light' : 'dark';
@@ -102,7 +104,10 @@ export const TopBar: React.FC<{ onOpenCommand: () => void }> = ({ onOpenCommand 
             <button
               type="button"
               className="icon-btn hidden sm:inline-flex"
-              onClick={onOpenCommand}
+              onClick={() => {
+                play('open');
+                onOpenCommand();
+              }}
               aria-label="Open command menu (Control or Command K)"
               title="Command menu (⌘K)"
             >
@@ -119,23 +124,64 @@ export const TopBar: React.FC<{ onOpenCommand: () => void }> = ({ onOpenCommand 
             >
               {lightMode ? <Moon className="h-4 w-4" aria-hidden="true" /> : <Sun className="h-4 w-4" aria-hidden="true" />}
             </button>
+            {enabled && (
+              <button
+                type="button"
+                onClick={handleSound}
+                className="group hidden items-center gap-2 rounded-xs border border-line-mint/30 bg-mint/5 px-2.5 py-1 text-left transition-colors hover:border-line-mint hover:bg-mint/10 md:flex"
+                title={`Soundtrack: ${trackTitle} by ${trackArtist} — Click to mute`}
+                aria-label={`Soundtrack active: ${trackTitle} by ${trackArtist}. Click to mute`}
+              >
+                <div className="flex h-3 items-end gap-0.5" aria-hidden="true">
+                  <span className="w-0.5 rounded-full bg-mint animate-eq-1" />
+                  <span className="w-0.5 rounded-full bg-mint animate-eq-2" />
+                  <span className="w-0.5 rounded-full bg-mint animate-eq-3" />
+                  <span className="w-0.5 rounded-full bg-mint animate-eq-4" />
+                </div>
+                <div className="flex flex-col leading-none">
+                  <span className="font-mono text-[9px] font-semibold uppercase tracking-wider text-mint">
+                    BGM · {trackTitle}
+                  </span>
+                  <span className="font-mono text-[8px] tracking-wider text-faint group-hover:text-ink">
+                    {trackArtist}
+                  </span>
+                </div>
+              </button>
+            )}
             <button
               type="button"
-              className="icon-btn"
+              className={`icon-btn relative ${enabled ? 'border-line-mint text-mint' : ''}`}
               onClick={handleSound}
               aria-pressed={enabled}
               aria-label={enabled ? 'Disable interface sound' : 'Enable interface sound (off by default)'}
-              title={enabled ? 'Sound on' : 'Sound off — click to enable'}
+              title={enabled ? `Sound on — ${trackTitle} playing` : 'Sound off — click to enable'}
             >
-              {enabled ? <Volume2 className="h-4 w-4" aria-hidden="true" /> : <VolumeX className="h-4 w-4" aria-hidden="true" />}
+              {enabled ? (
+                <>
+                  <Volume2 className="h-4 w-4" aria-hidden="true" />
+                  <span className="absolute -top-1 -right-1 flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-mint opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-mint" />
+                  </span>
+                </>
+              ) : (
+                <VolumeX className="h-4 w-4" aria-hidden="true" />
+              )}
             </button>
-            <Link to="/contact" className="btn hidden min-h-10 px-4 md:inline-flex">
+            <Link
+              to="/contact"
+              className="btn hidden min-h-10 px-4 md:inline-flex"
+              onClick={() => play('click')}
+            >
               Hire / Contact
             </Link>
             <button
               type="button"
               className="icon-btn lg:hidden"
-              onClick={() => setMobileOpen(true)}
+              onClick={() => {
+                play('open');
+                setMobileOpen(true);
+              }}
               aria-label="Open navigation menu"
               aria-expanded={mobileOpen}
               aria-controls="mobile-navigation"
@@ -166,7 +212,10 @@ export const TopBar: React.FC<{ onOpenCommand: () => void }> = ({ onOpenCommand 
                 ref={closeButtonRef}
                 type="button"
                 className="icon-btn"
-                onClick={() => setMobileOpen(false)}
+                onClick={() => {
+                  play('close');
+                  setMobileOpen(false);
+                }}
                 aria-label="Close navigation menu"
               >
                 <X className="h-5 w-5" aria-hidden="true" />

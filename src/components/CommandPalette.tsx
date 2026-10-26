@@ -6,6 +6,7 @@ import { asset } from '../lib/asset';
 import { track } from '../lib/analytics';
 import { useDialogA11y } from '../hooks/useDialogA11y';
 import { useRouter } from '../lib/routerCore';
+import { useSound } from '../lib/sfxCore';
 
 interface CommandItem {
   id: string;
@@ -18,6 +19,7 @@ interface CommandItem {
 
 export const CommandPalette: React.FC<{ open: boolean; onClose: () => void }> = ({ open, onClose }) => {
   const { navigate } = useRouter();
+  const { play, enabled, toggle } = useSound();
   const [query, setQuery] = useState('');
   const [activeIndex, setActiveIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -63,8 +65,18 @@ export const CommandPalette: React.FC<{ open: boolean; onClose: () => void }> = 
           window.location.href = asset(PERSONAL_INFO.cv);
         },
       },
+      {
+        id: 'action-sound',
+        label: enabled ? 'Mute Soundtrack & Interface SFX' : 'Play Soundtrack (ZioZenZhu) & SFX',
+        hint: 'BGM · K. Phanga',
+        group: 'Actions',
+        keywords: 'sound audio music mute song track ziozenzhu instrumental bgm',
+        run: () => {
+          toggle();
+        },
+      },
     ],
-    [navigate],
+    [navigate, enabled, toggle],
   );
 
   const filtered = useMemo(() => {
@@ -79,6 +91,7 @@ export const CommandPalette: React.FC<{ open: boolean; onClose: () => void }> = 
 
   const run = (command: CommandItem | undefined) => {
     if (!command) return;
+    play('select');
     onClose();
     command.run();
   };
@@ -86,9 +99,11 @@ export const CommandPalette: React.FC<{ open: boolean; onClose: () => void }> = 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'ArrowDown') {
       event.preventDefault();
+      play('move');
       setActiveIndex((index) => (filtered.length ? (index + 1) % filtered.length : 0));
     } else if (event.key === 'ArrowUp') {
       event.preventDefault();
+      play('move');
       setActiveIndex((index) => (filtered.length ? (index - 1 + filtered.length) % filtered.length : 0));
     } else if (event.key === 'Enter') {
       event.preventDefault();
@@ -100,7 +115,14 @@ export const CommandPalette: React.FC<{ open: boolean; onClose: () => void }> = 
 
   return (
     <div className="fixed inset-0 z-[80] flex items-start justify-center bg-void-deep/85 px-4 pt-[12vh] backdrop-blur-sm">
-      <div className="absolute inset-0" onClick={onClose} aria-hidden="true" />
+      <div
+        className="absolute inset-0"
+        onClick={() => {
+          play('close');
+          onClose();
+        }}
+        aria-hidden="true"
+      />
       <div
         ref={dialogRef}
         role="dialog"
@@ -115,7 +137,15 @@ export const CommandPalette: React.FC<{ open: boolean; onClose: () => void }> = 
               Command menu
             </h2>
           </div>
-          <button type="button" className="icon-btn h-9 w-9" onClick={onClose} aria-label="Close command menu">
+          <button
+            type="button"
+            className="icon-btn h-9 w-9"
+            onClick={() => {
+              play('close');
+              onClose();
+            }}
+            aria-label="Close command menu"
+          >
             <X className="h-4 w-4" aria-hidden="true" />
           </button>
         </div>
