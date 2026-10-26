@@ -28,6 +28,7 @@ import {
 } from '../data/portfolioData';
 import { Link } from '../lib/router';
 import { asset } from '../lib/asset';
+import { StackedDeck, type StackedDeckItem } from '../components/StackedDeck';
 import { track } from '../lib/analytics';
 
 const DIMENSION_ICONS = {
@@ -76,6 +77,96 @@ export const PlayerView: React.FC = () => {
   }, [skillQuery]);
 
   const totalSkills = SKILL_CATEGORIES.reduce((total, category) => total + category.skills.length, 0);
+
+  const originDeckItems: StackedDeckItem[] = useMemo(() => {
+    const toneMap: Record<string, 'amber' | 'violet' | 'rose' | 'mint' | 'emerald'> = {
+      Curiosity: 'amber',
+      Experimentation: 'violet',
+      Perspective: 'rose',
+      Building: 'mint',
+      Possibility: 'emerald',
+    };
+
+    return ORIGIN_STAGES.map((stage, index) => ({
+      id: stage.id,
+      code: `CH 0${index + 1}`,
+      label: stage.stage,
+      period: stage.period,
+      tone: toneMap[stage.stage] || 'amber',
+      renderContent: () => (
+        <div>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <span className="font-display text-xs font-bold uppercase tracking-wider text-ink">
+              Stage 0{index + 1} · {stage.stage}
+            </span>
+            <span className="font-mono text-[11px] text-mint">
+              Chapter {index + 1} of {ORIGIN_STAGES.length}
+            </span>
+          </div>
+
+          <h3 className="mt-2 font-display text-lg font-semibold text-ink sm:text-xl">
+            {stage.title}
+          </h3>
+
+          <p className="mt-2.5 text-sm leading-relaxed text-muted">
+            {stage.narrative}
+          </p>
+
+          <div className="mt-3.5 border-l-2 border-line-mint bg-void-deep/80 p-3 font-mono text-xs text-ink">
+            <span className="font-semibold uppercase tracking-wider text-mint">Lesson:</span> {stage.takeaway}
+          </div>
+
+          <div className="mt-4 flex flex-wrap gap-1.5 border-t border-line pt-3">
+            {stage.tags.map((tag) => (
+              <span key={tag} className="tag text-[11px]">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      ),
+    }));
+  }, []);
+
+  const careerDeckItems: StackedDeckItem[] = useMemo(() => {
+    return CAREER_EXPERIENCES.map((experience, index) => ({
+      id: `${experience.company}-${experience.period}`,
+      code: String(CAREER_EXPERIENCES.length - index).padStart(2, '0'),
+      label: experience.company,
+      period: experience.period,
+      tone: 'mint' as const,
+      renderContent: () => (
+        <div>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <h3 className="font-display text-xl font-semibold text-ink">{experience.role}</h3>
+              <p className="mt-0.5 text-sm font-medium text-amber">{experience.company}</p>
+            </div>
+            <span className="tag">{experience.location}</span>
+          </div>
+
+          <p className="mt-3 text-sm leading-relaxed text-muted">{experience.description}</p>
+
+          <ul className="mt-4 space-y-2">
+            {experience.achievements.map((achievement) => (
+              <li key={achievement} className="flex items-start gap-2 text-sm leading-relaxed text-muted">
+                <ShieldCheck className="mt-0.5 h-4 w-4 flex-shrink-0 text-mint" aria-hidden="true" />
+                <span>{achievement}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-4 flex flex-wrap gap-1.5 border-t border-line pt-3">
+            {experience.skills.map((skill) => (
+              <span key={skill} className="tag">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      ),
+    }));
+  }, []);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
@@ -229,105 +320,35 @@ export const PlayerView: React.FC = () => {
               How curiosity turned into deep systems discipline, commercial perspective, and products built for real constraints.
             </p>
 
-            <ol className="mt-6 space-y-4 border-l border-line pl-5 sm:pl-6">
-              {ORIGIN_STAGES.map((stage, index) => (
-                <li key={stage.id} className="relative">
-                  <span
-                    className={`absolute -left-[1.45rem] top-3 h-2 w-2 sm:-left-[1.7rem] ${
-                      stage.stage === 'Curiosity'
-                        ? 'bg-amber'
-                        : stage.stage === 'Experimentation'
-                          ? 'bg-violet'
-                          : stage.stage === 'Perspective'
-                            ? 'bg-rose-400'
-                            : stage.stage === 'Building'
-                              ? 'bg-mint'
-                              : 'bg-emerald-400'
-                    }`}
-                    aria-hidden="true"
-                  />
-                  <article className="pixel-panel p-5 sm:p-6">
-                    <div className="flex flex-wrap items-center justify-between gap-2">
-                      <div className="flex items-center gap-2">
-                        <span className="tag tag-amber font-mono text-[10px]">
-                          CH 0{index + 1}
-                        </span>
-                        <span className="font-display text-xs font-bold uppercase tracking-wider text-ink">
-                          {stage.stage}
-                        </span>
-                      </div>
-                      <span className="font-mono text-[11px] text-faint">{stage.period}</span>
-                    </div>
-
-                    <h3 className="mt-2.5 font-display text-lg font-semibold text-ink sm:text-xl">
-                      {stage.title}
-                    </h3>
-
-                    <p className="mt-2.5 text-sm leading-relaxed text-muted">
-                      {stage.narrative}
-                    </p>
-
-                    <div className="mt-3.5 border-l-2 border-line-mint bg-void-deep/80 p-3 font-mono text-xs text-ink">
-                      <span className="text-mint font-semibold uppercase tracking-wider">Lesson:</span> {stage.takeaway}
-                    </div>
-
-                    <div className="mt-4 flex flex-wrap gap-1.5 border-t border-line pt-3">
-                      {stage.tags.map((tag) => (
-                        <span key={tag} className="tag text-[11px]">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </article>
-                </li>
-              ))}
-            </ol>
+            <div className="mt-6">
+              <StackedDeck
+                id="origin-deck"
+                title="The Arc · Origin story"
+                unitName="Chapter"
+                tone="amber"
+                items={originDeckItems}
+              />
+            </div>
           </section>
 
           <section aria-labelledby="career-title">
-            <SectionLabel>Career record</SectionLabel>
+            <SectionLabel tone="mint">Career record</SectionLabel>
             <h2 id="career-title" className="font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
               Where the systems were built
             </h2>
+            <p className="body-copy mt-2 max-w-2xl text-sm">
+              A decade of production operations, executive leadership, and mission-critical engineering.
+            </p>
 
-            <ol className="mt-5 space-y-4 border-l border-line pl-5 sm:pl-6">
-              {CAREER_EXPERIENCES.map((experience, index) => (
-                <li key={`${experience.company}-${experience.period}`} className="relative">
-                  <span
-                    className="absolute -left-[1.45rem] top-2 h-2 w-2 bg-mint sm:-left-[1.7rem]"
-                    aria-hidden="true"
-                  />
-                  <article className="pixel-panel p-5 sm:p-6">
-                    <div className="flex flex-wrap items-center justify-between gap-2">
-                      <span className="font-mono text-[10px] uppercase tracking-wider text-mint">
-                        {String(CAREER_EXPERIENCES.length - index).padStart(2, '0')} / {experience.period}
-                      </span>
-                      <span className="tag">{experience.location}</span>
-                    </div>
-                    <h3 className="mt-2 font-display text-xl font-semibold text-ink">{experience.role}</h3>
-                    <p className="mt-0.5 text-sm font-medium text-amber">{experience.company}</p>
-                    <p className="mt-3 text-sm leading-relaxed text-muted">{experience.description}</p>
-
-                    <ul className="mt-4 space-y-2">
-                      {experience.achievements.map((achievement) => (
-                        <li key={achievement} className="flex items-start gap-2 text-sm leading-relaxed text-muted">
-                          <ShieldCheck className="mt-0.5 h-4 w-4 flex-shrink-0 text-mint" aria-hidden="true" />
-                          <span>{achievement}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div className="mt-4 flex flex-wrap gap-1.5 border-t border-line pt-3">
-                      {experience.skills.map((skill) => (
-                        <span key={skill} className="tag">
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </article>
-                </li>
-              ))}
-            </ol>
+            <div className="mt-6">
+              <StackedDeck
+                id="career-deck"
+                title="Career record"
+                unitName="Record"
+                tone="mint"
+                items={careerDeckItems}
+              />
+            </div>
           </section>
 
           <section aria-labelledby="education-title">
